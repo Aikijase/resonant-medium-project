@@ -1,0 +1,115 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{jcappub} % JCAP style
+\usepackage[T1]{fontenc}
+
+\title{The Echo Equation in Resonant Medium Cosmology: A Finite-Memory Mechanism for Cosmic Expansion}
+
+\author[a]{Jason Watts}
+\affiliation[a]{The Experimentalist Lab}
+\emailAdd{theexperimentalistlab@outlook.com}
+
+\abstract{
+We present the \emph{Echo Equation}, a finite-memory response framework for cosmic expansion within a resonant-medium cosmology. We derive the governing dynamics, show their reduction to $\Lambda$CDM in a suitable limit, and demonstrate observational viability against key probes (BAO, SN, CMB lensing, structure growth). The model yields distinct, testable signatures---including echo-like modulations in the expansion and growth history---which enable near-term falsification with current and upcoming surveys. We conclude with theoretical consistency checks and predictions.
+}
+
+\keywords{cosmology of theories beyond the SM, dark energy theory, modified gravity, cosmological parameters from LSS, gravity in more than four dimensions} % adjust as needed
+
+\arxivnumber{} % optional; add when ready
+
+\begin{document}
+\maketitle
+\flushbottom
+
+\section{Introduction}
+\label{sec:intro}
+% Motivation: explanatory mechanism vs. effective parameterization; outline of resonant medium view.
+% Brief literature context and prior art; where Echo Equation fits and how it differs.
+% Paper roadmap.
+
+\subsection{Motivation and background}
+% Summarize tensions/limitations in standard modeling that motivate a finite-memory/resonance approach.
+
+\subsection{This work: contributions}
+% Bullet the key contributions: derivation, mapping to observables, fits/predictions, falsifiable signatures.
+
+\section{The Echo Equation: finite-memory cosmological dynamics}
+\label{sec:theory}
+% Define the resonant medium, memory kernel, state variables.
+% Derive the Echo Equation starting from first principles/ansatz.
+% Show reduction to LCDM in limiting cases; discuss parameters and physical meaning.
+
+\subsection{Memory kernel and resonance parameters}
+% Define parameters (e.g., \tau, \kappa, \omega_0, Q) and their roles.
+
+\subsection{Background evolution}
+% Map to H(z), effective w(z), distance measures.
+
+\subsection{Linear growth of structure}
+% f\sigma_8 predictions; lensing implications; ISW expectations.
+
+\section{Data, likelihoods, and fitting procedure}
+\label{sec:data}
+% Describe datasets (BAO, SN, CMB lensing, growth). Covariances and consistency cuts.
+% Brief the pipeline: joint likelihood, chi^2, priors, samplers/tools.
+% Point to code/data availability (appendix).
+
+\subsection{Datasets}
+% BAO (e.g., DESI), SN (e.g., Pantheon+), CMB lensing (Planck), RSD/growth.
+
+\subsection{Methodology}
+% Likelihood definition, nuisance handling, fitting details; reproducibility notes.
+
+\section{Results}
+\label{sec:results}
+% Best-fit parameters and uncertainties; model comparison with LCDM.
+% Figures: H(z), w(z), growth, residuals, triangle plots.
+
+\subsection{Background expansion and distances}
+% Plots/tables and interpretation.
+
+\subsection{Growth and lensing signatures}
+% f\sigma_8, A_L or equivalent; echo-imprint discussion.
+
+\subsection{Model comparison and robustness}
+% Information criteria or \Delta\chi^2; sensitivity to priors/cuts.
+
+\section{Predictions and tests}
+\label{sec:predictions}
+% Concrete, near-term tests; where/when the model deviates most from LCDM.
+% Forecasts for DESI/Euclid/LSST; cross-correlations (ISW, g×\kappa).
+
+\section{Theoretical consistency}
+\label{sec:consistency}
+% Thermodynamics and EFT sanity; early-Universe constraints (BBN, N_eff); backreaction checks.
+% Connections to other finite-memory/resonant theories.
+
+\section{Discussion and conclusion}
+\label{sec:conclusion}
+% Synthesis, implications, limitations; roadmap for future work.
+
+\appendix
+
+\section{Derivation details for the Echo Equation}
+\label{app:derivation}
+% Expanded steps, proofs, and intermediate lemmas.
+
+\section{Spectral parameters and mapping to cosmological observables}
+\label{app:spectral}
+% From (\tau,\kappa,\omega_0,...) to (w(z), H(z), f\sigma_8).
+
+\section{Reproducibility: code and data}
+\label{app:repro}
+% Minimal commands, file manifests, and versioning notes.
+% Include SHA256 hashes, software versions, and a pointer to artifacts when public.
+
+\acknowledgments
+The author gratefully acknowledges drafting and organizational assistance from the ChatGPT-5 model (OpenAI). No funding or external collaboration supported this work.
+
+\paragraph{Data and code availability} Will be made available upon acceptance or earlier via a public repository; pointers and hashes will be added in App.~\ref{app:repro}.
+
+\paragraph{Conflicts of interest} None declared.
+
+\bibliographystyle{JHEP}
+\bibliography{refs}
+
+\end{document}

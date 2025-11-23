@@ -1,0 +1,30 @@
+
+# Template registry entries for BEC Hawking datasets
+datasets:
+  - id: bec_hawking_steinhauer_2016_ridgeA
+    kind: bec_hawking
+    path: data/bec/steinhauer2016_ridgeA.csv
+    columns:
+      omega: omega        # Hz or scaled units
+      omega0: omega0      # reference frequency for normalization
+      epsilon: epsilon    # normalized ridge amplitude (0..1)
+      gamma: null         # optional damping proxy if available
+      label: label
+    normalization:
+      omega_hat: "omega/omega0"
+      epsilon_clip: [0.0, 1.0]
+      drop_na: true
+
+  - id: bec_hawking_steinhauer_2016_ridgeB
+    kind: bec_hawking
+    path: data/bec/steinhauer2016_ridgeB.csv
+    columns:
+      omega: omega
+      omega0: omega0
+      epsilon: epsilon
+      gamma: null
+      label: label
+    normalization:
+      omega_hat: "omega/omega0"
+      epsilon_clip: [0.0, 1.0]
+      drop_na: true

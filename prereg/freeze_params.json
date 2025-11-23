@@ -1,0 +1,18 @@
+{
+  "background": {
+    "H0": 70.0,
+    "Om": 0.3,
+    "rd": 147.1
+  },
+  "resonant_params": {
+    "A": 1.2,
+    "f": 1.0,
+    "phi": 1.1833708391256916,
+    "gamma": 0.0,
+    "anchor_eps": 0.0,
+    "anchor_zR": 0.5
+  },
+  "nuisance": {
+    "dmu": 0.1139261405999653
+  }
+}

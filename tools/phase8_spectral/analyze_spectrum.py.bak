@@ -1,0 +1,153 @@
+#!/usr/bin/env python3
+"""
+Phase-8 Spectral Analyzer (zero-padded + hardened)
+
+Computes LCDM and model fs8(a) series, residual spectra, and Bode-like gain/phase.
+All FFTs share identical zero-padding to prevent axis mismatches.
+
+Example:
+  python3 tools/phase8_spectral/analyze_spectrum.py \
+    --mu0 0.99 --nu0 0.055 --tau 0.30 --kappa -0.02 --sigma8 0.81 \
+    --Om 0.3 --a-min 1e-3 --a-max 1.0 --n-steps 16000 \
+    --zero-pad 8 --quadratic-peak --lorentzian-fit \
+    --out-stem outputs/phase8/ocean_memory_tau0p30_kap-0p02_hiRes
+"""
+import argparse, os, json, math
+import numpy as np
+import matplotlib.pyplot as plt
+
+# ----------------------------------------------------------
+# Utility functions
+# ----------------------------------------------------------
+def ensure_dir(path):
+    d = os.path.dirname(path)
+    if d and not os.path.exists(d):
+        os.makedirs(d, exist_ok=True)
+
+def next_pow2(n): return 1 << (n - 1).bit_length()
+
+def make_Lz(L, zero_pad): 
+    base = next_pow2(max(1, L))
+    return int(base * (2 ** max(0, int(zero_pad))))
+
+def rms_norm(w): 
+    return w / (np.sqrt(np.mean(w*w)) + 1e-30)
+
+def omega_axis(Lz, dx): 
+    return 2 * np.pi * np.fft.rfftfreq(Lz, d=dx)
+
+def poly_detrend_log(x, y):
+    y = np.clip(y, 1e-12, None)
+    ly = np.log(y)
+    p = np.polyfit(x, ly, 1)
+    return ly - np.polyval(p, x)
+
+def lorentz(x, A, x0, gamma, C):
+    return A / (1 + ((x - x0)/gamma)**2) + C
+
+# ----------------------------------------------------------
+# Toy series generator (replace with real model if desired)
+# ----------------------------------------------------------
+def make_series(a, mu0, nu0, tau, kappa, sigma8, Om):
+    fs8_l = sigma8 * (a ** (0.55 * Om)) * (1 - 0.05 * (1 - a))
+    amp = 0.08 * (mu0 - 0.9)
+    phase = 8.0 * nu0
+    damp = np.exp(-tau * (1 - a))
+    drift = 1.0 + kappa * (1 - a)
+    osc = amp * damp * np.sin(phase * np.log(a + 1e-12) * -1.0)
+    fs8_m = fs8_l * drift * (1.0 + osc)
+    return np.clip(fs8_l, 1e-12, None), np.clip(fs8_m, 1e-12, None)
+
+# ----------------------------------------------------------
+# Main
+# ----------------------------------------------------------
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--mu0", type=float, required=True)
+    ap.add_argument("--nu0", type=float, required=True)
+    ap.add_argument("--tau", type=float, required=True)
+    ap.add_argument("--kappa", type=float, required=True)
+    ap.add_argument("--sigma8", type=float, required=True)
+    ap.add_argument("--Om", type=float, required=True)
+    ap.add_argument("--a-min", type=float, dest="a_min", default=1e-3)
+    ap.add_argument("--a-max", type=float, dest="a_max", default=1.0)
+    ap.add_argument("--n-steps", type=int, default=4096)
+    ap.add_argument("--zero-pad", type=int, default=4)
+    ap.add_argument("--quadratic-peak", action="store_true")
+    ap.add_argument("--lorentzian-fit", action="store_true")
+    ap.add_argument("--out-stem", type=str, required=True)
+    args = ap.parse_args()
+
+    ensure_dir(args.out_stem + "_dummy")
+
+    a = np.linspace(args.a_min, args.a_max, args.n_steps)
+    x = np.linspace(0, 1, args.n_steps)
+    dx = x[1] - x[0]
+
+    fs8_l, fs8_m = make_series(a, args.mu0, args.nu0, args.tau,
+                               args.kappa, args.sigma8, args.Om)
+
+    w = rms_norm(np.hanning(len(x)))
+    res_l = poly_detrend_log(x, fs8_l)
+    res_m = poly_detrend_log(x, fs8_m)
+    res = (res_m - res_l) * w
+
+    L, Lz = len(res), make_Lz(len(res), args.zero_pad)
+    pad = max(0, Lz - L)
+
+    # Frequency axis
+    omega = omega_axis(Lz, dx)
+
+    # Residual spectrum
+    R = np.fft.rfft(np.pad(res, (0, pad)))
+    P = np.abs(R)**2
+
+    # Bode-like gain/phase using same zero-padding
+    eps = 1e-12
+    xl, xm = np.clip(fs8_l, eps, None), np.clip(fs8_m, eps, None)
+    s_l = (np.log(xl) - np.polyval(np.polyfit(x, np.log(xl), 1), x)) * w
+    s_m = (np.log(xm) - np.polyval(np.polyfit(x, np.log(xm), 1), x)) * w
+    Yl = np.fft.rfft(np.pad(s_l, (0, pad)))
+    Ym = np.fft.rfft(np.pad(s_m, (0, pad)))
+    cross = Ym * np.conj(Yl)
+    gain = (np.abs(Ym) + 1e-300) / (np.abs(Yl) + 1e-300)
+    phase = np.unwrap(np.angle(cross))
+
+    assert omega.size == gain.size == phase.size, \
+        f"FFT axis mismatch: {omega.size} vs {gain.size} vs {phase.size}"
+
+    # Save residual series
+    out_csv = f"{args.out_stem}_residual_series.csv"
+    np.savetxt(out_csv, np.column_stack([a, res]), delimiter=",",
+               header="a,residual_logdiff", comments="")
+
+    # Plot spectra
+    fig, ax = plt.subplots(2, 1, figsize=(8, 6))
+    ax[0].plot(omega, P)
+    ax[0].set_xscale("log"); ax[0].set_yscale("log")
+    ax[0].set_xlabel("ω"); ax[0].set_ylabel("|R(ω)|²")
+    ax[0].set_title("Residual Spectrum")
+
+    ax[1].plot(omega, 20*np.log10(gain), label="Gain [dB]")
+    ax[1].plot(omega, phase, label="Phase [rad]")
+    ax[1].set_xscale("log")
+    ax[1].legend(); ax[1].set_xlabel("ω")
+    ax[1].set_title("Bode-like Gain/Phase")
+
+    out_png = f"{args.out_stem}_spectrum.png"
+    plt.tight_layout(); plt.savefig(out_png)
+    plt.close(fig)
+
+    # Write summary
+    out_json = f"{args.out_stem}_summary.json"
+    with open(out_json, "w") as f:
+        json.dump({
+            "L": L, "Lz": Lz, "pad": pad,
+            "peak_power": float(np.max(P)),
+            "omega_max": float(omega[np.argmax(P)]),
+        }, f, indent=2)
+
+    print(f"Wrote {out_csv}, {out_json}, {out_png}")
+
+if __name__ == "__main__":
+    main()

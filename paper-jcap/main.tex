@@ -1,0 +1,76 @@
+\pdfoutput=1
+\documentclass[a4paper,11pt]{article}
+% -- fallback shims when jcappub is absent (must be before use) --
+\makeatletter
+\@ifundefined{affiliation}{\newcommand{\affiliation}[1]{}}{}
+\@ifundefined{emailAdd}{\newcommand{\emailAdd}[1]{}}{}
+\@ifundefined{keywords}{\newcommand{\keywords}[1]{}}{}
+\@ifundefined{abstract}{\newcommand{\abstract}[1]{\begin{abstract}#1\end{abstract}}}{}
+\makeatother
+% \usepackage{jcappub}  % temp off        % JCAP style
+
+% ===== Core packages (boring + robust) =====
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{microtype}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{url}
+
+% ===== Graphics config =====
+\graphicspath{{figures/}{./}{outputs/phase20/}{outputs/phase8/}{outputs/predictions/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
+
+% ===== Macros =====
+\newcommand{\LCDM}{\ensuremath{\Lambda\mathrm{CDM}}}
+\newcommand{\fsig}{\ensuremath{f\sigma_{8}}}
+
+% ===== JCAP front matter BEFORE \begin{document} =====
+\title{A Resonant Medium Framework for Cosmology:\\ Finite-Memory Dynamics and the Echo Equation}
+\author{Jason Watts}
+\affiliation{Independent Researcher}
+\emailAdd{theexperimentalistlab@outlook.com}
+
+\abstract{<one-paragraph summary of the paper. Replace later with your real abstract.>}
+\keywords{cosmology, large-scale structure, dark energy, resonance}
+% \arxivnumber{YYYY.NNNNN}
+
+\begin{document}
+\input{sections/frontmatter}
+\maketitle
+\tableofcontents
+
+\section{Introduction}
+\input{sections/01_introduction}
+
+\section{Datasets and Methods}
+\input{sections/04_methods}
+
+\section{Results}
+\input{sections/05_results}
+
+\section{Discussion}
+\input{sections/06_discussion}
+
+\section*{Data/Software/Code Availability}
+\input{sections/90_data_software}
+
+\section*{AI-use statement}
+\input{sections/91_ai_statement}
+
+\clearpage
+\nocite{Planck2018,PantheonPlus2022,DESI2024_BAO_DR1,Watts2025_EchoEvidence}
+\bibliographystyle{JHEP}
+\bibliography{echo_eq_refs_v1}
+
+\end{document}
+% -- fallback shims when jcappub.sty is unavailable --
+\makeatletter
+\providecommand{\affiliation}[1]{}
+\providecommand{\emailAdd}[1]{}
+\makeatother

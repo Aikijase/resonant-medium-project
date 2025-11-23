@@ -1,0 +1,8 @@
+{
+  "rho_bh": "data/rho_bh_z.clean.csv",
+  "smbh_population": "data/smbh_population_history.clean.csv",
+  "sfr_to_bh": "data/sfr_imf_bh_eff.clean.csv",
+  "Hz": "data/expansion_Hz.clean.csv",
+  "omega_m": "data/omega_m_z.clean.csv",
+  "w_eff": "data/eos_w_z.clean.csv"
+}

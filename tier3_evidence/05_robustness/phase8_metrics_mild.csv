@@ -1,0 +1,5 @@
+stem,metric,kind,source
+outputs/phase8/joint_baseline,300.0,CHI2,mock
+outputs/phase8/joint_tau0,304.7,CHI2,mock
+outputs/phase8/joint_kappa0,301.9,CHI2,mock
+outputs/phase8/joint_A0,313.5,CHI2,mock

@@ -1,0 +1,63 @@
+{
+  "best_params": {
+    "H0": 70.0,
+    "Om": 0.3,
+    "rd": 147.1,
+    "A": 0.0,
+    "f": 2.0,
+    "phi": 0.0,
+    "gamma": 0.0,
+    "anchor_eps": 0.0,
+    "anchor_zR": 0.5,
+    "dmu": -0.15420998632181318
+  },
+  "fit_params": [
+    "A",
+    "f",
+    "phi",
+    "gamma",
+    "dmu"
+  ],
+  "chi2": 73454.97659764296,
+  "ndof": 1377,
+  "success": true,
+  "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+  "restarts": 0,
+  "breakdown": {
+    "chi2_bao": 72255.00349588631,
+    "chi2_sn": 1199.973101756656
+  },
+  "timing_sec": 4.877143859863281,
+  "sn_cov_kind_used": "cov",
+  "sn_scale_used": 1.0,
+  "bao_kind_used": "dm_over_rd",
+  "bg_nz": 800,
+  "sn_points": 1371,
+  "bao_points": 11,
+  "hit_bounds": {
+    "A": true,
+    "f": false,
+    "phi": false,
+    "gamma": true,
+    "dmu": false
+  },
+  "evals": 1,
+  "config": {
+    "bounds": {
+      "A": "0.0,0.0",
+      "f": "1.0,5.0",
+      "phi": "-3.1415926536,3.1415926536",
+      "gamma": "0.0,0.5",
+      "Om": "0.05,0.70",
+      "rd": null,
+      "anchor_eps": "-0.6,0.6",
+      "dmu": null
+    },
+    "free_flags": {
+      "Om": false,
+      "rd": false,
+      "anchor": false,
+      "dmu": true
+    }
+  }
+}

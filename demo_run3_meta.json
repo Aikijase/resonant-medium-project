@@ -1,0 +1,19 @@
+{
+  "args": {
+    "Om0": 0.3,
+    "h": 0.7,
+    "nu0": 0.3,
+    "s_nu": 0.0,
+    "cs2": 0.0,
+    "kmin": 0.05,
+    "kmax": 1.0,
+    "nk": 6,
+    "a_min": 0.005,
+    "n_a": 200,
+    "out_root": "/mnt/data/visc_dm/demo_run3",
+    "no_plots": true
+  },
+  "H0_km_s_Mpc": 70.0,
+  "H0_per_Gyr": 0.07158985155319865,
+  "created_at": "2025-10-06T02:12:41.489903Z"
+}

@@ -1,0 +1,62 @@
+[2025-10-11 01:38:53] PROGRESS: loaded BAO cov
+[2025-10-11 01:38:54] PROGRESS: loaded SN cov from data/pantheon_plus/SN_DUMMY_BAOONLY.spd.csv
+[2025-10-11 01:38:54] PROGRESS: DEBUG BAO median y_data=18.977 → assume_per_rd=True
+[2025-10-11 01:38:54] PROGRESS: DEBUG BAO basis=abs(/rd or Mpc) med(data)=18.977  med(fid_abs)=18.451  sigma_used=cov
+[2025-10-11 01:38:54] PROGRESS: DEBUG BAO cov stats: median(sd)=0.3843 min(sd)=0.17 max(sd)=0.95
+[2025-10-11 01:38:54] PROGRESS: DEBUG fit_params=['A', 'phi', 'gamma']
+[2025-10-11 01:38:54] PROGRESS: DEBUG Ok_bounds=(0.0, 0.0)
+[2025-10-11 01:38:54] PROGRESS: DEBUG fit_params=['A', 'phi', 'gamma']
+[2025-10-11 01:38:54] PROGRESS: DEBUG Ok_bounds=(0.0, 0.0)
+[2025-10-11 01:38:54] PROGRESS: DEBUG k_params=3
+[2025-10-11 01:38:59] PROGRESS: DEBUG chi2@init=28.285
+[2025-10-11 01:38:59] PROGRESS: DEBUG k_params=3
+[2025-10-11 01:39:04] PROGRESS: DEBUG chi2@init=28.285
+[2025-10-11 01:39:04] PROGRESS: starting optimizer
+[2025-10-11 01:41:18] PROGRESS: eval 25: chi2=28.273
+[2025-10-11 01:43:37] PROGRESS: eval 50: chi2=28.246
+[2025-10-11 01:45:57] PROGRESS: eval 75: chi2=28.222
+[2025-10-11 01:48:16] PROGRESS: eval 100: chi2=28.221
+[2025-10-11 01:52:01] PROGRESS: eval 25: chi2=28.733
+[2025-10-11 01:54:20] PROGRESS: eval 50: chi2=28.733
+[2025-10-11 01:56:39] PROGRESS: eval 75: chi2=28.733
+[2025-10-11 01:58:59] PROGRESS: eval 100: chi2=28.733
+[2025-10-11 02:01:20] PROGRESS: eval 125: chi2=28.733
+[2025-10-11 02:05:23] PROGRESS: eval 25: chi2=28.237
+[2025-10-11 02:07:45] PROGRESS: eval 50: chi2=28.230
+[2025-10-11 02:10:05] PROGRESS: eval 75: chi2=28.221
+{
+  "best_params": {
+    "H0": 70.0,
+    "Om": 0.3,
+    "Or": 0.0,
+    "Ok": 0.0,
+    "rd": 147.1,
+    "A": 0.13622850028687358,
+    "f": 0.6,
+    "phi": 2.0244528919195357,
+    "gamma": 0.0
+  },
+  "fit_params": [
+    "A",
+    "phi",
+    "gamma"
+  ],
+  "chi2": 28.22075087146595,
+  "ndof": 1710,
+  "success": true,
+  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+  "restarts": 3,
+  "breakdown": {
+    "chi2_bao": 28.220750870700694,
+    "chi2_sn": 7.652551335401728e-10
+  },
+  "ic": {
+    "k_params": 3,
+    "n_points": 1713,
+    "chi2_data": 28.22075087146595,
+    "AIC_data": 34.22075087146595,
+    "BIC_data": 50.558755366438305,
+    "AICc_data": 34.2347941716415
+  }
+}
+[saved] outputs/bao_only_profile_f_0.60.json

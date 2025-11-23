@@ -1,0 +1,10 @@
+name: smbh_population_history
+purpose: Independent cross-check via quasar luminosity functions
+columns:
+  - z: {type: float}
+  - phi_L_bol_units: {type: float, units: Mpc^-3 dex^-1}
+  - sigma_phi: {type: float}
+  - LF_model: {type: str}
+  - band: {type: str}
+  - k_corr_ref: {type: str}
+  - source_id: {type: str}

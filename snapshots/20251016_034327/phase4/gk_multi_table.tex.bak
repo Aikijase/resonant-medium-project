@@ -1,0 +1,32 @@
+% Auto-generated Phase-4 g×κ (multi-bin) tables
+\begin{table}[h]
+\centering
+\begin{tabular}{lrrrrr}
+\toprule
+Survey & $n$ & $\hat A\pm\sigma$ & $\langle|r|\rangle\ (\sigma)$ & $\Delta\mathrm{AIC}$ & WWI \\
+\midrule
+RACS & 3 & 1.040$\pm$0.094 & 0.44 & 0.381 & 0.0 \\
+WISE & 3 & 1.001$\pm$0.063 & 0.33 & 0.248 & 0.0 \\
+\midrule
+\multicolumn{6}{r}{Overall: $\hat A=1.014\pm0.052$, $A_\mathrm{pred}=0.970$, $\langle|r|\rangle\approx0.39\,\sigma$, $\Delta\mathrm{AIC}=0.628$, WWI=0.0} \\
+\bottomrule
+\end{tabular}
+\caption{Phase-4 $g\times\kappa$ (multi-bin) per-survey summary.}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lcrrr}
+\toprule
+Survey & Bin & $z_\mathrm{eff}$ & $A_{\rm lit}\pm\sigma$ & Resid. ($\sigma$) \\
+\midrule
+WISE & 1 & 0.20 & 1.000$\pm$0.120 & +0.25 \\
+WISE & 2 & 0.35 & 1.020$\pm$0.100 & +0.50 \\
+WISE & 3 & 0.50 & 0.980$\pm$0.110 & +0.09 \\
+RACS & 1 & 0.60 & 1.030$\pm$0.160 & +0.38 \\
+RACS & 2 & 0.80 & 1.050$\pm$0.150 & +0.53 \\
+RACS & 3 & 1.00 & 1.040$\pm$0.180 & +0.39 \\
+\bottomrule
+\end{tabular}
+\caption{Phase-4 $g\times\kappa$ (multi-bin) per-bin details.}
+\end{table}

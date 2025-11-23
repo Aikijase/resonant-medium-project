@@ -1,0 +1,13 @@
+{
+  "config": {
+    "bao_csv": "data/desi_dr1_bao/bao_measurements_long_interleaved_sigma.csv",
+    "bao_cov": "data/desi_dr1_bao/bao_covariance_plus_lya.csv",
+    "sn_csv": "data/pantheon_plus/sn_MATCHED_mu.csv",
+    "sn_cov": "outputs/Pantheon+SH0ES_STAT+SYS.cal.cov",
+    "out_prefix": "outputs/phase8/joint_baseline",
+    "H0": 70.0
+  },
+  "exit_code": 0,
+  "log_file": "logs/fit_baseline_20251018_015555.log",
+  "chi2": null
+}

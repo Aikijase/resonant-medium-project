@@ -1,0 +1,67 @@
+[2025-10-10 21:54:19] PROGRESS: loaded BAO cov
+[2025-10-10 21:54:19] PROGRESS: loaded SN cov from data/pantheon_plus/SN_DUMMY_BAOONLY.spd.csv
+[2025-10-10 21:54:19] PROGRESS: DEBUG BAO median y_data=18.977 → assume_per_rd=True
+[2025-10-10 21:54:19] PROGRESS: DEBUG BAO basis=abs(/rd or Mpc) med(data)=18.977  med(fid_abs)=18.451  sigma_used=cov
+[2025-10-10 21:54:19] PROGRESS: DEBUG BAO cov stats: median(sd)=0.3843 min(sd)=0.17 max(sd)=0.95
+[2025-10-10 21:54:19] PROGRESS: DEBUG fit_params=['A', 'phi', 'gamma']
+[2025-10-10 21:54:19] PROGRESS: DEBUG Ok_bounds=(0.0, 0.0)
+[2025-10-10 21:54:19] PROGRESS: DEBUG fit_params=['A', 'phi', 'gamma']
+[2025-10-10 21:54:19] PROGRESS: DEBUG Ok_bounds=(0.0, 0.0)
+[2025-10-10 21:54:19] PROGRESS: DEBUG k_params=3
+[2025-10-10 21:54:25] PROGRESS: DEBUG chi2@init=28.262
+[2025-10-10 21:54:25] PROGRESS: DEBUG k_params=3
+[2025-10-10 21:54:30] PROGRESS: DEBUG chi2@init=28.262
+[2025-10-10 21:54:30] PROGRESS: starting optimizer
+[2025-10-10 21:56:44] PROGRESS: eval 25: chi2=28.270
+[2025-10-10 21:59:05] PROGRESS: eval 50: chi2=28.249
+[2025-10-10 22:01:25] PROGRESS: eval 75: chi2=28.241
+[2025-10-10 22:03:44] PROGRESS: eval 100: chi2=28.227
+[2025-10-10 22:06:04] PROGRESS: eval 125: chi2=28.218
+[2025-10-10 22:08:22] PROGRESS: eval 150: chi2=28.218
+[2025-10-10 22:11:13] PROGRESS: eval 25: chi2=28.731
+[2025-10-10 22:13:31] PROGRESS: eval 50: chi2=28.731
+[2025-10-10 22:15:50] PROGRESS: eval 75: chi2=28.731
+[2025-10-10 22:18:09] PROGRESS: eval 100: chi2=28.731
+[2025-10-10 22:20:28] PROGRESS: eval 125: chi2=28.731
+[2025-10-10 22:22:46] PROGRESS: eval 150: chi2=28.731
+[2025-10-10 22:25:05] PROGRESS: eval 175: chi2=28.731
+[2025-10-10 22:36:18] PROGRESS: eval 25: chi2=28.237
+[2025-10-10 22:38:39] PROGRESS: eval 50: chi2=28.229
+[2025-10-10 22:40:58] PROGRESS: eval 75: chi2=28.218
+[2025-10-10 22:43:17] PROGRESS: eval 100: chi2=28.218
+{
+  "best_params": {
+    "H0": 70.0,
+    "Om": 0.3,
+    "Or": 0.0,
+    "Ok": 0.0,
+    "rd": 147.1,
+    "A": 0.15226864615996966,
+    "f": 0.5,
+    "phi": 1.977316230167041,
+    "gamma": 0.0
+  },
+  "fit_params": [
+    "A",
+    "phi",
+    "gamma"
+  ],
+  "chi2": 28.21761979868964,
+  "ndof": 1710,
+  "success": true,
+  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+  "restarts": 3,
+  "breakdown": {
+    "chi2_bao": 28.217619797924364,
+    "chi2_sn": 7.652761730788842e-10
+  },
+  "ic": {
+    "k_params": 3,
+    "n_points": 1713,
+    "chi2_data": 28.21761979868964,
+    "AIC_data": 34.21761979868964,
+    "BIC_data": 50.555624293662,
+    "AICc_data": 34.231663098865184
+  }
+}
+[saved] outputs/bao_only_profile_f_0.50.json

@@ -1,0 +1,12 @@
+# Template generated 2025-10-22T07:20:42 — fill with real data; keep columns & units unchanged.
+"['source_id', 'full_citation', 'doi_or_url', 'notes', 'license']"
+HOPKINS07,"Hopkins, Richards & Hernquist (2007) Bolometric QSO LF, ApJ 654, 731–753",10.1086/509629,See https://arxiv.org/abs/astro-ph/0605678,TBD
+UEDA14,"Ueda et al. (2014) X-ray AGN LF, ApJ 786, 104",10.1088/0004-637X/786/2/104,See https://arxiv.org/abs/1402.1836,TBD
+MADAU14,"Madau & Dickinson (2014) Cosmic Star-Formation History, ARA&A 52, 415–486",10.1146/annurev-astro-081811-125615,See https://arxiv.org/abs/1403.0007,TBD
+PLANCK18,"Planck Collaboration (2018) Cosmological Parameters, A&A 641, A6",10.1051/0004-6361/201833910,See https://arxiv.org/abs/1807.06209,TBD
+DESI24,DESI Collaboration (2024) BAO DR1 Results,arXiv:2404.03002,See https://arxiv.org/abs/2404.03002,TBD
+RIESS22,"Riess et al. (2022) SH0ES H0, ApJL 934, L7",10.3847/2041-8213/ac5c5b,See https://arxiv.org/abs/2112.04510,TBD
+SHANKAR09,"Shankar (2009) Demography of SMBHs, New Astron. Rev. 53, 57–77",10.1016/j.newar.2009.07.006,See https://arxiv.org/abs/0907.5213,TBD
+SHANKAR16,"Shankar et al. (2016) Selection bias in SMBH samples, MNRAS 460, 3119",10.1093/mnras/stw746,See https://arxiv.org/abs/1603.01276,TBD
+FARRAH23,"Farrah et al. (2023) Cosmological coupling (evidence), ApJL 944, L31",10.3847/2041-8213/acb704,See https://arxiv.org/abs/2302.07878,TBD
+CROKER19,Croker & Weiner (2019) Cosmological coupling framework (GEODE),arXiv:1910.00129,See https://arxiv.org/abs/1910.00129,TBD

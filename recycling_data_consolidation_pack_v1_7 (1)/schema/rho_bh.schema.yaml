@@ -1,0 +1,13 @@
+name: rho_bh_z
+purpose: Black hole mass density vs redshift (drives recycling source term)
+columns:
+  - z: {type: float, constraints: z>=0, sorted: ascending}
+  - rho_bh_Msun_Mpc3: {type: float, units: Msun Mpc^-3, >: 0}
+  - sigma_rho_bh: {type: float, units: Msun Mpc^-3, >=: 0}
+  - method: {type: str, enum: [integrated_growth, LF_inference, literature_fit, other]}
+  - source_id: {type: str, ref: docs/sources_catalog.csv}
+  - notes: {type: str, optional: true}
+checks:
+  - monotonic_z: true
+  - finite_values: true
+  - coverage: z in [0, 10] preferred

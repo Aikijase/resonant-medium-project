@@ -1,0 +1,70 @@
+\pdfoutput=1
+\documentclass[a4paper,11pt]{article}
+\usepackage{jcappub}        % JCAP style on
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{microtype}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{url}
+
+\graphicspath{{figures/}{./}{outputs/phase20/}{outputs/phase8/}{outputs/predictions/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
+
+\newcommand{\LCDM}{\ensuremath{\Lambda\mathrm{CDM}}}
+\newcommand{\fsig}{\ensuremath{f\sigma_{8}}}
+
+% ====== JCAP Front Matter (per jcappub) — these go BEFORE \begin{document} ======
+\abstract{<one-paragraph summary of the paper.>}
+
+\keywords{cosmology, large-scale structure, dark energy, resonance}
+
+%\arxivnumber{YYYY.NNNNN}
+\title{A Resonant Medium Framework for Cosmology:\\ Finite-Memory Dynamics and the Echo Equation}
+\author{Jason Watts}
+\affiliation{Independent Researcher}
+\emailAdd{theexperimentalistlab@outlook.com}
+
+\abstract{<one-paragraph summary of the paper.>}
+\keywords{cosmology, large-scale structure, dark energy, resonance}
+% \arxivnumber{YYYY.NNNNN}
+% ================================================================================
+
+\begin{document}
+\abstract{<one-paragraph summary of the paper.>}
+
+\keywords{cosmology, large-scale structure, dark energy, resonance}
+
+%\arxivnumber{YYYY.NNNNN}
+\maketitle
+\tableofcontents
+
+\section{Introduction}
+\input{sections/01_introduction}
+
+\section{Datasets and Methods}
+\input{sections/04_methods}
+
+\section{Results}
+\input{sections/05_results}
+
+\section{Discussion}
+\input{sections/06_discussion}
+
+\section*{Data/Software/Code Availability}
+\input{sections/90_data_software}
+
+\section*{AI-use statement}
+\input{sections/91_ai_statement}
+
+\clearpage
+\nocite{Planck2018,PantheonPlus2022,DESI2024_BAO_DR1,Watts2025_EchoEvidence}
+\bibliographystyle{JHEP}
+\bibliography{echo_eq_refs_v1}
+
+\end{document}

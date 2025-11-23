@@ -1,0 +1,6 @@
+$ env PYTHONPATH=. python3 tools/phase9_plot_overlay.py outputs/phase9/physical_run.csv outputs/phase9/psychological_run_noscipy.csv outputs/phase9/learning_run_noscipy.csv
+[phase9] Saved: outputs/phase9/overlay_timeseries.png
+[phase9] Saved: outputs/phase9/overlay_phase.png
+$ env PYTHONPATH=. python3 tools/phase9_plot_overlay.py outputs/phase9/physical_run.csv outputs/phase9/psychological_run_noscipy.csv outputs/phase9/learning_run_noscipy.csv
+[phase9] Saved: outputs/phase9/overlay_timeseries.png
+[phase9] Saved: outputs/phase9/overlay_phase.png

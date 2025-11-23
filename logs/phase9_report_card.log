@@ -1,0 +1,16 @@
+$ env PYTHONPATH=. python3 tools/phase9_report_card.py outputs/phase9/physical_run.csv outputs/phase9/psychological_run_noscipy.csv outputs/phase9/learning_run_noscipy.csv
+
+Phase 9 — Report Card
+
+run                              peak_to_peak      rms_err    mean_beta  verdict
+physical_run                          22.5573      7.37255         0.08  Near-resonant oscillation (large amplitude)
+psychological_run_noscipy           0.0168061    0.0031463          0.6  Over-damped correction, stable
+learning_run_noscipy                  1.71624    0.0564555      0.13608  Adaptive tempo engaged, smoothing
+$ env PYTHONPATH=. python3 tools/phase9_report_card.py outputs/phase9/physical_run.csv outputs/phase9/psychological_run_noscipy.csv outputs/phase9/learning_run_noscipy.csv
+
+Phase 9 — Report Card
+
+run                              peak_to_peak      rms_err    mean_beta  verdict
+physical_run                          22.5573      7.37255         0.08  Near-resonant oscillation (large amplitude)
+psychological_run_noscipy           0.0168061    0.0031463          0.6  Over-damped correction, stable
+learning_run_noscipy                  1.71624    0.0564555      0.13608  Adaptive tempo engaged, smoothing

@@ -1,0 +1,23 @@
+\pdfoutput=1
+\documentclass[a4paper,11pt]{article}
+
+% Minimal, robust packages
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{microtype}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{url}
+
+% Graphics config
+\graphicspath{{figures/}{./}{outputs/phase20/}{outputs/phase8/}{outputs/predictions/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
+
+% Macros
+\newcommand{\LCDM}{\ensuremath{\Lambda\mathrm{CDM}}}
+\newcommand{\fsig}{\ensuremath{f\sigma_{8}}}

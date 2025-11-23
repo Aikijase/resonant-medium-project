@@ -1,0 +1,59 @@
+# === Watts Resonant Cosmology — DATA LOCK (v1.0) ===
+# Freeze exactly which public datasets we’re using and how.
+# Changing ANYTHING here means making a new lock version (v1.1, v1.2, ...).
+
+created: 2025-10-15
+owner: Jason Watts
+notes: >
+  Baseline scorecard uses DESI DR1 BAO and Pantheon+ (with SH0ES calibration).
+  Lyα rows are included in the full set; a predefined toggle excludes them for robustness tests.
+
+datasets:
+
+  bao_desi_dr1:
+    path: data/desi_dr1_bao/bao_measurements_long_interleaved_sigma.csv
+    description: DESI DR1 BAO scale measurements (αiso/α∥/α⊥ with σ)
+    include_lya_in_full: true
+    lya_filter_rule: "use rows where tracer != 'Lya' for the 'no-Lyα' subset"
+    required_columns:
+      - z_eff
+      - tracer
+      - alpha_iso
+      - sigma_alpha_iso
+      - alpha_par
+      - sigma_alpha_par
+      - alpha_perp
+      - sigma_alpha_perp
+    expected_min_rows: 20
+
+  bao_covariance:
+    path: data/desi_dr1_bao/bao_covariance_plus_lya.csv
+    description: Covariance matching the interleaved BAO vector (including Lyα; sub-select when Lyα is excluded)
+    shape_must_match_vector: true
+
+  sn_pantheon_plus_mu:
+    path: data/pantheon_plus/sn_MATCHED_mu.csv
+    description: Pantheon+ distance modulus vector (with z, mu, sigma_mu, SALT2-corrected)
+    required_columns:
+      - zCMB
+      - MU
+      - MUERR
+
+  sn_pantheon_plus_cov:
+    path: outputs/Pantheon+SH0ES_STAT+SYS.cal.cov
+    description: Pantheon+ + SH0ES (stat+sys) full covariance (calibrated)
+    SPD_required: true  # symmetric positive definite
+
+toggles:
+  sn_lowz_cut:
+    description: "Exclude SN with zCMB < 0.023 (peculiar-velocity sensitive)"
+    rule: "use only rows with zCMB >= 0.023"
+
+  bao_no_lya:
+    description: "Drop Lyα rows from DESI BAO"
+    rule: "tracer != 'Lya'"
+
+success_thresholds:
+  # Primary win bar
+  delta_AIC: -10
+  delta_BIC: -10

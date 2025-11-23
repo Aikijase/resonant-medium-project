@@ -1,0 +1,16 @@
+{
+  "root": ".",
+  "bao_csv": "data/desi_dr1_bao/bao_measurements_long_interleaved_sigma.csv",
+  "bao_cov": "data/desi_dr1_bao/bao_covariance_plus_lya.csv",
+  "sn_csv":  "data/pantheon_plus/sn_MATCHED_mu.csv",
+  "sn_cov":  "data/pantheon_plus/Pantheon+SH0ES_STAT+SYS.spd.csv",
+
+  "out_prefix": "outputs/joint_guard_clean_v12",
+  "assume_per_rd": true,
+
+  "H0": 70.0, "Om": 0.3, "Or": 0.0, "Ok": 0.0, "rd": 147.1,
+  "prior_A_sigma": 0.95,
+  "k_params": 5,
+  "plus_lya": true,
+  "diag_only": false
+}

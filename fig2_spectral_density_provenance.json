@@ -1,0 +1,62 @@
+{
+  "figure_id": "fig2_spectral_density",
+  "manuscript_label": "Figure 2",
+  "description": "Spectral density of the resonant operator showing the coherent low-frequency enhancement introduced by finite-memory dynamics, contrasted with the memoryless baseline.",
+  "generated_at_utc": "2025-11-10T08:21:26Z",
+
+  "environment": {
+    "python_version": "3.11.8",
+    "platform": "Linux",
+    "dependencies": [
+      "numpy",
+      "scipy",
+      "matplotlib"
+    ]
+  },
+
+  "inputs": [
+    {
+      "path": "data/phase8/spectral_density_baseline_vs_resonant.csv",
+      "sha256": "<SHA256_SPECTRAL_DENSITY_FILE>",
+      "description": "Phase 8 spectral density outputs for the baseline and resonant operator configurations used in the echo vs ΛCDM comparison.",
+      "source": {
+        "origin": "Zenodo",
+        "doi": "10.5281/zenodo.17622475",
+        "note": "Stored in the full Echo Equation spectral analysis bundle."
+      }
+    }
+  ],
+
+  "code_scripts": [
+    {
+      "path": "scripts/echo_fig2_spectrum.py",
+      "sha256": "<SHA256_ECHO_FIG2_SCRIPT>",
+      "repo_url": "https://github.com/thefantasticmissmal/resonant-medium-project",
+      "git_commit": "fe5f738fb2f6b356b36830738e5c2f4aadfe6fe6",
+      "description": "Loads Phase 8 spectral density outputs and produces the Figure 2 spectral density plot for baseline vs resonant operators."
+    }
+  ],
+
+"outputs": [
+  {
+    "path": "fig2_spectral_density.pdf",
+    "sha256": "5916c05c9525923bed8688a455c70a47dc27bc9bfd15a66b1e90d7e2752f0341",
+    "format": "pdf",
+    "role": "primary"
+  }
+],
+
+
+
+  "parameters": {
+    "analysis_tag": "phase8_spectral_analysis",
+    "tau": 0.30,
+    "kappa": -0.02,
+    "omega_unit": "rad_per_efold"
+  },
+
+  "reproducibility": {
+    "command": "python scripts/echo_fig2_spectrum.py --config configs/fig2_spectrum.yaml",
+    "notes": "Re-runs the plotting stage using precomputed Phase 8 spectral density arrays from the full Echo Equation data bundle."
+  }
+}

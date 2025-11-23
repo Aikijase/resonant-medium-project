@@ -1,0 +1,7 @@
+domain: learning
+params: {alpha: 1.0, beta: 0.25, gamma: 0.8}
+drive:  {F: 0.0, omega: 1.0}
+target: {type: sinusoid, A: 0.8, omega: 0.25, phi: 0.0, offset: 0.0}
+noise:  {type: gaussian, std: 0.01, seed: 11}
+adaptation: {k: 0.8, target_error: 0.15, limit_lo: 0.02, limit_hi: 5.0}
+sim:    {t0: 0.0, t_max: 80.0, n_steps: 8000, x0: 0.0, v0: 0.0}

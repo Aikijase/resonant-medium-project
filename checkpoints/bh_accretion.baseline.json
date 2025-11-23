@@ -1,0 +1,12 @@
+{
+  "epsilon_star": 0.014313,
+  "rho_bh_csv": "data/rho_bh_z.clean.csv",
+  "rho_dot_csv": "data/bh_accretion_from_lf.csv",
+  "qc_csv": "logs/qc_rhoBH_vs_accretion.csv",
+  "phase21_out": "outputs/phase21/recycling_solution.csv",
+  "ts": "$(date -Iseconds)"
+}
+5cd886be6267a108372073c3a6bb266c46a0756d  data/rho_bh_z.clean.csv
+cce433e21356931cef02d433d10cc851adb76b1f  data/bh_accretion_from_lf.csv
+9116cb671e557a3e0cfbb2b34f806503d48eff01  logs/qc_rhoBH_vs_accretion.csv
+0c3f05bfd42892330786240273ee087acacecab6  outputs/phase21/recycling_solution.csv

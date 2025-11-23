@@ -1,0 +1,5 @@
+# LDDE params for Ueda+2014 (generated 2025-10-22T08:08:22)
+# NOTE: A_a in Table 4 is given in the paper's normalization; confirm whether it is log10(A) or A scaled by 1e-6.
+# We set log10A_Mpc3dex conservatively to log10(1e-6 * A_a) as a placeholder; REVISE after checking the text around Table 4.
+log10Lstar_erg_s,log10A_Mpc3dex,gamma1,gamma2,p1,p2,zc_star,log10La_erg_s,alpha
+43.97,-5.536107,0.96,2.71,4.78,-1.5,1.86,44.61,0.29

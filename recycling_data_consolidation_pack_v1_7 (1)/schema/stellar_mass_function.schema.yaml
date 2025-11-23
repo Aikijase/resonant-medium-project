@@ -1,0 +1,12 @@
+name: stellar_mass_function
+purpose: Galaxy stellar mass function (GSMF) for consistency checks and BH occupation mapping
+columns:
+  - z: {type: float, sorted: ascending}
+  - log10_Mstar_Msun: {type: float, desc: Stellar mass bin center in log10(Msun)}
+  - phi_dex_Mpc3: {type: float, units: Mpc^-3 dex^-1}
+  - sigma_phi: {type: float}
+  - SMF_param_ref: {type: str, desc: Reference for Schechter params if applicable}
+  - source_id: {type: str}
+  - notes: {type: str, optional: true}
+checks:
+  - finite_values: true

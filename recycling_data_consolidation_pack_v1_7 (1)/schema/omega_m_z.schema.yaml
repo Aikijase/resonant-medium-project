@@ -1,0 +1,7 @@
+name: omega_m_z
+columns:
+  - z: {type: float}
+  - Omega_m: {type: float}
+  - sigma_Omega_m: {type: float}
+  - method: {type: str}
+  - source_id: {type: str}

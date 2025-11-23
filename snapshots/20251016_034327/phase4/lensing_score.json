@@ -1,0 +1,49 @@
+{
+  "probe": "cmb_lensing_amp",
+  "n": 1,
+  "k": 0,
+  "chi2": 0.06930995084944791,
+  "AIC": {
+    "value": 0.06930995084944791,
+    "delta": 0.06930995084944791
+  },
+  "BIC": {
+    "value": 0.06930995084944791,
+    "delta": 0.06930995084944791
+  },
+  "WWI": 0.0,
+  "per_survey": [
+    {
+      "survey": "PLANCK_2018",
+      "n": 1,
+      "chi2": 0.06930995084944791,
+      "AIC": 0.06930995084944791,
+      "BIC": 0.06930995084944791,
+      "AIC_ref": 0.0,
+      "BIC_ref": 0.0,
+      "dAIC": 0.06930995084944791,
+      "dBIC": 0.06930995084944791,
+      "WWI": 0.0
+    }
+  ],
+  "rows": [
+    {
+      "survey": "PLANCK_2018",
+      "A_L": 1.0,
+      "sigma_A": 0.03,
+      "notes": "Planck lensing amplitude",
+      "A_model": 1.00789803493057,
+      "resid": 0.2632678310189984
+    }
+  ],
+  "reference": {
+    "model": "LCDM A_L=1",
+    "AIC": 0.0,
+    "BIC": 0.0
+  },
+  "z_support": {
+    "zmax": 5.0,
+    "nz": 1024,
+    "note": "shape-only \u03a6^2 proxy"
+  }
+}

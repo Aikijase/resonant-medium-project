@@ -1,0 +1,5 @@
+Phase-21: Cosmic Recycling – Source ODE (toy)
+Params: k=0.0028450789546569616  alpha=2.2665514539487113  epsilon=0.5438855652119396
+Rows: 241
+z-range: [0.000, 6.000]
+Notes: w_proxy is a qualitative diagnostic only.

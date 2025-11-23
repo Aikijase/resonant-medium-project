@@ -1,0 +1,26 @@
+[cosmo]
+H0 = 70.0
+Omega_m0 = 0.3
+sigma8_0 = 0.8
+
+[grid]
+# Sweep gamma(z) = gamma0 + g1 * z/(1+z)
+gamma0_min = 1.40
+gamma0_max = 1.65
+gamma0_n   = 11
+
+g1_min = -0.40
+g1_max =  0.40
+g1_n   =  17
+
+[zgrid]
+zmin = 0.0
+zmax = 1.8
+npts = 250
+
+[data]
+fs8_csv = "data/growth/fs8_compilation.csv"
+
+[scoring]
+fit_s8 = true
+lcdm_ref_json = "outputs/phase2/fs8_eval.json"

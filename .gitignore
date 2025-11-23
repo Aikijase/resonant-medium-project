@@ -1,0 +1,11 @@
+*.zip
+outputs/
+*.npz
+*.sha256
+echo_equation_evidence_bundle_v1*
+magnificent7*
+wpd_project*
+data/planck/COM_CMB_IQU-smica-nosz_2048_R3.00_full.fits
+data/planck/data/planck/COM_CMB_IQU-smica_2048_R3.00_full.fits
+data/planck/COM_CMB_IQU-smica-nosz_2048_R3.00_full.fits
+data/planck/data/planck/COM_CMB_IQU-smica_2048_R3.00_full.fits

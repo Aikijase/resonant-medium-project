@@ -1,0 +1,19 @@
+%% jcappub.sty
+%% Minimal JCAP layout based on jheppub
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{jcappub}[2021/01/01 v1.0 JCAP pub style]
+
+\RequirePackage{jheppub}
+
+%% For compatibility
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\hypersetup{
+  pdftitle={JCAP Submission},
+  pdfauthor={},
+  pdfsubject={},
+  pdfkeywords={}
+}
+
+\endinput

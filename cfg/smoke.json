@@ -1,0 +1,21 @@
+{
+  "mode": "bao-only",
+  "plus_lya": true,
+
+  "bao_csv": "data/desi_dr1_bao/bao_measurements_long_interleaved_sigma.csv",
+  "bao_cov": "data/desi_dr1_bao/bao_covariance_plus_lya.csv",
+  "sn_csv":  "data/pantheon_plus/sn_MATCHED_mu.csv",
+  "sn_cov":  "outputs/Pantheon+SH0ES_STAT+SYS.cal.cov",
+
+  "gamma": 1.56,
+  "f": 2.60,
+  "fix":  { "gamma": 1.56, "f": 2.60 },
+  "free": ["A","phi"],
+
+  "H0": 70.0,
+  "Om": 0.3,
+  "rd": 147.1,
+
+  "out": "outputs/smoke.json",
+  "out_prefix": "outputs/smoke"
+}

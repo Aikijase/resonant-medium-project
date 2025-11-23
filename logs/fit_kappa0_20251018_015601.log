@@ -1,0 +1,16 @@
+[RUN] python3 /home/thefantasticmissmal/resonant-medium-project/joint_guard.py --bao-csv /home/thefantasticmissmal/resonant-medium-project/data/desi_dr1_bao/bao_measurements_long_interleaved_sigma.csv --bao-cov /home/thefantasticmissmal/resonant-medium-project/data/desi_dr1_bao/bao_covariance_plus_lya.csv --sn-csv /home/thefantasticmissmal/resonant-medium-project/data/pantheon_plus/sn_MATCHED_mu.csv --sn-cov /home/thefantasticmissmal/resonant-medium-project/outputs/Pantheon+SH0ES_STAT+SYS.cal.cov --out-prefix /home/thefantasticmissmal/resonant-medium-project/outputs/phase8/joint_kappa0 --H0 70.0 --Om 0.3 --Or 0.0 --Ok 0.0 --rd 147.1 --prior-A-sigma 1.0 --k-params 5 --assume-per-rd --plus-lya
+  system  mode_index  f_norm  E_anchor_ratio    Q
+0    ABH           1    1.00            0.85  250
+1    ABH           2    1.05            0.82  240
+2    ABH           3    1.10            0.80  235
+3    ABH           4    1.15            0.78  225
+4    ABH           5    1.20            0.76  220
+        system  k_a  omega_L_norm  omega_T_norm  lambda_D_a
+0  DustyPlasma  0.1          1.05          0.78         1.5
+1  DustyPlasma  0.2          1.09          0.73         1.5
+2  DustyPlasma  0.3          1.13          0.68         1.5
+3  DustyPlasma  0.4          1.17          0.63         1.5
+4  DustyPlasma  0.5          1.21          0.59         1.5
+[BENCH] Loaded benchmark fits from data/benchmarks/benchmarks_fit_summary.json
+Wrote /home/thefantasticmissmal/resonant-medium-project/outputs/bench_overlay_eps_gamma.png
+Wrote /home/thefantasticmissmal/resonant-medium-project/outputs/bench_overlay_plasma_dispersion.png

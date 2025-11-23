@@ -1,0 +1,1 @@
+Usage: python3 run_joint_bao_sn.py <config.json>

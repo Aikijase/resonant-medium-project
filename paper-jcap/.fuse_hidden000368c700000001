@@ -1,0 +1,60 @@
+@article{DeLeo2025,
+  author = {De Leo, Chiara and Martinelli, Matteo and D'Agostino, Rocco and Gianfagna, Giulia and Martins, C.J.A.P.},
+  title = {Distinguishing distance duality breaking models using electromagnetic and gravitational waves measurements},
+  journal = {JCAP},
+  year = {2025},
+  number = {11},
+  pages = {001},
+  doi = {10.1088/1475-7516/2025/11/001},
+  eprint = {2505.13613},
+  archivePrefix = {arXiv}
+}
+@article{Planck2018,
+  author = {Planck Collaboration},
+  title = {Planck 2018 results. VI. Cosmological parameters},
+  journal = {A\&A},
+  year = {2020},
+  volume = {641},
+  pages = {A6},
+  eprint = {1807.06209}
+}
+@article{PantheonPlus,
+  author = {Scolnic, D. and others},
+  title = {The Pantheon+ Analysis of Type Ia Supernovae},
+  journal = {ApJ},
+  year = {2022},
+  eprint = {2112.03863}
+}
+@article{Etherington1933,
+  author = {Etherington, I. M. H.},
+  title = {On the definition of distance in general relativity},
+  journal = {Phil. Mag.},
+  year = {1933},
+  volume = {15},
+  pages = {761}
+}
+
+@article{DESI2024_BAO_DR1,
+  author        = {Adame, A. G. and DESI Collaboration},
+  title         = {DESI 2024: Baryon Acoustic Oscillation Measurements from the First Year of DESI Observations},
+  year          = {2024},
+  eprint        = {2404.03002},
+  archivePrefix = {arXiv},
+  primaryClass  = {astro-ph.CO},
+  note          = {DR1 compressed BAO distances used in this analysis}
+}
+
+@article{PantheonPlus2022,
+  author        = {Scolnic, D. and Brout, D. and Carr, A. and others},
+  title         = {The Pantheon+ Analysis: The Full Data Set and Light-curve Release},
+  journal       = {The Astrophysical Journal},
+  year          = {2022},
+  volume        = {938},
+  number        = {2},
+  pages         = {113},
+  doi           = {10.3847/1538-4357/ac8b7a},
+  eprint        = {2112.03863},
+  archivePrefix = {arXiv},
+  primaryClass  = {astro-ph.CO},
+  note          = {Pantheon+ Type Ia Supernova compilation}
+}

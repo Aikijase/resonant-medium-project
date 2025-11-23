@@ -1,0 +1,14 @@
+[2025-10-11 02:12:11] PROGRESS: loaded BAO cov
+[2025-10-11 02:12:12] PROGRESS: loaded SN cov from data/pantheon_plus/SN_DUMMY_BAOONLY.spd.csv
+[2025-10-11 02:12:12] PROGRESS: DEBUG BAO median y_data=18.977 → assume_per_rd=True
+[2025-10-11 02:12:12] PROGRESS: DEBUG BAO basis=abs(/rd or Mpc) med(data)=18.977  med(fid_abs)=18.451  sigma_used=cov
+[2025-10-11 02:12:12] PROGRESS: DEBUG BAO cov stats: median(sd)=0.3843 min(sd)=0.17 max(sd)=0.95
+[2025-10-11 02:12:12] PROGRESS: DEBUG fit_params=['A', 'phi', 'gamma']
+[2025-10-11 02:12:12] PROGRESS: DEBUG Ok_bounds=(0.0, 0.0)
+[2025-10-11 02:12:12] PROGRESS: DEBUG fit_params=['A', 'phi', 'gamma']
+[2025-10-11 02:12:12] PROGRESS: DEBUG Ok_bounds=(0.0, 0.0)
+[2025-10-11 02:12:12] PROGRESS: DEBUG k_params=3
+[2025-10-11 02:12:18] PROGRESS: DEBUG chi2@init=28.290
+[2025-10-11 02:12:18] PROGRESS: DEBUG k_params=3
+[2025-10-11 02:12:23] PROGRESS: DEBUG chi2@init=28.290
+[2025-10-11 02:12:23] PROGRESS: starting optimizer

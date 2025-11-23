@@ -1,0 +1,12 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{jcappub}[2025/11/06 shim -> loads jheppub if real jcappub not installed]
+\begingroup
+\edef\temp{\meaning\documentclass}
+\endgroup
+% Try to load real jcappub; if it fails, load jheppub
+\expandafter\ifx\csname jcappub@loaded\endcsname\relax
+  \newcommand{\jcappub@try}{%
+    \IfFileExists{jcappub-real.sty}{\RequirePackage{jcappub-real}}{\RequirePackage{jheppub}}%
+  }%
+\fi
+\jcappub@try

@@ -1,0 +1,69 @@
+\pdfoutput=1
+\makeatletter\newif\ifjcapstyle\IfFileExists{jcappub.sty}{\jcapstyletrue}{\jcapstylefalse}\makeatother
+
+\ifjcapstyle
+  \documentclass[a4paper,11pt]{article}
+  \usepackage{jcappub}
+  \usepackage{graphicx,amsmath,amssymb,booktabs,siunitx,microtype,caption}
+  \graphicspath{{figures/}{./}{outputs/phase20/}{outputs/phase8/}{outputs/predictions/}}
+  \DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
+  \title{A Resonant Medium Framework for Cosmology:\\ Finite-Memory Dynamics and the Echo Equation}
+  \author{Jason Watts}
+  \affiliation{Independent Researcher}
+  \emailAdd{theexperimentalistlab@outlook.com}
+\else
+  \documentclass[a4paper,11pt]{article}
+  \usepackage[T1]{fontenc}\usepackage[utf8]{inputenc}\usepackage{lmodern}
+  \usepackage{geometry}\geometry{margin=1in}
+  \usepackage{graphicx,amsmath,amssymb,booktabs,siunitx,microtype,hyperref,caption,authblk}
+  \graphicspath{{figures/}{./}{outputs/phase20/}{outputs/phase8/}{outputs/predictions/}}
+  \DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
+  \title{A Resonant Medium Framework for Cosmology:\\ Finite-Memory Dynamics and the Echo Equation}
+  \author[1]{Jason Watts\thanks{\texttt{theexperimentalistlab@outlook.com}}}
+  \affil[1]{Independent Researcher}
+\fi
+
+% --- Final macros ---
+\makeatletter
+\providecommand{\EchoEq}{\mathcal{E}}
+\providecommand{\softness}{\sigma_{\!\mathrm{s}}}
+\providecommand{\Kphi}{K_{\!\varphi}}
+\providecommand{\wstar}{\omega_\ast}
+\providecommand{\LCDM}{\ensuremath{\Lambda\mathrm{CDM}}}
+\providecommand{\fsig}{\ensuremath{f\sigma_8}}
+\providecommand{\LambdaCDM}{\LCDM}
+\makeatother
+
+% --- Bookmark-safe mapping (only if hyperref is loaded) ---
+\makeatletter
+\@ifpackageloaded{hyperref}{%
+  \pdfstringdefDisableCommands{%
+    \def\LCDM{LCDM}\def\LambdaCDM{LCDM}\def\wstar{w*}\def\Kphi{Kphi}\def\softness{sigma\_s}
+    \def\Lambda{Lambda}\def\({}\def\){}\def\$#1${#1}%
+  }%
+}{}
+\makeatother
+
+\begin{document}
+\maketitle
+
+\section{Introduction}\label{sec:introduction}
+\IfFileExists{sections/01_introduction.tex}{\input{sections/01_introduction}}{(intro placeholder)}
+
+\section{Datasets and Methods}\label{sec:methods}
+\IfFileExists{sections/04_methods.tex}{\input{sections/04_methods}}{(methods placeholder)}
+
+\section{Results}\label{sec:results}
+\IfFileExists{sections/05_results.tex}{\input{sections/05_results}}{(results placeholder)}
+
+\section{Discussion}\label{sec:discussion}
+\IfFileExists{sections/06_discussion.tex}{\input{sections/06_discussion}}{(discussion placeholder)}
+
+\section*{AI-use statement}
+\IfFileExists{sections/91_ai_statement.tex}{\input{sections/91_ai_statement}}{(add sections/91_ai_statement.tex)}
+
+\clearpage
+\nocite{Planck2018,PantheonPlus2022,DESI2024_BAO_DR1,Watts2025_EchoEvidence}
+\bibliographystyle{JHEP}
+\bibliography{echo_eq_refs_v1}
+\end{document}

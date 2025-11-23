@@ -1,0 +1,80 @@
+# dwarf_counts.py
+"""
+Estimate dwarf subhalo counts by integrating the HMF over [Mmin, Mmax]
+and scaling by a host virial volume (crude order-of-mag). Works with
+PS/ST/Tinker mass functions and phase-smoothed resonant modifier.
+"""
+import json, numpy as np
+from halo_mass_function import linear_pk, sigma_grid, hmf_press_schechter, hmf_sheth_tormen, hmf_tinker08
+from utils_node_models import resonant_modifier, resonant_modifier_phase_smeared
+
+def estimate_counts(hmf_model="st", tau=0.05, omega=0.144,
+                    Mmin=1e9, Mmax=1e10, Rvir_kpc_h=250.0,
+                    Omega_m=0.3, h=0.7, n_s=0.965, phase_smooth=True):
+    rho_crit = 2.775e11
+    rho_m = Omega_m * rho_crit
+
+    k = np.logspace(-3, 1.4, 1600)
+    P_lcdm = linear_pk(k, n_s=n_s, Omega_m=Omega_m, h=h)
+
+    if phase_smooth:
+        mod = resonant_modifier_phase_smeared(k, tau, omega, n_phase=9, width=np.pi/20)
+    else:
+        mod = resonant_modifier(k, tau, omega, phase=0.0)
+    P_res = P_lcdm * mod
+
+    M_grid = np.logspace(8, 12, 400)
+    sigma_LCDM = sigma_grid(P_lcdm, k, M_grid, rho_m)
+    sigma_RES  = sigma_grid(P_res,  k, M_grid, rho_m)
+
+    if hmf_model.lower() in ["ps", "press", "press-schechter"]:
+        hmf_func = hmf_press_schechter
+        hmf_name = "Press–Schechter"
+    elif hmf_model.lower() in ["st", "sheth", "sheth-tormen"]:
+        hmf_func = hmf_sheth_tormen
+        hmf_name = "Sheth–Tormen"
+    elif hmf_model.lower() in ["tinker", "tinker08", "t08"]:
+        hmf_func = hmf_tinker08
+        hmf_name = "Tinker+08"
+    else:
+        raise ValueError("Unknown hmf_model; use ps|st|tinker")
+
+    dn_LCDM = hmf_func(M_grid, sigma_LCDM, rho_m)
+    dn_RES  = hmf_func(M_grid, sigma_RES,  rho_m)
+
+    lnM = np.log(M_grid)
+    mask = (M_grid >= Mmin) & (M_grid <= Mmax)
+    n_LCDM = float(np.trapz(dn_LCDM[mask], lnM[mask]))
+    n_RES  = float(np.trapz(dn_RES[mask],  lnM[mask]))
+
+    R_Mpch = Rvir_kpc_h / 1000.0
+    V_host = (4/3)*np.pi*(R_Mpch**3)
+
+    return {
+        "hmf": hmf_name,
+        "tau": tau, "omega": omega,
+        "M_range_Msun_h": [Mmin, Mmax],
+        "Rvir_kpc_h": Rvir_kpc_h,
+        "ndensity_LCDM_Mpch3": n_LCDM,
+        "ndensity_RES_Mpch3":  n_RES,
+        "N_expected_LCDM": n_LCDM * V_host,
+        "N_expected_RES":  n_RES  * V_host,
+        "suppression_ratio": (n_RES/n_LCDM) if n_LCDM>0 else None
+    }
+
+if __name__ == "__main__":
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--hmf", default="st", help="ps|st|tinker")
+    ap.add_argument("--tau", type=float, default=0.05)
+    ap.add_argument("--omega", type=float, default=0.144)
+    ap.add_argument("--Mmin", type=float, default=1e9)
+    ap.add_argument("--Mmax", type=float, default=1e10)
+    ap.add_argument("--Rvir", type=float, default=250.0)
+    ap.add_argument("--no-phase-smooth", action="store_true")
+    args = ap.parse_args()
+
+    out = estimate_counts(hmf_model=args.hmf, tau=args.tau, omega=args.omega,
+                          Mmin=args.Mmin, Mmax=args.Mmax, Rvir_kpc_h=args.Rvir,
+                          phase_smooth=(not args.no_phase_smooth))
+    print(json.dumps(out, indent=2))

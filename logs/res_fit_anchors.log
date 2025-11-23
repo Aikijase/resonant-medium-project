@@ -1,0 +1,63 @@
+{
+  "best_params": {
+    "H0": 70.0,
+    "Om": 0.3,
+    "rd": 147.1,
+    "A": 1.0,
+    "f": 1.0,
+    "phi": 1.1873171971087582,
+    "gamma": 0.0,
+    "anchor_eps": 0.0,
+    "anchor_zR": 0.5,
+    "dmu": 0.0570010634761498
+  },
+  "fit_params": [
+    "A",
+    "f",
+    "phi",
+    "gamma",
+    "dmu"
+  ],
+  "chi2": 33493.81268175875,
+  "ndof": 1708,
+  "success": true,
+  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+  "restarts": 0,
+  "breakdown": {
+    "chi2_bao": 31761.117591395734,
+    "chi2_sn": 1732.6950903630134
+  },
+  "timing_sec": 36.79255390167236,
+  "sn_cov_kind_used": "cov",
+  "sn_scale_used": 1.0,
+  "bao_kind_used": "dm_over_rd",
+  "bg_nz": 800,
+  "sn_points": 1701,
+  "bao_points": 12,
+  "hit_bounds": {
+    "A": true,
+    "f": true,
+    "phi": false,
+    "gamma": true,
+    "dmu": false
+  },
+  "evals": 11,
+  "config": {
+    "bounds": {
+      "A": "0.0,1.0",
+      "f": "1.0,5.0",
+      "phi": "-3.1415926536,3.1415926536",
+      "gamma": "0.0,0.5",
+      "Om": "0.05,0.70",
+      "rd": null,
+      "anchor_eps": "-0.6,0.6",
+      "dmu": null
+    },
+    "free_flags": {
+      "Om": false,
+      "rd": false,
+      "anchor": false,
+      "dmu": true
+    }
+  }
+}

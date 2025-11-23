@@ -1,0 +1,9 @@
+name: sfr_imf_bh_eff
+purpose: Map star formation → BH birth rate via IMF & efficiency
+columns:
+  - z: {type: float}
+  - SFR_Msun_yr_Mpc3: {type: float}
+  - IMF_name: {type: str}
+  - BH_efficiency: {type: float, units: fraction}
+  - sigma_eff: {type: float}
+  - source_id: {type: str}

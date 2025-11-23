@@ -1,0 +1,22 @@
+# config_smallscale.yaml
+outdir: outputs/phase2_smallscale
+tau: 0.04
+omega: 0.12
+hmf: tinker
+phase_smooth: true
+
+dwarf_counts:
+  Mmin: 1.0e9
+  Mmax: 1.0e10
+  Rvir_kpc_h: 250.0
+
+sigma8: 0.811
+shmf_calibrated:
+  baseline_LCDM: 50.0
+  Mhost: 1.0e12
+
+lowk_guard:
+  enabled: true
+  k_guard: 4.0
+  delta: 1.0
+  width: 0.19634954    # ≈ π/16

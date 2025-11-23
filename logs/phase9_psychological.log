@@ -1,0 +1,10 @@
+$ env PYTHONPATH=. MPLBACKEND=Agg python3 tools/phase9_unified_operator_sim_noscipy.py --config configs/phase9_psychological.yaml --out-prefix outputs/phase9/psychological_run_noscipy
+[phase9-nosci] CSV saved: outputs/phase9/psychological_run_noscipy.csv
+[phase9-nosci] Plot saved: outputs/phase9/psychological_run_noscipy_timeseries.png
+[phase9-nosci] Plot saved: outputs/phase9/psychological_run_noscipy_phase.png
+[phase9-nosci] Metrics (post-mid): peak_to_peak=0.0168061  rms_err=0.0031463
+$ env PYTHONPATH=. MPLBACKEND=Agg python3 tools/phase9_unified_operator_sim_noscipy.py --config configs/phase9_psychological.yaml --out-prefix outputs/phase9/psychological_run_noscipy
+[phase9-nosci] CSV saved: outputs/phase9/psychological_run_noscipy.csv
+[phase9-nosci] Plot saved: outputs/phase9/psychological_run_noscipy_timeseries.png
+[phase9-nosci] Plot saved: outputs/phase9/psychological_run_noscipy_phase.png
+[phase9-nosci] Metrics (post-mid): peak_to_peak=0.0168061  rms_err=0.0031463

@@ -1,0 +1,39 @@
+[2025-10-06 19:47:52] PROGRESS: loaded BAO cov
+[2025-10-06 19:47:53] PROGRESS: loaded SN cov from /home/thefantasticmissmal/resonant-medium-project/data/pantheon_plus/Pantheon+SH0ES_DIAG.spd.csv
+[2025-10-06 19:47:53] PROGRESS: DEBUG BAO median y_data=18.977 → assume_per_rd=True
+[2025-10-06 19:47:53] PROGRESS: DEBUG BAO basis=abs(/rd or Mpc) med(data)=18.977  med(fid_abs)=18.451  sigma_used=cov
+[2025-10-06 19:47:53] PROGRESS: DEBUG BAO cov stats: median(sd)=0.3843 min(sd)=0.17 max(sd)=0.95
+[2025-10-06 19:47:53] PROGRESS: DEBUG fit_params=[]
+[2025-10-06 19:47:53] PROGRESS: DEBUG Ok_bounds=(0.0, 0.0)
+{
+  "best_params": {
+    "H0": 70.0,
+    "Om": 0.3,
+    "Or": 0.0,
+    "Ok": 0.0,
+    "rd": 147.1,
+    "A": 0.0,
+    "f": 1.0,
+    "phi": 0.0,
+    "gamma": 0.0
+  },
+  "fit_params": [],
+  "chi2": 800.0634674984786,
+  "ndof": 1713,
+  "success": true,
+  "message": "Baseline (no free parameters).",
+  "restarts": 0,
+  "breakdown": {
+    "chi2_bao": 46.841008067477176,
+    "chi2_sn": 753.2224594310014
+  },
+  "ic": {
+    "k_params": 0,
+    "n_points": 1713,
+    "chi2_data": 800.0634674984786,
+    "AIC_data": 800.0634674984786,
+    "BIC_data": 800.0634674984786,
+    "AICc_data": 800.0634674984786
+  }
+}
+[saved] /home/thefantasticmissmal/resonant-medium-project/outputs/joint_RESN_rd_fixed.json

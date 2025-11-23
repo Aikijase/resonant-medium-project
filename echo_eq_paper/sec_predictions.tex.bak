@@ -1,0 +1,12 @@
+\section{Predictions and future tests}
+\label{sec:predictions}
+
+The Echo Equation predicts a coherent, single-frequency residual in late-time growth observables, most visible in redshift-space distortions and galaxy--CMB-lensing cross-correlations. The fundamental scale is
+\[
+\Delta z \simeq \frac{\pi}{\omega_0}\,,
+\]
+which is $\approx 0.4$ for the illustrative parameters used here.
+
+Figure~\ref{fig:echo_signature} shows a Phase-20 example included for orientation. A decisive test is a joint fit of RSD and lensing cross-correlations that shares the same echo frequency while allowing independent amplitudes.
+
+\input{tex/snippets/figure_echo}

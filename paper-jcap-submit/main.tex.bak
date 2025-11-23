@@ -1,0 +1,113 @@
+\documentclass[a4paper,11pt]{article}
+
+% --- Minimal, local-friendly preamble ---
+\usepackage{jcappub}            % local stub for offline build; Overleaf will use real JCAP
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{booktabs,multirow}
+\usepackage{hyperref}
+% Local math helpers (for local build)
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\degree}{\ensuremath{^{\circ}}}
+% Local math helpers (for local build)
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\degree}{\ensuremath{^{\circ}}}
+% Local math helpers (for local build)
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\degree}{\ensuremath{^{\circ}}}
+% Local math helpers (for local build)
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\degree}{\ensuremath{^{\circ}}}
+% Local math helpers (for local build)
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\degree}{\ensuremath{^{\circ}}}
+% Local math helpers (for local build)
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\degree}{\ensuremath{^{\circ}}}
+% Local math helpers (for local build)
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\degree}{\ensuremath{^{\circ}}}
+% Local math helpers (for local build)
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\degree}{\ensuremath{^{\circ}}}
+
+% Local math helpers (for local build)
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\degree}{\ensuremath{^{\circ}}}
+
+
+% --- Symbols (consistent across text/figures) ---
+\newcommand{\tauMem}{\tau}
+\newcommand{\kappaMem}{\kappa}
+\newcommand{\wzero}{\omega_0}
+\newcommand{\Qfact}{Q}
+\newcommand{\fsig}{f\sigma_8}
+
+% --- Meta (the stub prints keywords/arXiv under the title locally; JCAP does it properly) ---
+\title{The Echo Equation in Resonant Medium Cosmology}
+\author{Jason Watts\thanks{\href{mailto:your.email@example.org}{your.email@example.org}}\\
+\small Resonant Medium Project, Bendigo, Australia}
+\keywords{cosmology of theories beyond $\Lambda$CDM, cosmological perturbation theory, modified gravity}
+\arxivnumber{XXXX.XXXXX}
+
+\begin{document}
+\maketitle
+\flushbottom
+
+\begin{abstract}
+We present a finite-memory, single-frequency kernel for late-time cosmology---the \emph{Echo Equation}---and show how its four parameters $(\tau,\kappa,\wzero,Q)$ map to background and linear-growth observables. In the $\tau,\kappa\to 0$ limit the model reduces to $\Lambda$CDM. Using Phase--20 runs, we illustrate compatibility at comparable fit quality and specify a one-frequency, cross-probe joint test (RSD and $g\times\kappa$). The model is falsified if a common $\wzero$ is not recovered across growth probes or if amplitudes vanish at the shared frequency given survey depth.
+\end{abstract}
+
+\section{Model}
+We add a causal, exponentially-damped, single-frequency memory term. In the $\tauMem\!\to\!0$, $\kappaMem\!\to\!0$ limit, the model reduces to $\Lambda$CDM. The residual frequency is $\wzero$ (units: rad per e-fold):
+\begin{equation}\label{eq:kernel}
+K(\Delta N) = \tauMem\, e^{-\Delta N/\Qfact}\cos\!\big(\wzero\,\Delta N\big)
+             + \kappaMem\, e^{-\Delta N/\Qfact}\sin\!\big(\wzero\,\Delta N\big),
+\end{equation}
+with $\Delta N=\ln a(t)-\ln a(t')$. For small amplitudes, the induced growth residual $R(N)$ is linear in $\kappaMem$; empirically $A \approx C_\mathrm{cal}\,\kappaMem$ with $C_\mathrm{cal}$ reported in Table~\ref{tab:post}.
+
+\begin{center}
+\fbox{\parbox{0.92\linewidth}{
+\textbf{Joint test (one frequency):} Fit a common $\wzero$ to RSD and $g\times\kappa$; allow sector amplitudes $A_{\mathrm{RSD}}, A_{g\kappa}$. Decision rule: detect $Aeq 0$ at the \emph{shared} $\wzero$; else quote a 95\% CL bound on $\abs{\kappaMem}$ via $A\propto\kappaMem$.
+}}
+\end{center}
+
+\section{Results}
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.82\linewidth]{figs/p20_plot_robust.pdf}
+  \caption{Representative Phase--20 residuals vs.\ $\ln a$ at the recovered $\wzero$. Shaded band: $1\sigma$ posterior.}
+  \label{fig:residuals}
+\end{figure}
+
+\begin{table}[t]
+\centering
+\caption{Posterior means $\pm 1\sigma$ (Phase--20 lock). Numerical values auto-filled by \texttt{jcap\_fill\_posteriors.py}.}
+\label{tab:post}
+\begin{tabular}{lcc}
+\toprule
+Parameter & $Mean \pm SD$ & Units \\
+\midrule
+$\tauMem$ & $0.300 \pm 0.040$ & dimensionless \\
+$\kappaMem$ & $-0.020 \pm 0.010$ & dimensionless \\
+$\wzero$ & $1.60 \pm 0.10$ & rad/e-fold \\
+$\Qfact$ & $0.830 \pm 0.050$ & dimensionless \\
+$C_{\mathrm{cal}}$ & $1.25 \pm 0.10$ & (amplitude per $\kappa$) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Discussion and $\Lambda$CDM limit}
+For $\tauMem,\kappaMem\to 0$, Eq.~\eqref{eq:kernel} vanishes and $\Lambda$CDM is recovered. For concreteness, if $\wzero=\SI{1.6}{rad/e\mbox{-}fold}$, the half-period scale is $\Delta N = \pi/\wzero \approx 1.96$ e-folds.
+
+\section{Data and code availability}
+All Phase--20 artifacts and scripts are available in the project repository (tag: \texttt{phase20\_lock}).
+
+\acknowledgments
+Thanks to Mal, Taya, and collaborators for patience and feedback.
+
+% --- Local build uses unsrt to avoid bundling JHEP.bst; Overleaf can switch back to JHEP ---
+\bibliographystyle{JHEP}
+\bibliography{refs}
+\end{document}

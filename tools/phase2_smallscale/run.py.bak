@@ -1,0 +1,45 @@
+# run.py
+"""
+Entry point that reads a YAML config and runs:
+- sweep_power (figures + summary)
+- dwarf_counts (expected counts)
+Outputs go to outputs/phase2_smallscale/ by default.
+"""
+import argparse, json, os, yaml
+from sweep_power import run_sweep
+from dwarf_counts import estimate_counts
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--config", required=True, help="YAML config file")
+    args = ap.parse_args()
+
+    cfg = yaml.safe_load(open(args.config))
+    outdir = cfg.get("outdir", "outputs/phase2_smallscale")
+    tau = float(cfg.get("tau", 0.05))
+    omega = float(cfg.get("omega", 0.144))
+    hmf = cfg.get("hmf", "st")
+    phase_smooth = bool(cfg.get("phase_smooth", True))
+
+    # Sweep/figures
+    summary = run_sweep(outdir=outdir, hmf_model=hmf,
+                        tau=tau, omega=omega, phase_smooth=phase_smooth)
+
+    # Dwarf counts
+    dcfg = cfg.get("dwarf_counts", {})
+    Mmin = float(dcfg.get("Mmin", 1e9))
+    Mmax = float(dcfg.get("Mmax", 1e10))
+    Rvir = float(dcfg.get("Rvir_kpc_h", 250.0))
+
+    counts = estimate_counts(hmf_model=hmf, tau=tau, omega=omega,
+                             Mmin=Mmin, Mmax=Mmax, Rvir_kpc_h=Rvir,
+                             phase_smooth=phase_smooth)
+
+    # Save a combined report JSON
+    combo = {"sweep_summary": summary, "dwarf_counts": counts}
+    os.makedirs(outdir, exist_ok=True)
+    open(os.path.join(outdir, "combined_results.json"), "w").write(json.dumps(combo, indent=2))
+    print(json.dumps(combo, indent=2))
+
+if __name__ == "__main__":
+    main()

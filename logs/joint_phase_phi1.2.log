@@ -1,0 +1,58 @@
+[2025-10-11 05:10:31] PROGRESS: loaded BAO cov
+[2025-10-11 05:10:31] PROGRESS: loaded SN cov from data/pantheon_plus/Pantheon+SH0ES_DIAG.spd.csv
+[2025-10-11 05:10:31] PROGRESS: DEBUG BAO median y_data=18.977 → assume_per_rd=True
+[2025-10-11 05:10:32] PROGRESS: DEBUG BAO basis=abs(/rd or Mpc) med(data)=18.977  med(fid_abs)=18.451  sigma_used=cov
+[2025-10-11 05:10:32] PROGRESS: DEBUG BAO cov stats: median(sd)=0.3843 min(sd)=0.17 max(sd)=0.95
+[2025-10-11 05:10:32] PROGRESS: DEBUG fit_params=['A', 'gamma']
+[2025-10-11 05:10:32] PROGRESS: DEBUG Ok_bounds=(0.0, 0.0)
+[2025-10-11 05:10:32] PROGRESS: DEBUG fit_params=['A', 'gamma']
+[2025-10-11 05:10:32] PROGRESS: DEBUG Ok_bounds=(0.0, 0.0)
+[2025-10-11 05:10:32] PROGRESS: DEBUG k_params=2
+[2025-10-11 05:10:37] PROGRESS: DEBUG chi2@init=787.690
+[2025-10-11 05:10:37] PROGRESS: DEBUG k_params=2
+[2025-10-11 05:10:42] PROGRESS: DEBUG chi2@init=787.690
+[2025-10-11 05:10:42] PROGRESS: starting optimizer
+[2025-10-11 05:12:56] PROGRESS: eval 25: chi2=786.060
+[2025-10-11 05:15:26] PROGRESS: eval 25: chi2=786.207
+[2025-10-11 05:17:45] PROGRESS: eval 50: chi2=786.060
+[2025-10-11 05:20:26] PROGRESS: eval 25: chi2=786.744
+[2025-10-11 05:22:45] PROGRESS: eval 50: chi2=786.060
+[2025-10-11 05:26:47] PROGRESS: eval 25: chi2=794.316
+[2025-10-11 05:30:39] PROGRESS: eval 25: chi2=786.060
+[2025-10-11 05:33:26] PROGRESS: eval 25: chi2=789.416
+[2025-10-11 05:37:49] PROGRESS: eval 25: chi2=786.060
+{
+  "best_params": {
+    "H0": 70.0,
+    "Om": 0.3,
+    "Or": 0.0,
+    "Ok": 0.0,
+    "rd": 147.1,
+    "A": 0.1549172461820171,
+    "f": 3.26,
+    "phi": 1.2,
+    "gamma": 0.0
+  },
+  "fit_params": [
+    "A",
+    "gamma"
+  ],
+  "chi2": 786.0601336758659,
+  "ndof": 1711,
+  "success": true,
+  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+  "restarts": 8,
+  "breakdown": {
+    "chi2_bao": 30.08744351075503,
+    "chi2_sn": 755.822694207832
+  },
+  "ic": {
+    "k_params": 2,
+    "n_points": 1713,
+    "chi2_data": 786.0601336758659,
+    "AIC_data": 790.0601336758659,
+    "BIC_data": 800.9521366725141,
+    "AICc_data": 790.0671512197256
+  }
+}
+[saved] outputs/joint_phase_phi1.2.json

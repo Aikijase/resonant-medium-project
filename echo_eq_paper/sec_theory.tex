@@ -1,0 +1,18 @@
+\section{The Echo Equation: finite-memory cosmological dynamics}
+\label{sec:theory}
+
+We begin with a Friedmann-type equation modified by a convolution kernel:
+\begin{equation}
+    H^2(t) = \frac{8\pi G}{3}\rho(t)
+    + \int_0^t K(t - t')\, H(t')\, \mathrm{d}t',
+    \label{eq:echo}
+\end{equation}
+where $K(\Delta t)$ encodes a finite-memory response of the cosmological medium to past expansion rates. For a minimal resonant kernel,
+\begin{equation}
+    K(\Delta t) = \frac{\kappa}{\tau}\, e^{-\Delta t / \tau}\cos(\omega_0\, \Delta t),
+\end{equation}
+the dynamics are governed by four parameters: the memory timescale $\tau$, damping $\kappa$, frequency $\omega_0$, and quality factor $Q = \omega_0 \tau / 2$.
+
+In the limit $\tau \rightarrow 0$ and $\kappa \rightarrow 0$, the memory term vanishes and the expansion reduces to $\Lambda$CDM. Finite but small $\tau$ generically produces gentle modulations in $H(z)$ and its derived quantities like $f\sigma_8$.
+
+Section~\ref{sec:predictions} presents the forecasted observables and isolable signatures of the model.

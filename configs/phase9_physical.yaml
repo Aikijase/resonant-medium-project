@@ -1,0 +1,21 @@
+domain: physical
+params:
+  alpha: 1.0     # inertia / memory
+  beta: 0.08     # damping
+  gamma: 1.0     # stiffness (natural ω₀ ≈ sqrt(gamma/alpha) = 1)
+drive:
+  F: 1.0
+  omega: 1.0     # near resonance
+target:
+  type: constant
+  value: 0.0
+noise:
+  type: gaussian
+  std: 0.0
+sim:
+  t0: 0.0
+  t_max: 60.0
+  n_steps: 6000
+  x0: 0.0
+  v0: 0.0
+# No adaptation in physical baseline

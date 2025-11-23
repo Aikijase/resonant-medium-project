@@ -1,0 +1,10 @@
+# Collector task list generated 2025-10-22T07:43:15
+id,dataset,priority,what_to_extract,where_in_paper,source_id,target_file,notes
+T1,rho_bh_z,P1,Digitize / compile ρ_BH(z) points,Review figs/tables (values & local ρ_BH),SHANKAR09,templates/rho_bh_z.csv,Prefer tabulated values; add sigma if available
+T2,agn_bol_lf,P1,"Extract bolometric LF (z-binned logL, phi)",Tables/Figs with QLF parameters,HOPKINS07,templates/agn_bolometric_lf.csv,"If only parametric form provided, sample onto bins"
+T3,agn_xray_lf,P1,Extract X-ray LF and convert to bolometric,Tables for LDDE params; k-corr later,UEDA14,templates/agn_bolometric_lf.csv,Use band_to_bolometric.py to convert
+T4,bh_accretion,P2,Compute ρdot_acc(z) via Soltan argument,From bolometric LF integration,HOPKINS07,templates/bh_accretion_history.csv,Use agn_lf_to_accretion.py with epsilon
+T5,sfr_to_bh,P2,Define BH birthrate model from SFR×efficiency,Use SFR history + IMF + ε_BH,MADAU14,templates/bh_birthrate_models.csv,Start with simple constant efficiency
+T6,gsmf,P3,Gather GSMF bins for z=0–3,Schechter params or tabulated bins,SHANKAR16,templates/stellar_mass_function.csv,For occupation sanity checks
+T7,Hz,P1,Assemble H(z) anchors,DESI DR1 table; Planck baseline,DESI24,templates/expansion_Hz.csv,Include method column
+T8,Omega_m & w,P2,Collect Ω_m(z)/w_eff(z) constraints,Derived/compiled constraints,PLANCK18,templates/omega_m_z.csv,w_eff usually from other probes

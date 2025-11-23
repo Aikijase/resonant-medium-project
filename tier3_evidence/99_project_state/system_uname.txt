@@ -1,0 +1,1 @@
+Linux penguin 6.6.88-08507-gc5e3cc23fa55 #1 SMP PREEMPT Fri, 1 Aug 2025 01:52:13 -0700 aarch64 GNU/Linux

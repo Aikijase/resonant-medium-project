@@ -1,0 +1,107 @@
+% Force PDF on arXiv
+\pdfoutput=1
+
+% Detect jcappub; else fall back
+\makeatletter
+\newif\ifjcapstyle
+\IfFileExists{jcappub.sty}{\jcapstyletrue}{\jcapstylefalse}
+\makeatother
+
+\ifjcapstyle
+  \documentclass[a4paper,11pt]{article}
+  \usepackage{jcappub}
+  \usepackage{graphicx}
+  \usepackage{amsmath,amssymb}
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{booktabs}
+  \usepackage{siunitx}
+  \usepackage{microtype}
+  \usepackage{caption}
+\else
+  \documentclass[a4paper,11pt]{article}
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{lmodern}
+  \usepackage{geometry}\geometry{margin=1in}
+  \usepackage{graphicx}
+  \usepackage{amsmath,amssymb}
+  \usepackage{booktabs}
+  \usepackage{siunitx}
+  \usepackage{microtype}
+  \usepackage{caption}
+  \usepackage{hyperref}
+\fi
+
+% Title block (works in both branches)
+\title{A Resonant Medium Framework for Cosmology:\\ Finite-Memory Dynamics and the Echo Equation}
+\author{Jason Watts}
+\ifjcapstyle
+  \affiliation{Independent Researcher}
+  \emailAdd{theexperimentalistlab@outlook.com}
+\else
+  \usepackage{authblk}
+  \author[1]{Jason Watts\thanks{\texttt{theexperimentalistlab@outlook.com}}}
+  \affil[1]{Independent Researcher}
+\fi
+
+% Minimal macros you rely on
+\newcommand{\LCDM}{\ensuremath{\Lambda\mathrm{CDM}}}
+\newcommand{\wstar}{\omega_\ast}
+\newcommand{\Kphi}{K_{\!\varphi}}
+\newcommand{\softness}{\sigma_{\!\mathrm{s}}}
+\newcommand{\fsig}{\ensuremath{f\sigma_8}}
+
+% Graphics search path
+\graphicspath{{figures/}{./}{outputs/phase20/}{outputs/phase8/}{outputs/predictions/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
+
+\begin{document}
+\maketitle
+\flushbottom
+
+% ======= Abstract/keywords if present =======
+\IfFileExists{sections/00_abstract.tex}{%
+  \abstract{\input{sections/00_abstract}}%
+}{}
+
+\IfFileExists{sections/00_keywords.tex}{%
+  \keywords{\input{sections/00_keywords}}%
+}{}
+
+% ======= Main content =======
+\section{Introduction}\label{sec:introduction}
+\IfFileExists{sections/01_introduction.tex}{\input{sections/01_introduction}}{}
+
+\section{Framework}\label{sec:framework}
+\IfFileExists{sections/02_notation.tex}{\input{sections/02_notation}}{}
+\IfFileExists{sections/03_framework.tex}{\input{sections/03_framework}}{}
+
+\section{Datasets and Methods}\label{sec:methods}
+\IfFileExists{sections/04_methods.tex}{\input{sections/04_methods}}{}
+
+\section{Results}\label{sec:results}
+\IfFileExists{sections/05_results.tex}{\input{sections/05_results}}{}
+
+\section{Discussion}\label{sec:discussion}
+\IfFileExists{sections/06_discussion.tex}{\input{sections/06_discussion}}{}
+
+\section{Conclusions}\label{sec:conclusions}
+\IfFileExists{sections/07_conclusions.tex}{\input{sections/07_conclusions}}{}
+
+% ======= Data/code and AI statement (optional) =======
+\section*{Data/Software/Code Availability}
+\IfFileExists{sections/90_availability.tex}{\input{sections/90_availability}}{%
+All figures and results are reproducible using the evidence bundle in
+\texttt{catalog/evidence/} (e.g., \texttt{echo\_equation\_evidence\_bundle\_v1.zip}).}
+
+\section*{AI-use statement}
+\IfFileExists{sections/91_ai_statement.tex}{\input{sections/91_ai_statement}}{}
+
+% ======= References =======
+\clearpage
+\nocite{Planck2018,PantheonPlus2022,DESI2024_BAO_DR1,Watts2025_EchoEvidence}
+\bibliographystyle{JHEP}
+\bibliography{echo_eq_refs_v1}
+
+\end{document}

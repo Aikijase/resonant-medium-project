@@ -1,0 +1,64 @@
+%% jheppub.sty
+%% Copyright:
+%% Copyright (C) 2013 SISSA Medialab S.r.l.
+%% This file is part of jheppub
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{jheppub}[2021/01/01 v1.0 JHEP pub style]
+
+\RequirePackage{kvoptions,etoolbox,hyperref}
+\SetupKeyvalOptions{
+  family=jheppub,
+  prefix=jheppub@
+}
+
+\DeclareStringOption[plain]{layout} % plain or jhep or jcap
+\DeclareBoolOption[true]{hyperref}
+\ProcessKeyvalOptions*
+
+\RequirePackage{amsmath,amssymb,graphicx,booktabs,color}
+
+%% Fix for arxiv
+\providecommand{\eprint}[1]{\href{#1}{#1}}
+
+\newcommand{\email}[1]{\href{mailto:#1}{#1}}
+\newcommand{\arxiv}[1]{\href{https://arxiv.org/abs/#1}{arXiv:#1}}
+
+\ifjheppub@hyperref
+  \RequirePackage{hyperref}
+  \hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue
+  }
+\fi
+
+%% Basic document class tweaks
+\pagestyle{plain}
+\parindent 15pt
+\parskip 3pt
+
+%% Title stuff
+\newcommand{\maketitlehooka}{}
+\newcommand{\maketitlehookb}{}
+\newcommand{\maketitlehookc}{}
+\newcommand{\maketitlehookd}{}
+
+\renewcommand{\maketitle}{
+  \maketitlehooka
+  \begin{flushleft}
+    {\LARGE\bfseries\textsc{\@title}\par}
+    \vspace{1.0em}
+    {\Large\bfseries\textsc{\@author}\par}
+    \vspace{0.5em}
+    {\large\textsc{\@affiliation}\par}
+    \vspace{0.5em}
+    \maketitlehookb
+    \vspace{1.5em}
+  \end{flushleft}
+  \maketitlehookc
+  \vspace{2em}
+}
+
+\endinput

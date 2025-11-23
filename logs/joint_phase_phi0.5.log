@@ -1,0 +1,49 @@
+[2025-10-11 04:20:40] PROGRESS: loaded BAO cov
+[2025-10-11 04:20:41] PROGRESS: loaded SN cov from data/pantheon_plus/Pantheon+SH0ES_DIAG.spd.csv
+[2025-10-11 04:20:41] PROGRESS: DEBUG BAO median y_data=18.977 → assume_per_rd=True
+[2025-10-11 04:20:41] PROGRESS: DEBUG BAO basis=abs(/rd or Mpc) med(data)=18.977  med(fid_abs)=18.451  sigma_used=cov
+[2025-10-11 04:20:41] PROGRESS: DEBUG BAO cov stats: median(sd)=0.3843 min(sd)=0.17 max(sd)=0.95
+[2025-10-11 04:20:41] PROGRESS: DEBUG fit_params=['A', 'gamma']
+[2025-10-11 04:20:41] PROGRESS: DEBUG Ok_bounds=(0.0, 0.0)
+[2025-10-11 04:20:41] PROGRESS: DEBUG fit_params=['A', 'gamma']
+[2025-10-11 04:20:41] PROGRESS: DEBUG Ok_bounds=(0.0, 0.0)
+[2025-10-11 04:20:41] PROGRESS: DEBUG k_params=2
+[2025-10-11 04:20:47] PROGRESS: DEBUG chi2@init=809.461
+[2025-10-11 04:20:47] PROGRESS: DEBUG k_params=2
+[2025-10-11 04:20:52] PROGRESS: DEBUG chi2@init=809.461
+[2025-10-11 04:20:52] PROGRESS: starting optimizer
+{
+  "best_params": {
+    "H0": 70.0,
+    "Om": 0.3,
+    "Or": 0.0,
+    "Ok": 0.0,
+    "rd": 147.1,
+    "A": 0.026492707956457102,
+    "f": 3.26,
+    "phi": 0.5,
+    "gamma": 0.0
+  },
+  "fit_params": [
+    "A",
+    "gamma"
+  ],
+  "chi2": 794.0615758002089,
+  "ndof": 1711,
+  "success": true,
+  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+  "restarts": 8,
+  "breakdown": {
+    "chi2_bao": 42.623165104262895,
+    "chi2_sn": 751.4340240486031
+  },
+  "ic": {
+    "k_params": 2,
+    "n_points": 1713,
+    "chi2_data": 794.0615758002089,
+    "AIC_data": 798.0615758002089,
+    "BIC_data": 808.9535787968571,
+    "AICc_data": 798.0685933440685
+  }
+}
+[saved] outputs/joint_phase_phi0.5.json

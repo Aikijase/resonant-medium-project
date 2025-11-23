@@ -1,0 +1,20 @@
+$ env PYTHONPATH=. python3 tools/phase9_compare_metrics.py outputs/phase9/physical_run.csv outputs/phase9/psychological_run_noscipy.csv outputs/phase9/learning_run_noscipy.csv
+
+Phase 9 — Metrics Summary
+
+run                          peak_to_peak      rms_err  mean_beta_eff    mean_energy   dominant_freq_hz
+physical_run                      22.5573      7.37255           0.08        53.4485           0.166639
+psychological_run_noscipy       0.0168061    0.0031463            0.6    1.05307e-05           0.149963
+learning_run_noscipy              1.71624    0.0564555        0.13608      0.0129986          0.0499937
+
+[phase9] Wrote summary: outputs/phase9/metrics_summary.csv
+$ env PYTHONPATH=. python3 tools/phase9_compare_metrics.py outputs/phase9/physical_run.csv outputs/phase9/psychological_run_noscipy.csv outputs/phase9/learning_run_noscipy.csv
+
+Phase 9 — Metrics Summary
+
+run                          peak_to_peak      rms_err  mean_beta_eff    mean_energy   dominant_freq_hz
+physical_run                      22.5573      7.37255           0.08        53.4485           0.166639
+psychological_run_noscipy       0.0168061    0.0031463            0.6    1.05307e-05           0.149963
+learning_run_noscipy              1.71624    0.0564555        0.13608      0.0129986          0.0499937
+
+[phase9] Wrote summary: outputs/phase9/metrics_summary.csv

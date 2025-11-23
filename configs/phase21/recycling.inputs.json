@@ -1,0 +1,11 @@
+{
+  "rho_bh_csv": "data/rho_bh_z.clean.csv",
+  "rho_dot_csv": "data/bh_accretion_from_lf.csv",
+  "epsilon": 0.014313,
+  "assume_mass_conservation": true,
+  "cosmo": {
+    "H0": 70.0,
+    "Omega_m": 0.3,
+    "Omega_L": 0.7
+  }
+}

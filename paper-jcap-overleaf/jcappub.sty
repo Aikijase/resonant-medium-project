@@ -1,0 +1,20 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{jcappub}[2025/11/06 local minimal stub for JCAP]
+\RequirePackage{graphicx}
+\RequirePackage{hyperref}
+\RequirePackage{booktabs}
+\RequirePackage{amsmath,amssymb}
+\newcommand{\emailAdd}[1]{\thanks{\href{mailto:#1}{#1}}}
+\newcommand{\affiliation}[2][]{}
+\newcommand{\keywords}[1]{\gdef\@keywords{#1}}
+\newcommand{\arxivnumber}[1]{\gdef\@arxiv{#1}}
+\newcommand{\acknowledgments}{\section*{Acknowledgments}}
+\makeatletter
+\AtBeginDocument{\providecommand{\@keywords}{}\providecommand{\@arxiv}{}}
+\pretocmd{\maketitle}{%
+  \begin{center}
+  \ifx\@arxiv\@empty\else {\small arXiv:\@arxiv}\par\vspace{0.5\baselineskip}\fi
+  \ifx\@keywords\@empty\else {\small \textbf{Keywords:} \@keywords}\par\vspace{0.5\baselineskip}\fi
+  \end{center}
+}{}{}
+\makeatother

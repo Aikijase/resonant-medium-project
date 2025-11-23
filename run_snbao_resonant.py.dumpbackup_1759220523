@@ -1,0 +1,276 @@
+#!/usr/bin/env python3
+# [auto-disabled top-level dump] SIG_BETA = 0.02  # weak prior width for beta (can override with env SIG_BETA)
+import os, json, numpy as np, pandas as pd
+from math import pi
+from scipy.linalg import cho_factor, cho_solve
+from scipy.optimize import minimize_scalar, minimize
+
+C_KMS=299792.458; H0=70.0
+
+def prep_SN(mu, C):
+    eps=1e-9*np.median(np.diag(C)); Cf=C+np.eye(C.shape[0])*eps
+    cf=cho_factor(Cf, lower=True, check_finite=False)
+    Ci=lambda v: cho_solve(cf, v, check_finite=False)
+    ones=np.ones_like(mu); denom=float(ones@Ci(ones))
+    def prof_M(r0):
+        M=float(ones@Ci(r0)/denom); return M, r0-M*ones
+    return Ci, prof_M
+
+def make_grid(z_all, zpad=0.03, N=2000):
+    zmax=float(np.max(z_all))*(1+zpad); zg=np.linspace(0,zmax,N); dz=zg[1]-zg[0]; return zg,dz
+
+def mu_LCDM(z, Om, zg, dz):
+    E=np.sqrt(Om*(1+zg)**3+(1-Om)); inv=1/np.maximum(E,1e-12)
+    cum=np.empty_like(zg); cum[0]=0; cum[1:]=np.cumsum(0.5*(inv[1:]+inv[:-1])*dz)
+    chi=np.interp(z,zg,cum)*(C_KMS/H0); dl=(1+z)*chi; return 5*np.log10(dl*1e6)-5
+
+def mu_RES(z, Om, A, f, phi, zg, dz):
+    a=1/(1+zg); ff=f if abs(f)>1e-6 else 1e-6
+    osc=np.exp(3*A/ff*(np.cos(ff*np.log(a)+phi)-np.cos(phi)))
+    E2=Om*(1+zg)**3+(1-Om)*osc; E=np.sqrt(np.maximum(E2,1e-12)); inv=1/E
+    cum=np.empty_like(zg); cum[0]=0; cum[1:]=np.cumsum(0.5*(inv[1:]+inv[:-1])*dz)
+    chi=np.interp(z,zg,cum)*(C_KMS/H0); dl=(1+z)*chi; return 5*np.log10(dl*1e6)-5
+
+def distances_LCDM(z, Om, zg, dz):
+    E2=Om*(1+zg)**3+(1-Om); E=np.sqrt(E2); inv=1/np.maximum(E,1e-12)
+    cum=np.empty_like(zg); cum[0]=0; cum[1:]=np.cumsum(0.5*(inv[1:]+inv[:-1])*dz)
+    chi=np.interp(z,zg,cum)*(C_KMS/H0); DM=chi
+    Ez=np.sqrt(np.interp(z,zg,E2)); DH=C_KMS/(H0*Ez); DV=((DM**2)*(z*DH))**(1/3)
+    return DM,DH,DV
+
+def distances_RES(z, Om, A, f, phi, zg, dz):
+    a=1/(1+zg); ff=f if abs(f)>1e-6 else 1e-6
+    osc=np.exp(3*A/ff*(np.cos(ff*np.log(a)+phi)-np.cos(phi)))
+    E2=Om*(1+zg)**3+(1-Om)*osc; E=np.sqrt(np.maximum(E2,1e-12)); inv=1/E
+    cum=np.empty_like(zg); cum[0]=0; cum[1:]=np.cumsum(0.5*(inv[1:]+inv[:-1])*dz)
+    chi=np.interp(z,zg,cum)*(C_KMS/H0); DM=chi
+    Ez=np.sqrt(np.interp(z,zg,E2)); DH=C_KMS/(H0*Ez); DV=((DM**2)*(z*DH))**(1/3)
+    return DM,DH,DV
+
+# -------- BAO loader (manifest + folder fallback) --------
+def load_BAO_any():
+    with open("data_manifest.json") as f: man=json.load(f)
+    paths=[p for p in man.get("desi_dr1_bao", []) if os.path.exists(p)]
+    for root,_,files in os.walk("data/desi_dr1_bao"):
+        for fn in files:
+            if fn.lower().endswith((".csv",".txt",".dat")):
+                paths.append(os.path.join(root,fn))
+    if not paths: raise FileNotFoundError("No BAO files found in manifest or data/desi_dr1_bao/")
+    def try_read(p):
+        try: return pd.read_csv(p)
+        except: return pd.read_csv(p, sep=r"\s+", engine="python")
+    chosen,df=None,None
+    for p in sorted(set(paths)):
+        try:
+            t=try_read(p); low=[c.lower() for c in t.columns]
+            if any(k in low for k in ["dm_over_r_d","d_m_over_r_d","dh_over_r_d","d_h_over_r_d","dv_over_r_d","d_v_over_r_d"]):
+                chosen,df=p,t; break
+        except: pass
+    if df is None: raise RuntimeError("Could not find a BAO table with DM/DH/DV columns.")
+    cols={c.lower():c for c in df.columns}
+    def pick(*opts):
+        for o in opts:
+            if o in cols: return cols[o]
+        return None
+    kz=pick("z","zeff","z_eff"); kDM=pick("dm_over_r_d","d_m_over_r_d"); kDH=pick("dh_over_r_d","d_h_over_r_d"); kDV=pick("dv_over_r_d","d_v_over_r_d")
+    if kz is None or (kDM is None and kDH is None and kDV is None):
+        raise RuntimeError(f"Cannot identify BAO columns in {os.path.basename(chosen)}; got {list(df.columns)}")
+
+    # Build stacked vectors z and y in [DM block][DH block][DV block] order
+    zs=[]; y=[]; kinds=[]
+    if kDM is not None: zs+=list(df[kz]); y+=list(df[kDM]); kinds+=["DM"]*len(df)
+    if kDH is not None: zs+=list(df[kz]); y+=list(df[kDH]); kinds+=["DH"]*len(df)
+    if kDV is not None: zs+=list(df[kz]); y+=list(df[kDV]); kinds+=["DV"]*len(df)
+    zs=np.array(zs,float); y=np.array(y,float); kinds=np.array(kinds,str)
+
+    # Covariance: try sibling file with 'cov'
+    cov=None; d=os.path.dirname(chosen)
+    sibs=[os.path.join(d,f) for f in os.listdir(d) if f.lower().endswith((".csv",".txt",".dat"))]
+    for p in sibs:
+        if "cov" in os.path.basename(p).lower():
+            try:
+                C=np.loadtxt(p, delimiter="," if p.lower().endswith(".csv") else None)
+                if C.shape[0]==C.shape[1]==len(y): cov=C; break
+            except: pass
+    if cov is None: cov=np.diag((0.02*y)**2)  # 2% fallback
+    print(f"[BAO] using: {os.path.basename(chosen)}  rows={len(y)}  kinds={sorted(set(kinds))}")
+    return zs, y, kinds, cov
+
+# -------- Correct BAO χ²: align model to stacked blocks --------
+def _bao_model_vector(kinds, DM, DH, DV=None):
+    import numpy as np
+    out=[]
+    iDM=iDH=iDV=0
+    for k in kinds:
+        if k=='DM': out.append(DM[iDM]); iDM+=1
+        elif k=='DH': out.append(DH[iDH]); iDH+=1
+        elif k=='DV': out.append(DV[iDV]); iDV+=1
+        else: raise ValueError('unknown kind '+str(k))
+    return np.array(out,dtype=float)
+
+
+
+def chi2_BAO2(kinds, y, C, DM, DH, DV=None):
+    import numpy as _np, os as _os
+    from scipy.linalg import cho_factor, cho_solve
+
+    # Build model vector in same order as the "kinds" data
+    _m=[]; iDM=iDH=iDV=0
+    for k in kinds:
+        if k=='DM': _m.append(DM[iDM]); iDM+=1
+        elif k=='DH': _m.append(DH[iDH]); iDH+=1
+        elif k=='DV':
+            if DV is None: raise ValueError("DV requested but DV=None")
+            _m.append(DV[iDV]); iDV+=1
+        else:
+            raise ValueError("unknown kind "+str(k))
+    _m=_np.asarray(_m, float)
+    _y=_np.asarray(y, float)
+
+    # Normalize covariance shape (handles flat vectors)
+    Cf = _np.asarray(C, float)
+    N  = _y.size
+    if Cf.ndim==1:
+        if Cf.size==N*N+1 and int(round(Cf[0]))==N: Cf = Cf[1:].reshape(N,N)
+        elif Cf.size==N*N: Cf = Cf.reshape(N,N)
+
+    # Tiny jitter for numerical stability
+    eps = 1e-12 * float(_np.median(_np.diag(Cf)))
+    Cf  = Cf + eps * _np.eye(N)
+
+    cf = cho_factor(Cf, lower=True, check_finite=False)
+    Ci = lambda v: cho_solve(cf, v, check_finite=False)
+
+    # Profile multiplicative beta
+    num  = float(_m @ Ci(_y))
+    den  = float(_m @ Ci(_m))
+    beta = num/den
+    r    = _y - beta*_m
+    chi2 = float(r @ Ci(r))
+
+    # Weak prior on beta around 1 (env SIG_BETA, default 0.02)
+    SIG_BETA = float(_os.environ.get('SIG_BETA', '0.02'))
+    chi2 += ((beta - 1.0)/SIG_BETA)**2
+
+    # Optional CSV dump (env DUMP_VECTOR_TAG = LCDM|RESN)
+    tag = _os.environ.get('DUMP_VECTOR_TAG')
+    if tag:
+        import pandas as _pd, pathlib as _pl
+        _pl.Path("outputs").mkdir(parents=True, exist_ok=True)
+        std = _np.sqrt(_np.diag(Cf))
+        _pd.DataFrame({
+            "kind": _np.array(kinds, dtype=str),
+            "y_data": _y,
+            "y_model": beta*_m,
+            "residual": r,
+            "std_resid": r/std
+        }).to_csv(f"outputs/bao_fit_{tag}.csv", index=False)
+        print(f"[dump] wrote outputs/bao_fit_{tag}.csv")
+
+    return float(chi2), float(beta)
+
+
+
+    def chi2_LCDM(Om):
+        mu_th=mu_LCDM(zsn,Om,zg,dz); Mopt,rsn=profM(musn-mu_th)
+        DM,DH,DV=distances_LCDM(zbao,Om,zg,dz)
+        chi2_bao,beta=chi2_BAO2(kinds,ybao,Cbao,DM,DH,DV)
+        return float(rsn@Ci_sn(rsn))+chi2_bao, Mopt, beta
+    rL=minimize_scalar(lambda Om: chi2_LCDM(Om)[0], bounds=(0.05,0.6), method="bounded")
+    OmL=float(rL.x); chi2L, ML, betaL = chi2_LCDM(OmL)
+    NL=Nsn+len(ybao); kL=3
+
+    def chi2_RES(x):
+        Om,A,f,phi=x
+        if not (0.05<=Om<=0.6 and -0.3<=A<=0.3 and 0.2<=f<=8.0 and 0.0<=phi<=2*pi): return 1e12
+        mu_th=mu_RES(zsn,Om,A,f,phi,zg,dz); Mopt,rsn=profM(musn-mu_th)
+        DM,DH,DV=distances_RES(zbao,Om,A,f,phi,zg,dz)
+        chi2_bao,beta=chi2_BAO2(kinds,ybao,Cbao,DM,DH,DV)
+        return float(rsn@Ci_sn(rsn))+chi2_bao
+    starts=[[0.30,0.00,1.0,0.0],[0.28,0.05,0.8,1.0],[0.32,-0.05,1.5,2.0],[0.26,0.10,0.4,0.5],[0.34,-0.10,2.5,3.0]]
+    bnds=[(0.05,0.6),(-0.25, 0.25),(0.2,8.0),(0.0,2*pi)]
+    best_fun,best_x=np.inf,None
+    for x0 in starts:
+        r=minimize(chi2_RES, x0=np.array(x0), bounds=bnds, method="L-BFGS-B", options={"maxfun":600})
+        if r.fun<best_fun: best_fun,best_x=r.fun,r.x
+    OmR,AR,fR,phiR=map(float, best_x)
+    # recover profiled params at best
+    mu_th=mu_RES(zsn,OmR,AR,fR,phiR,zg,dz); Mopt,rsn=profM(musn-mu_th)
+    DM,DH,DV=distances_RES(zbao,OmR,AR,fR,phiR,zg,dz); chi2_bao,betaR=chi2_BAO2(kinds,ybao,Cbao,DM,DH,DV)
+    chi2R=float(rsn@Ci_sn(rsn))+chi2_bao; NR=Nsn+len(ybao); kR=6
+    BIC=lambda c,k,N: float(c+k*np.log(N)); AIC=lambda c,k: float(c+2*k)
+
+    LCDM={"Om":OmL,"M":ML,"beta":betaL,"chi2":float(chi2L),"k":kL,"N":NL,"BIC":BIC(chi2L,kL,NL),"AIC":AIC(chi2L,kL)}
+    RESN={"Om":OmR,"A":AR,"f":fR,"phi":phiR,"M":float(Mopt),"beta":float(betaR),"chi2":float(chi2R),"k":kR,"N":NR,"BIC":BIC(chi2R,kR,NR),"AIC":AIC(chi2R,kR)}
+    print("\n=== SN+BAO comparison ===")
+    print("LCDM :", LCDM)
+    print("RESN :", RESN)
+    # --- dump BAO data vs model at best fit (DUMP_VECTOR_TAG=LCDM|RESN) ---
+    import os as _os, numpy as _np, pandas as _pd
+    from scipy.linalg import cho_factor, cho_solve
+    _tag = _os.environ.get('DUMP_VECTOR_TAG')
+    if _tag in ('LCDM','RESN'):
+        if _tag=='LCDM':
+            DM,DH,DV = distances_LCDM(zbao, OmL, zg, dz)
+        else:
+            DM,DH,DV = distances_RES(zbao, OmR, AR, fR, phiR, zg, dz)
+        # Build model vector in same order as 'kinds'
+        m=[]; iDM=iDH=iDV=0
+        for k in kinds:
+            if k=='DM': m.append(DM[iDM]); iDM+=1
+            elif k=='DH': m.append(DH[iDH]); iDH+=1
+            elif k=='DV': m.append(DV[iDV]); iDV+=1
+            else: raise ValueError('unknown kind '+str(k))
+        m=_np.asarray(m, float); y=_np.asarray(ybao, float)
+        # Stable inverse with tiny jitter
+        eps = 1e-12*float(_np.median(_np.diag(Cbao)))
+        Cf  = _np.asarray(Cbao, float) + eps*_np.eye(Cbao.shape[0])
+        cf  = cho_factor(Cf, lower=True, check_finite=False)
+        Ci  = lambda v: cho_solve(cf, v, check_finite=False)
+        beta = float((m @ Ci(y)) / (m @ Ci(m)))
+        r = y - beta*m
+        std = _np.sqrt(_np.diag(Cf))
+        import pathlib as _pl; _pl.Path('outputs').mkdir(parents=True, exist_ok=True)
+        _pd.DataFrame({'kind': _np.array(kinds, str), 'y_data': y, 'y_model': beta*m, 'residual': r, 'std_resid': r/std}).to_csv('outputs/bao_fit_'+_tag+'.csv', index=False)
+        print('[dump] wrote outputs/bao_fit_'+_tag+'.csv')
+
+    print("\nΔχ² (LCDM−RESN) :", LCDM["chi2"]-RESN["chi2"])
+    print("ΔBIC            :", LCDM["BIC"]-RESN["BIC"])
+    print("ΔAIC            :", LCDM["AIC"]-RESN["AIC"])
+
+    # --- optional dump of BAO data vs model at best fit ---
+    import os as _os, numpy as _np, pandas as _pd
+    from scipy.linalg import cho_factor, cho_solve
+    _tag = _os.environ.get("DUMP_VECTOR_TAG")
+    if _tag in ("LCDM","RESN"):
+        if _tag=="LCDM":
+            DM,DH,DV = distances_LCDM(zbao, OmL, zg, dz)
+            y = ybao
+        else:
+            DM,DH,DV = distances_RES(zbao, OmR, AR, fR, phiR, zg, dz)
+            y = ybao
+        # build model vector in the same order as kinds
+        m=[]; iDM=iDH=iDV=0
+        for k in kinds:
+            if k=="DM": m.append(DM[iDM]); iDM+=1
+            elif k=="DH": m.append(DH[iDH]); iDH+=1
+            elif k=="DV": m.append(DV[iDV]); iDV+=1
+            else: raise ValueError("unknown kind "+str(k))
+        m = _np.array(m, float); y = _np.array(y, float)
+        # profile beta with a tiny jitter
+        eps = 1e-12 * float(_np.median(_np.diag(Cbao)))
+        Cf  = _np.asarray(Cbao, float) + eps * _np.eye(Cbao.shape[0])
+        cf  = cho_factor(Cf, lower=True, check_finite=False)
+        Ci  = lambda v: cho_solve(cf, v, check_finite=False)
+        beta = float((m @ Ci(y)) / (m @ Ci(m)))
+        r = y - beta*m
+        std = _np.sqrt(_np.diag(Cf))
+        out = _pd.DataFrame({"kind": _np.array(kinds, str),
+                             "y_data": y,
+                             "y_model": beta*m,
+                             "residual": r,
+                             "std_resid": r/std})
+        import pathlib as _pl
+        _pl.Path("outputs").mkdir(parents=True, exist_ok=True)
+        out.to_csv(_pl.Path(f"outputs/bao_fit_{_tag}.csv"), index=False)
+        print(f"[dump] wrote outputs/bao_fit_{_tag}.csv")

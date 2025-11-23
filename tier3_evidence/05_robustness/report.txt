@@ -1,0 +1,13 @@
+Phase-15 robustness report
+Reference CSV: outputs/phase8/phase8_metrics.csv
+Deltas: A0=15.800000000000011, tau0=5.5, kappa0=2.1999999999999886
+Trials: 5000, sigma=0.1
+Preserved ordering fraction: 1.0000
+Verdict (>=0.95): PASS
+
+Sigma sweep (2000 trials each):
+  sigma=0.05 -> preserve=1.0000
+  sigma=0.10 -> preserve=1.0000
+  sigma=0.15 -> preserve=1.0000
+  sigma=0.20 -> preserve=0.9940
+  sigma=0.30 -> preserve=0.9505

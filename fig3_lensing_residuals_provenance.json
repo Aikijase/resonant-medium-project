@@ -1,0 +1,71 @@
+{
+  "figure_id": "fig3_lensing_residuals",
+  "manuscript_label": "Figure 3",
+  "description": "Residuals of the predicted CMB lensing template compared with Planck 2018, including guardband checks on Δχ² and residual amplitudes derived in Phase 21.",
+  "generated_at_utc": "2025-11-10T08:21:26Z",
+
+  "environment": {
+    "python_version": "3.11.8",
+    "platform": "Linux",
+    "dependencies": [
+      "numpy",
+      "scipy",
+      "matplotlib",
+      "pandas"
+    ]
+  },
+
+  "inputs": [
+    {
+      "path": "data/phase21/planck2018_lensing_bandpowers.csv",
+      "sha256": "<SHA256_PLANCK_BANDPOWERS>",
+      "description": "Planck 2018 CMB lensing bandpowers and covariance used in the residual and χ² computations.",
+      "source": {
+        "origin": "Planck Collaboration 2018",
+        "doi": "10.1051/0004-6361/201833910",
+        "note": "Dataset mirrored in the full Echo Equation data bundle."
+      }
+    },
+    {
+      "path": "data/phase21/echo_lcdm_lensing_predictions.csv",
+      "sha256": "<SHA256_LENSING_PREDICTIONS>",
+      "description": "Phase 21 predicted CMB lensing curves for the Echo Equation model and ΛCDM baseline.",
+      "source": {
+        "origin": "Zenodo",
+        "doi": "10.5281/zenodo.17622475",
+        "note": "Derived from Phase 21 guardband analysis."
+      }
+    }
+  ],
+
+  "code_scripts": [
+    {
+      "path": "scripts/echo_fig3_lensing_residuals.py",
+      "sha256": "<SHA256_ECHO_FIG3_SCRIPT>",
+      "repo_url": "https://github.com/thefantasticmissmal/resonant-medium-project",
+      "git_commit": "fe5f738fb2f6b356b36830738e5c2f4aadfe6fe6",
+      "description": "Computes lensing residuals, Δχ² values, and guardband metrics and generates the Figure 3 plot."
+    }
+  ],
+
+  "outputs": [
+    {
+      "path": "fig3_lensing_residuals.pdf",
+      "sha256": "a77bbe5b5040fbfd936f1085bf375d4e81b7163b88aec8c2a71026bc82661367",
+      "format": "pdf",
+      "role": "primary"
+    }
+  ],
+
+  "parameters": {
+    "analysis_tag": "phase21_guardbands",
+    "max_ell": 2048,
+    "radial_distance_guard": true,
+    "chi2_threshold": 1.0
+  },
+
+  "reproducibility": {
+    "command": "python scripts/echo_fig3_lensing_residuals.py --config configs/fig3_lensing.yaml",
+    "notes": "Reproduces the residual plot and the guard metrics summarised in guard_metrics_summary.csv. Requires the full Echo Equation data bundle."
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "fs8_dev_scale": 0.02,
+  "al_var_scale": 0.015,
+  "dneff_scale": 0.03,
+  "pass_threshold": 70.0
+}

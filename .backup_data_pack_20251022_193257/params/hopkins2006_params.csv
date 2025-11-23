@@ -1,0 +1,6 @@
+# TO_VERIFY: replace with exact paper values
+z,log10Lstar_erg_s,log10phistar_Mpc3dex,gamma1,gamma2
+0.5,45.9,-5.8,0.6,2.6
+1.0,46.1,-6.0,0.6,2.6
+2.0,46.3,-6.2,0.6,2.6
+3.0,46.4,-6.5,0.6,2.6

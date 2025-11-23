@@ -1,0 +1,41 @@
+# NANO PROMPTS (copy into your terminal editor when opening files)
+
+# validate_pack.py
+# Purpose: run template checks and log results
+python3 tools/data/validate_pack.py templates/ schema/ logs/master_log.csv
+
+# Ingest examples (repeat as you fill)
+python3 tools/data/ingest_rho_bh.py templates/rho_bh_z.csv --out data/rho_bh_z.clean.csv
+python3 tools/data/ingest_smbh_history.py templates/smbh_population_history.csv --out data/smbh_population_history.clean.csv
+python3 tools/data/ingest_sfr_to_bh.py templates/sfr_imf_bh_eff.csv --out data/sfr_imf_bh_eff.clean.csv
+python3 tools/data/ingest_expansion.py templates/expansion_Hz.csv --out data/expansion_Hz.clean.csv
+
+# Build predictions sheet
+python3 tools/make_predictions_sheet.py --pack-root .
+
+# ODE (stub)
+python3 tools/phase21_recycling_ode.py --inputs-json inputs.json --out outputs/ode_stub.json
+
+# Extra ingests
+python3 tools/data/ingest_stellar_mass_function.py templates/stellar_mass_function.csv --out data/stellar_mass_function.clean.csv
+python3 tools/data/ingest_agn_bol_lf.py templates/agn_bolometric_lf.csv --out data/agn_bolometric_lf.clean.csv
+python3 tools/data/ingest_bh_accretion.py templates/bh_accretion_history.csv --out data/bh_accretion_history.clean.csv
+python3 tools/data/ingest_bh_birthrate.py templates/bh_birthrate_models.csv --out data/bh_birthrate_models.clean.csv
+
+# QC & conversions
+python3 tools/data/band_to_bolometric.py templates/agn_bolometric_lf.csv --out data/agn_lf_bolometric.csv
+python3 tools/data/agn_lf_to_accretion.py data/agn_lf_bolometric.csv --epsilon 0.1 --out data/bh_accretion_from_lf.csv
+python3 tools/data/qc_consistency_rhoBH_vs_accretion.py --rho-bh data/rho_bh_z.clean.csv --rho-dot data/bh_accretion_from_lf.csv --out logs/qc_rhoBH_vs_accretion.csv
+python3 tools/data/interpolate_to_grid.py data/bh_accretion_from_lf.csv templates/rho_bh_z.csv --out data/bh_accretion_on_rhoBH_grid.csv
+
+# Digitization worksheets & merge
+python3 tools/data/merge_lf_sources.py --aird templates/aird2015_xlf_digitize.csv --ueda templates/ueda2014_xlf_digitize.csv --hopkins templates/hopkins2006_bolqlf_digitize.csv --out data/agn_lf_combined.csv
+
+# Balanced sampling (Hopkins DPL and Ueda LDDE)
+python3 tools/data/sample_hopkins2006_dpl.py params/hopkins2006_params.csv --z 0.5 1.0 2.0 3.0 --logL 44 47 15 --out data/hopkins2006_bolqlf_samples.csv
+python3 tools/data/sample_ueda2014_ldde.py params/ueda2014_ldde_params.csv --z 0.1 0.5 1 2 3 --logL 42 46 15 --out data/ueda2014_xlf_samples.csv
+
+# Run LDDE sampler with Ueda+2014 Table 4 params (placeholder A normalization; verify!)
+python3 tools/data/sample_ueda2014_ldde.py params/ueda2014_ldde_params.csv --z 0.1 0.5 1 2 3 --logL 42 46 15 --out data/ueda2014_xlf_samples.csv
+# Run Hopkins 2006 DPL sampler with seeded (TO_VERIFY) params
+python3 tools/data/sample_hopkins2006_dpl.py params/hopkins2006_params.csv --z 0.5 1.0 2.0 3.0 --logL 44 47 15 --out data/hopkins2006_bolqlf_samples.csv

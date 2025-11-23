@@ -1,0 +1,11 @@
+name: bh_accretion_history
+purpose: Redshift evolution of mass accretion rate density onto SMBHs
+columns:
+  - z: {type: float}
+  - rho_dot_acc_Msun_yr_Mpc3: {type: float, units: Msun yr^-1 Mpc^-3}
+  - sigma_rho_dot: {type: float}
+  - method: {type: str, enum: [LF_integration, CXB_synthesis, stacking, other]}
+  - band: {type: str, enum: [bolometric, Xray, optical, IR, radio]}
+  - bol_corr_ref: {type: str}
+  - source_id: {type: str}
+  - notes: {type: str, optional: true}

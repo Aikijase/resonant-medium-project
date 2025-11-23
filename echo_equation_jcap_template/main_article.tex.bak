@@ -1,0 +1,15 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\title{The Echo Equation in Resonant Medium Cosmology: A Finite-Memory Mechanism for Cosmic Expansion}
+\author{Jason Watts\\The Experimentalist Lab\\\texttt{theexperimentalistlab@outlook.com}}
+\date{}
+\begin{document}\maketitle
+\begin{abstract}
+Plain article draft mode. Compile-anywhere safety.
+\end{abstract}
+\section{Introduction}
+Placeholder.
+\end{document}

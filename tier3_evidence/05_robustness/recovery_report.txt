@@ -1,0 +1,7 @@
+Phase-17 recovery report (tolerance 10%)
+
+flat: PASS  (τ:5.5/5.5, κ:2.2/2.2, A:15.8/15.8)
+mild: PASS  (τ:4.7/4.7, κ:1.9/1.9, A:13.5/13.5)
+strong: PASS  (τ:6.2/6.2, κ:2.6/2.6, A:18/18)
+
+OVERALL: PASS

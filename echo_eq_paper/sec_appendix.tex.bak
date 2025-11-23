@@ -1,0 +1,38 @@
+\section{Kernel mapping and observable imprints}
+\label{app:kernels}
+
+\subsection{From memory kernel to effective background}
+Consider the background response
+\begin{equation}
+H^2(t) = \frac{8\pi G}{3}\rho(t) + \int_{0}^{t} K(\Delta t)\,H(t-\Delta t)\,d\Delta t,
+\end{equation}
+with a minimal resonant kernel
+\begin{equation}
+K(\Delta t)=\frac{\kappa}{\tau}\,e^{-\Delta t/\tau}\cos(\omega_0 \Delta t)\,,\qquad \Delta t\ge 0.
+\end{equation}
+Laplace transforming, $\mathcal{L}\{H\}(s)=\hat H(s)$, gives
+\begin{equation}
+\hat H(s)\;=\;\frac{\hat H_{\Lambda{\rm CDM}}(s)}{1-\hat K(s)}\,,\qquad
+\hat K(s)=\frac{\kappa}{\tau}\,\frac{s+\tfrac{1}{\tau}}{(s+\tfrac{1}{\tau})^2+\omega_0^2}\,.
+\end{equation}
+For small $|\hat K|$, $H \simeq H_{\Lambda{\rm CDM}}\,(1+\hat K+\cdots)$, i.e.\ a controlled deformation of the background.
+
+\subsection{Perturbations and $f\sigma_8$ echoes}
+Linear matter growth obeys
+\begin{equation}
+\ddot\delta + 2H\dot\delta - 4\pi G\rho_m \delta \;=\; \int_{0}^{t}\! \tilde K(\Delta t)\,\delta(t-\Delta t)\,d\Delta t,
+\end{equation}
+where $\tilde K$ is an induced kernel. To leading order in small memory,
+\begin{equation}
+f\sigma_8(z)\;=\;[f\sigma_8]_{\Lambda{\rm CDM}}(z)\,\Big[1 + A\,e^{-{\Delta t}/{\tau}}\cos(\omega_0 \Delta t + \phi)\Big],
+\end{equation}
+with amplitude $A\propto \kappa$ and phase $\phi$ set by initial conditions. The redshift period is $\Delta z \simeq \pi/\omega_0$ to first order.
+
+\subsection{Parameter roles}
+\begin{itemize}
+  \item $\tau$: sets decay envelope of the residual; larger $\tau$ $\Rightarrow$ longer-lived echoes.
+  \item $\omega_0$: fixes the echo spacing $\Delta z \simeq \pi/\omega_0$.
+  \item $\kappa$: overall amplitude sign/size; $\kappa\!\to\!0$ kills the signal.
+  \item $Q=\omega_0\tau/2$: sharpness of the feature; controls phase coherence.
+\end{itemize}
+These partially orthogonal roles aid identifiability across RSD and lensing.

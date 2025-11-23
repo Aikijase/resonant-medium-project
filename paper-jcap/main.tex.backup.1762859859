@@ -1,0 +1,25 @@
+%=== CLEAN HEAD (autofixed) ===%
+\documentclass[a4paper,11pt]{article}
+\usepackage{jcappub}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\graphicspath{{figures/}{./}{outputs/phase20/}{outputs/phase8/}{outputs/predictions/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
+\title{A Resonant Medium Framework for Cosmology:\\ Finite-Memory Dynamics and the Echo Equation}
+\author{Jason Watts}
+\affiliation{Independent Researcher}
+\emailAdd{theexperimentalistlab@outlook.com}
+\begin{document}
+\maketitle
+\input{sections/_autogen_inputs}
+
+%==================== REFERENCES ====================%
+\clearpage
+\nocite{Planck2018,PantheonPlus2022,DESI2024_BAO_DR1,Watts2025_EchoEvidence}
+\bibliographystyle{JHEP}
+\bibliography{echo_eq_refs_v1}
+\end{document}

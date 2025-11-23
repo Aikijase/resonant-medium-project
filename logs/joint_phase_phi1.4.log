@@ -1,0 +1,57 @@
+[2025-10-11 05:38:28] PROGRESS: loaded BAO cov
+[2025-10-11 05:38:28] PROGRESS: loaded SN cov from data/pantheon_plus/Pantheon+SH0ES_DIAG.spd.csv
+[2025-10-11 05:38:28] PROGRESS: DEBUG BAO median y_data=18.977 → assume_per_rd=True
+[2025-10-11 05:38:28] PROGRESS: DEBUG BAO basis=abs(/rd or Mpc) med(data)=18.977  med(fid_abs)=18.451  sigma_used=cov
+[2025-10-11 05:38:28] PROGRESS: DEBUG BAO cov stats: median(sd)=0.3843 min(sd)=0.17 max(sd)=0.95
+[2025-10-11 05:38:28] PROGRESS: DEBUG fit_params=['A', 'gamma']
+[2025-10-11 05:38:28] PROGRESS: DEBUG Ok_bounds=(0.0, 0.0)
+[2025-10-11 05:38:28] PROGRESS: DEBUG fit_params=['A', 'gamma']
+[2025-10-11 05:38:28] PROGRESS: DEBUG Ok_bounds=(0.0, 0.0)
+[2025-10-11 05:38:28] PROGRESS: DEBUG k_params=2
+[2025-10-11 05:38:34] PROGRESS: DEBUG chi2@init=796.624
+[2025-10-11 05:38:34] PROGRESS: DEBUG k_params=2
+[2025-10-11 05:38:39] PROGRESS: DEBUG chi2@init=796.624
+[2025-10-11 05:38:39] PROGRESS: starting optimizer
+[2025-10-11 05:40:53] PROGRESS: eval 25: chi2=787.886
+[2025-10-11 05:43:38] PROGRESS: eval 25: chi2=787.938
+[2025-10-11 05:46:56] PROGRESS: eval 25: chi2=788.313
+[2025-10-11 05:49:15] PROGRESS: eval 50: chi2=787.886
+[2025-10-11 13:19:52] PROGRESS: eval 25: chi2=788.070
+[2025-10-11 13:23:28] PROGRESS: eval 25: chi2=787.886
+[2025-10-11 13:26:30] PROGRESS: eval 25: chi2=788.213
+[2025-10-11 13:30:04] PROGRESS: eval 25: chi2=788.021
+{
+  "best_params": {
+    "H0": 70.0,
+    "Om": 0.3,
+    "Or": 0.0,
+    "Ok": 0.0,
+    "rd": 147.1,
+    "A": 0.10149195303413751,
+    "f": 3.26,
+    "phi": 1.4,
+    "gamma": 0.0
+  },
+  "fit_params": [
+    "A",
+    "gamma"
+  ],
+  "chi2": 787.8856170391588,
+  "ndof": 1711,
+  "success": true,
+  "message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+  "restarts": 8,
+  "breakdown": {
+    "chi2_bao": 30.135489041955672,
+    "chi2_sn": 757.6857491438864
+  },
+  "ic": {
+    "k_params": 2,
+    "n_points": 1713,
+    "chi2_data": 787.8856170391588,
+    "AIC_data": 791.8856170391588,
+    "BIC_data": 802.777620035807,
+    "AICc_data": 791.8926345830184
+  }
+}
+[saved] outputs/joint_phase_phi1.4.json

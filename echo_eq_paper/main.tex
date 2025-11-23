@@ -1,0 +1,53 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{\textbf{The Echo Equation in Resonant Medium Cosmology:}\\
+A Finite-Memory Mechanism for Cosmic Expansion}
+\author{Jason Watts}
+\date{{\small The Experimentalist Lab\\[1ex]
+\texttt{theexperimentalistlab@outlook.com}}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We propose the \emph{Echo Equation}, a finite-memory (non-Markovian) evolution law for the cosmological expansion. In the limit of vanishing memory the model reduces to $\Lambda$CDM, while finite memory generically imprints small, phase-coherent modulations in late-time growth and lensing. We present a minimal parameterization $(\tau,\kappa,\omega_0,Q)$, show how it maps to background and linear-growth observables, and illustrate data-compatibility on representative BAO+SN+CMB-lensing combinations at goodness-of-fit comparable to $\Lambda$CDM. The key discriminants are (i) an echo pattern in $f\sigma_8(z)$ with characteristic $\Delta z \simeq \pi/\omega_0$ and (ii) a correlated residual in galaxy–CMB-lensing cross-correlations. Both signatures are falsifiable with near-term data.
+\end{abstract}
+
+\paragraph*{Keywords:} dark energy theory; large-scale structure; finite-memory dynamics
+
+\tableofcontents
+
+\input{sec_intro}
+\input{sec_theory}
+\input{sec_data}
+\input{sec_results}
+\input{sec_predictions}
+\input{sec_consistency}
+\input{sec_conclusion}
+
+\appendix
+\input{sec_appendix}
+
+\section*{Data and code availability}
+All data used here are public (BAO/SN/CMB-lensing). Reproducible scripts for Echo Equation forecasts will be released at:\\ \url{https://github.com/TheExperimentalistLab/echo-equation} (upon preprint submission).
+
+\section*{Author contributions}
+J.W. conceived the Echo Equation, performed the analysis, wrote the manuscript, and prepared all figures.
+
+\section*{Competing interests}
+The author declares no competing interests.
+
+\section*{Funding}
+No external funding was received for this work.
+
+\bibliographystyle{unsrt}
+\bibliography{refs}
+
+\end{document}

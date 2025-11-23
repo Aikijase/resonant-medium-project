@@ -1,0 +1,27 @@
+{
+  "bao_csv": "data/desi_dr1_bao/bao_measurements_long_interleaved_sigma.csv",
+  "bao_cov": "data/desi_dr1_bao/bao_covariance_plus_lya.csv",
+  "sn_csv": "data/pantheon_plus/sn_MATCHED_mu.csv",
+  "sn_cov": "outputs/Pantheon+SH0ES_STAT+SYS.cal.cov",
+
+  "model": "lcdm",
+
+  "H0": 70.0,
+  "Om": 0.3,
+  "Or": 0.0,
+  "Ok": 0.0,
+  "rd": 147.1,
+
+  "prior_A_sigma": 1.0,
+  "k_params": 5,
+  "assume_per_rd": true,
+  "plus_lya": true,
+
+  "fit": {
+    "method": "least_squares",
+    "tolerance": 1e-6
+  },
+
+  "out": "outputs/joint_LCDM_baseline.json",
+  "out_prefix": "outputs/joint_LCDM_baseline"
+}

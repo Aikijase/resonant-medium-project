@@ -1,0 +1,128 @@
+%==================== CLEAN JCAP HEADER (autofix) ====================%
+\documentclass[a4paper,11pt]{article}
+\usepackage{jcappub}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+
+\title{A Resonant Medium Framework for Cosmology:\\ Finite-Memory Dynamics and the Echo Equation}
+\author{Jason Watts}
+\affiliation{Independent Researcher}
+\emailAdd{theexperimentalistlab@outlook.com}
+
+% Abstract may be given here (recommended by jcappub) or via an input file.
+\abstract{\input{sections/00_abstract}}
+%==================== END CLEAN HEADER ====================%
+\begin{document}
+\maketitle
+\maketitle
+
+%==================== MAIN SECTIONS ====================%
+\section{Introduction}\label{sec:introduction}
+\IfFileExists{sections/01_introduction.tex}{\input{sections/01_introduction}}{}
+
+\section{Framework}\label{sec:framework}
+\IfFileExists{sections/02_notation.tex}{\input{sections/02_notation}}{}
+\IfFileExists{sections/03_framework.tex}{\input{sections/03_framework}}{}
+
+% ---- Symbol Glossary (expanded) ----
+\begin{table}[t]
+  \centering
+  \caption{Symbols, units, and roles used throughout the Echo Equation framework.}
+  \label{tab:symbols}
+  \sisetup{detect-all}
+  \begin{tabular}{@{} l l l p{7.6cm} @{}} \toprule
+    \textbf{Symbol} & \textbf{Units} & \textbf{Role} & \textbf{Physical interpretation} \\
+    \midrule
+    $\Phi(t)$ & — & State variable & Macroscopic response of the resonant medium (background/linear perturbations). \\
+    $D$ & — & Local operator & Encodes short-memory (\LCDM-like) evolution in the Echo Equation. \\
+    $K(\tau)$ & — & Memory kernel & Causal, damped oscillatory kernel; introduces finite-memory effects. \\
+    $\Kphi$ & — & Kernel amplitude & Controls memory strength (stiffness-like). \\
+    $\softness$ & — (0–1) & Stability parameter & Damping/causality control; prevents non-physical growth. \\
+    $\wstar$ & rad/e-fold & Resonant frequency & Sets characteristic low-frequency spectral feature of the operator. \\
+    $H(z)$ & \si{km.s^{-1}.Mpc^{-1}} & Background & Hubble expansion rate. \\
+    $D_{V}(z)$ & \si{Mpc} & BAO distance & Volume-averaged distance used in compressed BAO. \\
+    $\mu(z)$ & mag & SNe observable & Distance modulus from luminosity distance. \\
+    $C_{L}^{\kappa\kappa}$ & — & Lensing power & CMB lensing convergence power spectrum. \\
+    $\fsig(z)$ & — & Growth amplitude & Linear-growth rate times $\sigma_{8}$. \\
+    $\Delta\chi^{2}$ & — & Fit statistic & Difference in goodness-of-fit relative to \LCDM. \\
+  \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Datasets and Methods}\label{sec:methods}
+\IfFileExists{sections/04_methods.tex}{\input{sections/04_methods}}{}
+
+\subsection{Error propagation and priors}\label{subsec:error_propagation_priors}
+\paragraph{Error propagation.}
+Uncertainties in the operator parameters $\theta \equiv (\Kphi, \softness, \wstar)$ are propagated via linear error propagation about the MAP point. For observable $\mathcal{O}$,
+\begin{equation}
+  \mathrm{Cov}[\mathcal{O}] \approx J_{\mathcal{O}\!,\,\theta}\,
+  \mathrm{Cov}[\theta]\; J_{\mathcal{O}\!,\,\theta}^{\top},
+  \qquad
+  (J_{\mathcal{O}\!,\,\theta})_{ij} \equiv \left.\frac{\partial \mathcal{O}_{i}}{\partial \theta_{j}}\right|_{\theta=\theta_{\rm MAP}}.
+\end{equation}
+
+\paragraph{Guard conditions.}
+Non-physical solutions are rejected by smoothness/sign checks in the sampler.
+
+\paragraph{Priors.}
+\begin{equation}
+  \Kphi \in [0,\,1], \quad
+  \softness \in (0,\,1], \quad
+  \wstar \in [0,\,5]~\text{rad/e-fold}.
+\end{equation}
+We use standard probes \cite{Planck2018,PantheonPlus2022,DESI2024_BAO_DR1}.
+
+\section{Results}\label{sec:results}
+\IfFileExists{sections/05_results.tex}{\input{sections/05_results}}{}
+
+% ---- Figures guarded: compile even if missing ----
+\IfFileExists{fig1_fit_comparison.pdf}{%
+\begin{figure}[t]\centering
+  \includegraphics[width=\linewidth]{fig1_fit_comparison}
+  \caption{\textbf{Model fit comparison (Echo vs \LCDM).}}
+  \label{fig:fit_comparison}
+\end{figure}}{}
+
+\IfFileExists{fig2_spectral_density.pdf}{%
+\begin{figure}[t]\centering
+  \includegraphics[width=\linewidth]{fig2_spectral_density}
+  \caption{\textbf{Operator spectral density and resonance.}}
+  \label{fig:spectral_density}
+\end{figure}}{}
+
+\IfFileExists{fig3_lensing_residuals.pdf}{%
+\begin{figure}[t]\centering
+  \includegraphics[width=\linewidth]{fig3_lensing_residuals}
+  \caption{\textbf{CMB lensing residuals.}}
+  \label{fig:lensing_residuals}
+\end{figure}}{}
+
+\section{Discussion}\label{sec:discussion}
+\IfFileExists{sections/06_discussion.tex}{\input{sections/06_discussion}}{}
+
+\section{Conclusions}\label{sec:conclusions}
+\IfFileExists{sections/07_conclusions.tex}{\input{sections/07_conclusions}}{}
+
+%==================== OPTIONAL END MATTER ====================%
+\section*{Data/Software/Code Availability}
+All figures and results are reproducible using the evidence bundle available in
+\texttt{catalog/evidence/} (archived as \texttt{echo\_equation\_evidence\_bundle\_v1.zip}).
+
+\section*{AI-use statement}
+\IfFileExists{sections/91_ai_statement.tex}{\input{sections/91_ai_statement}}{%
+  \noindent\emph{AI-use statement placeholder — create \texttt{sections/91\string_ai\string_statement.tex}}%
+}
+
+% Force at least some citations so BibTeX always has work to do.
+
+
+%==================== REFERENCES ====================%
+\clearpage
+\nocite{Planck2018,PantheonPlus2022,DESI2024_BAO_DR1,Watts2025_EchoEvidence}
+\bibliographystyle{JHEP}
+\bibliography{echo_eq_refs_v1}
+\end{document}

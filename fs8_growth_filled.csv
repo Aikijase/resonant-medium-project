@@ -1,0 +1,24 @@
+z,fs8,sigma_fs8,survey,method,AP_corrected,kmax_or_scale,cov_note,reference,year,notes
+0.02,0.428,0.0465,PV (see ref.),PV,yes,,,Huterer et al. 2017/2016 (arXiv:1607.02139 / 1611?),2016,PV low-z compilation entry in Sagredo 2018
+0.02,0.398,0.065,PV (see ref.),PV,yes,,,Turnbull et al. 2011; Hudson et al. 2012,2011,PV
+0.02,0.314,0.048,PV (see ref.),PV,yes,,,Davis et al. 2011; Hudson et al. 2012,2011,PV
+0.1,0.37,0.13,2MASS PV,PV,yes,,,Feix et al. 2015,2015,
+0.15,0.49,0.145,6dFGSv,RSD,yes,,,Howlett et al. 2015,2015,
+0.17,0.51,0.06,2dFGRS,RSD,yes,,,Song & Percival 2009,2009,
+0.18,0.36,0.09,GAMA/low-z RSD (Blake+13),RSD,yes,,,Blake et al. 2013,2013,
+0.38,0.44,0.06,GAMA/low-z RSD (Blake+13),RSD,yes,,,Blake et al. 2013,2013,
+0.25,0.3512,0.0583,SDSS LRG (DR7),RSD,yes,,,Samushia et al. 2011,2011,
+0.37,0.4602,0.0378,SDSS LRG (DR7),RSD,yes,,,Samushia et al. 2011,2011,
+0.32,0.384,0.095,BOSS (CMASS/LOWZ mix),RSD,yes,,,Sanchez et al. 2013,2013,
+0.59,0.488,0.06,BOSS (CMASS),RSD,yes,,,Chuang et al. 2013,2013,
+0.44,0.413,0.08,WiggleZ,RSD,yes,,has_cov (WiggleZ triplet),Blake et al. 2012,2012,
+0.6,0.39,0.063,WiggleZ,RSD,yes,,has_cov (WiggleZ triplet),Blake et al. 2012,2012,
+0.73,0.437,0.072,WiggleZ,RSD,yes,,has_cov (WiggleZ triplet),Blake et al. 2012,2012,
+0.6,0.55,0.12,VIPERS,RSD,yes,,,Pezzotta et al. 2017,2017,
+0.86,0.4,0.11,VIPERS,RSD,yes,,,Pezzotta et al. 2017,2017,
+1.4,0.482,0.116,FastSound,RSD,yes,,,Okumura et al. 2016/2015,2015,
+0.978,0.379,0.176,eBOSS DR14Q,RSD,yes,,has_cov (DR14Q quartet),Zhao et al. 2019 (arXiv:1801.03043),2019,
+1.23,0.385,0.099,eBOSS DR14Q,RSD,yes,,has_cov (DR14Q quartet),Zhao et al. 2019 (arXiv:1801.03043),2019,
+1.526,0.342,0.07,eBOSS DR14Q,RSD,yes,,has_cov (DR14Q quartet),Zhao et al. 2019 (arXiv:1801.03043),2019,
+1.944,0.364,0.106,eBOSS DR14Q,RSD,yes,,has_cov (DR14Q quartet),Zhao et al. 2019 (arXiv:1801.03043),2019,
+0.525,0.462,0.02,BOSS DR12 CMASS,RSD,yes,,,"Paillas et al. 2024 (MNRAS, stae1118)",2024,Added to Sagredo set in Manna & Desai 2024

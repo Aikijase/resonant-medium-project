@@ -1,0 +1,16 @@
+% Auto-generated Phase-4 g×κ (single) table
+\begin{table}[h]
+\centering
+\begin{tabular}{lrrrr}
+\toprule
+Catalog & $z_\mathrm{eff}$ & $A_{\rm lit}\pm\sigma$ & Resid. ($\sigma$) \\
+\midrule
+WISE×Planck-kappa & 0.35 & 1.000$\pm$0.100 & +0.30 \\
+RACS×Planck-kappa & 0.80 & 1.050$\pm$0.150 & +0.53 \\
+\midrule
+\multicolumn{4}{r}{$\hat A=1.015\pm0.083$, $A_\mathrm{pred}=0.970$, $\langle|r|\rangle\approx0.43\,\sigma$, $\Delta\mathrm{AIC}=0.263$, WWI=0.0 }
+\\
+\bottomrule
+\end{tabular}
+\caption{Phase-4 $g\times\kappa$ (single-catalog) shape-only summary.}
+\end{table}

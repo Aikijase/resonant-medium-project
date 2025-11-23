@@ -1,0 +1,16 @@
+{
+  "params": {
+    "mu0": 0.99,
+    "nu0": 0.055,
+    "tau": 0.3,
+    "kappa": -0.02,
+    "Om": 0.3,
+    "sigma8": 0.81
+  },
+  "peak": {
+    "omega_star": 1.6057745095828966,
+    "period_e_folds": 3.912869004759365,
+    "Q": NaN
+  },
+  "notes": "omega units: rad per e-fold (N=ln a); period in e-folds"
+}

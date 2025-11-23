@@ -1,0 +1,8 @@
+\section{Introduction}
+\label{sec:intro}
+
+The standard cosmological model ($\Lambda$CDM) assumes that the expansion rate is governed by local-in-time equations. However, physical systems with coarse-grained degrees of freedom can retain memory of past states, leading naturally to finite-memory kernels in their evolution laws.
+
+In this work we introduce the \emph{Echo Equation}---a simple, finite-memory modification of the Friedmann equation that retains $\Lambda$CDM as a limiting case. The model predicts small, oscillatory features in late-time observables, which we refer to as ``cosmic echoes.'' These are fully compatible with current data but falsifiable with next-generation surveys.
+
+This section motivates the physical origin of such kernels from resonant medium arguments, and outlines the scope of the paper.

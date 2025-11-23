@@ -1,0 +1,23 @@
+{
+  "z_window": [
+    0.42,
+    0.75
+  ],
+  "repairs": {
+    "lcdm_fixed": 0,
+    "lcdm_left": 0,
+    "model_fixed": 0,
+    "model_left": 0
+  },
+  "floor": {
+    "eps": 0.003,
+    "floor_frac": 0.0,
+    "floor_percentile": null,
+    "applied_abs_floor": 0.0013533552338191482
+  },
+  "stats_trimmed_10_90": {
+    "mean": 0.9836479832611112,
+    "std": 0.0063897265787919615,
+    "n": 30
+  }
+}

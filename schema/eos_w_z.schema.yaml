@@ -1,0 +1,7 @@
+name: eos_w_z
+columns:
+  - z: {type: float}
+  - w_eff: {type: float}
+  - sigma_w: {type: float}
+  - method: {type: str}
+  - source_id: {type: str}

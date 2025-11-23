@@ -1,0 +1,5 @@
+\section*{Data/Software/Code Availability}
+All figures and results are reproducible using the evidence bundle in
+\path{catalog/evidence/} (archived as \texttt{echo\_equation\_evidence\_bundle\_v1.zip}).
+Each figure is accompanied by a provenance JSON listing its code source, input CSVs, and SHA-256 integrity hashes.
+The bundle also includes guard metrics and a reproducibility README for referees.

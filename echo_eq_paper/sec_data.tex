@@ -1,0 +1,14 @@
+\section{Datasets and likelihoods}
+\label{sec:data}
+
+The Echo Equation model is compared against three late-time observables:
+
+\begin{itemize}
+    \item \textbf{Baryon acoustic oscillations (BAO)}: isotropic and anisotropic distance measurements from BOSS DR12 and eBOSS LRG+QSO samples in the redshift range $0.15 < z < 2.2$. The BAO likelihood is implemented using the standard Gaussian covariance matrices provided by the collaboration.
+    \item \textbf{Type Ia supernovae (SN)}: luminosity distance moduli from the Pantheon+ compilation, covering $z \lesssim 2.3$. We adopt the compressed distance ladder form so as to isolate late-time expansion sensitivity.
+    \item \textbf{CMB lensing}: the minimum-variance convergence power spectrum from \textit{Planck} 2018, probing the integrated growth of structure out to $z \sim 2$.
+\end{itemize}
+
+For each observable, the Echo Equation modifications enter exclusively through the background expansion history $H(z)$ and the linear growth rate $f\sigma_8(z)$. All other cosmological parameters are fixed to Planck 2018 fiducial values unless otherwise stated.
+
+The likelihood surface is explored using a grid sampler in the $(\tau, \kappa)$ plane for fixed $(\omega_0, Q)$, as detailed in Sec.~\ref{sec:results}. This allows us to cleanly isolate the impact of finite-memory effects on expansion and growth.

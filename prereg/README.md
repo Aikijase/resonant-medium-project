@@ -1,0 +1,1 @@
+Preregistered BAO prediction bundle (no-refit).\nRun tools/predict_bao_evalonly.py with official CSV+cov.\nMetric: ΔAIC (primary), ΔBIC (secondary). Thresholds: 0 / -10 / -100.\n

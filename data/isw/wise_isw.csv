@@ -1,0 +1,3 @@
+survey,ell_min,ell_max,A_ISW,sigma_A,z_eff,notes
+WISE_GAL,5,100,1.24,0.47,0.25,Galaxies cross-corr with WMAP9; significance≈2.7σ
+WISE_AGN,5,100,0.88,0.74,1.10,AGN sample cross-corr; significance≈1.2σ

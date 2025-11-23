@@ -1,0 +1,27 @@
+\begin{document}
+\maketitle
+
+\section{Introduction}\label{sec:introduction}
+\input{sections/01_introduction}
+
+\section{Datasets and Methods}\label{sec:methods}
+\input{sections/04_methods}
+
+\section{Results}\label{sec:results}
+\input{sections/05_results}
+
+\section{Discussion}\label{sec:discussion}
+\input{sections/06_discussion}
+
+\section*{Data/Software/Code Availability}
+\input{sections/90_data_software}
+
+\section*{AI-use statement}
+\input{sections/91_ai_statement}
+
+\clearpage
+\nocite{Planck2018,PantheonPlus2022,DESI2024_BAO_DR1,Watts2025_EchoEvidence}
+\bibliographystyle{JHEP}
+\bibliography{echo_eq_refs_v1}
+
+\end{document}

@@ -1,0 +1,12 @@
+name: agn_bolometric_lf
+purpose: AGN/QSO luminosity function to infer accretion history and BH growth
+columns:
+  - z: {type: float}
+  - log10_Lbol_erg_s: {type: float}
+  - phi_dex_Mpc3: {type: float, units: Mpc^-3 dex^-1}
+  - sigma_phi: {type: float}
+  - band: {type: str, enum: [bolometric, Xray, optical, IR, radio]}
+  - k_corr_ref: {type: str}
+  - LF_model: {type: str, enum: [DPL, Schechter, LDDE, LADE, other]}
+  - source_id: {type: str}
+  - notes: {type: str, optional: true}

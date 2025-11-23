@@ -1,0 +1,14 @@
+[params]
+A = 2.60
+f = 2.68
+phi = 1.04
+gamma = 1.54
+
+[priors]
+sigma_A = 0.2
+sigma_f = 0.05
+sigma_phi = 0.1
+sigma_gamma = 0.05
+
+[io]
+base_dir = "outputs/phase2"

@@ -1,0 +1,5 @@
+survey,redshift_bin,sample_type,param_type,Mstar_logMsun,alpha1,alpha2,phi1_Mpc3dex_h0p7,phi2_Mpc3dex_h0p7,mass_min_logMsun,mass_max_logMsun,rho_star_Msun_per_Mpc3
+GAMA (z≈0),0.0-0.1,total,schechter,10.78,-0.62,-1.5,0.00293,0.00063,8.0,12.5,221045916.18722558
+COSMOS2015 (UltraVISTA-DR2),3.0-3.5,total,schechter,10.6,-1.58,,0.000204,,8.0,12.5,15575779.777844504
+COSMOS2015 (UltraVISTA-DR2),3.5-4.5,total,schechter,10.6,-1.65,,9.4e-05,,8.0,12.5,8213660.052530659
+COSMOS2015 (UltraVISTA-DR2),4.5-5.5,total,schechter,10.6,-1.69,,3.8e-05,,8.0,12.5,3610154.710979701

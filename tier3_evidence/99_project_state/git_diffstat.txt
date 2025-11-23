@@ -1,0 +1,30 @@
+ ...cean_memory_tau0p30_kap-0p02_hiRes_spectrum.svg | 496 ++++++++++++---------
+ ...cean_memory_tau0p30_kap-0p02_hiRes_summary.json |  10 +-
+ outputs/phase8/sweep_tau0.10_kap+0.00_summary.json |  15 +-
+ outputs/phase8/sweep_tau0.10_kap+0.02_summary.json |  15 +-
+ outputs/phase8/sweep_tau0.10_kap+0.05_summary.json |  16 +-
+ outputs/phase8/sweep_tau0.10_kap-0.02_summary.json |  15 +-
+ outputs/phase8/sweep_tau0.10_kap-0.05_summary.json |  16 +-
+ outputs/phase8/sweep_tau0.20_kap+0.00_summary.json |  15 +-
+ outputs/phase8/sweep_tau0.20_kap+0.02_summary.json |  15 +-
+ outputs/phase8/sweep_tau0.20_kap+0.05_summary.json |  16 +-
+ outputs/phase8/sweep_tau0.20_kap-0.02_summary.json |  15 +-
+ outputs/phase8/sweep_tau0.20_kap-0.05_summary.json |  16 +-
+ outputs/phase8/sweep_tau0.30_kap+0.00_summary.json |  15 +-
+ outputs/phase8/sweep_tau0.30_kap+0.02_summary.json |  16 +-
+ outputs/phase8/sweep_tau0.30_kap+0.05_summary.json |  16 +-
+ outputs/phase8/sweep_tau0.30_kap-0.02_summary.json |  16 +-
+ outputs/phase8/sweep_tau0.30_kap-0.05_summary.json |  16 +-
+ outputs/phase8/sweep_tau0.40_kap+0.00_summary.json |  16 +-
+ outputs/phase8/sweep_tau0.40_kap+0.02_summary.json |  16 +-
+ outputs/phase8/sweep_tau0.40_kap+0.05_summary.json |  16 +-
+ outputs/phase8/sweep_tau0.40_kap-0.02_summary.json |  16 +-
+ outputs/phase8/sweep_tau0.40_kap-0.05_summary.json |  16 +-
+ outputs/phase8/sweep_tau0.60_kap+0.00_summary.json |  16 +-
+ outputs/phase8/sweep_tau0.60_kap+0.02_summary.json |  16 +-
+ outputs/phase8/sweep_tau0.60_kap+0.05_summary.json |  16 +-
+ outputs/phase8/sweep_tau0.60_kap-0.02_summary.json |  16 +-
+ outputs/phase8/sweep_tau0.60_kap-0.05_summary.json |  16 +-
+ outputs/phase8/sweep_tau_kappa.csv                 |  50 +--
+ tools/phase2                                       |   0
+ 29 files changed, 428 insertions(+), 521 deletions(-)

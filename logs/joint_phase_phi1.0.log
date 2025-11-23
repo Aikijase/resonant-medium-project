@@ -1,0 +1,55 @@
+[2025-10-11 04:46:45] PROGRESS: loaded BAO cov
+[2025-10-11 04:46:46] PROGRESS: loaded SN cov from data/pantheon_plus/Pantheon+SH0ES_DIAG.spd.csv
+[2025-10-11 04:46:46] PROGRESS: DEBUG BAO median y_data=18.977 → assume_per_rd=True
+[2025-10-11 04:46:46] PROGRESS: DEBUG BAO basis=abs(/rd or Mpc) med(data)=18.977  med(fid_abs)=18.451  sigma_used=cov
+[2025-10-11 04:46:46] PROGRESS: DEBUG BAO cov stats: median(sd)=0.3843 min(sd)=0.17 max(sd)=0.95
+[2025-10-11 04:46:46] PROGRESS: DEBUG fit_params=['A', 'gamma']
+[2025-10-11 04:46:46] PROGRESS: DEBUG Ok_bounds=(0.0, 0.0)
+[2025-10-11 04:46:46] PROGRESS: DEBUG fit_params=['A', 'gamma']
+[2025-10-11 04:46:46] PROGRESS: DEBUG Ok_bounds=(0.0, 0.0)
+[2025-10-11 04:46:46] PROGRESS: DEBUG k_params=2
+[2025-10-11 04:46:51] PROGRESS: DEBUG chi2@init=784.634
+[2025-10-11 04:46:51] PROGRESS: DEBUG k_params=2
+[2025-10-11 04:46:57] PROGRESS: DEBUG chi2@init=784.634
+[2025-10-11 04:46:57] PROGRESS: starting optimizer
+[2025-10-11 04:49:13] PROGRESS: eval 25: chi2=784.632
+[2025-10-11 04:51:48] PROGRESS: eval 25: chi2=784.632
+[2025-10-11 04:54:40] PROGRESS: eval 25: chi2=784.637
+[2025-10-11 04:59:56] PROGRESS: eval 25: chi2=784.824
+[2025-10-11 05:02:17] PROGRESS: eval 50: chi2=784.821
+[2025-10-11 05:07:42] PROGRESS: eval 25: chi2=784.855
+{
+  "best_params": {
+    "H0": 70.0,
+    "Om": 0.3,
+    "Or": 0.0,
+    "Ok": 0.0,
+    "rd": 147.1,
+    "A": 0.23346782463918953,
+    "f": 3.26,
+    "phi": 1.0,
+    "gamma": 0.0
+  },
+  "fit_params": [
+    "A",
+    "gamma"
+  ],
+  "chi2": 784.6318988863591,
+  "ndof": 1711,
+  "success": true,
+  "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+  "restarts": 8,
+  "breakdown": {
+    "chi2_bao": 32.531948392731415,
+    "chi2_sn": 751.7592803364917
+  },
+  "ic": {
+    "k_params": 2,
+    "n_points": 1713,
+    "chi2_data": 784.6318988863591,
+    "AIC_data": 788.6318988863591,
+    "BIC_data": 799.5239018830073,
+    "AICc_data": 788.6389164302187
+  }
+}
+[saved] outputs/joint_phase_phi1.0.json

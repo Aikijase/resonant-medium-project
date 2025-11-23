@@ -1,0 +1,12 @@
+{
+  "A_gk_scale": 1.0,
+  "source": "repair-fallback",
+  "meta": {
+    "z_col": "z",
+    "model_col": "fs8_pred",
+    "lcdm_col": "fs8_fit",
+    "unit_scale": 1.0,
+    "repaired": true,
+    "fallback": true
+  }
+}

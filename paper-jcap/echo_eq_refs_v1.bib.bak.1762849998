@@ -1,0 +1,38 @@
+@article{Planck2018,
+  author        = {{Planck Collaboration}},
+  title         = {Planck 2018 results. VI. Cosmological parameters},
+  journal       = {Astronomy & Astrophysics},
+  year          = {2020},
+  volume        = {641},
+  pages         = {A6},
+  doi           = {10.1051/0004-6361/201833910},
+  eprint        = {1807.06209},
+  archivePrefix = {arXiv}
+}
+
+@article{PantheonPlus2022,
+  author  = {Scolnic, D. and others},
+  title   = {The Pantheon+ Analysis: Cosmological Constraints},
+  journal = {The Astrophysical Journal},
+  year    = {2022},
+  volume  = {938},
+  number  = {2},
+  pages   = {113},
+  doi     = {10.3847/1538-4357/ac8b7a}
+}
+
+@misc{DESI2024_BAO_DR1,
+  author = {{DESI Collaboration}},
+  title  = {DESI 2024 BAO Measurements (Data Release 1)},
+  year   = {2024},
+  eprint = {2404.03000},
+  archivePrefix = {arXiv},
+  note   = {DR1 BAO compressed distances}
+}
+
+@misc{Watts2025_EchoEvidence,
+  author = {Watts, Jason},
+  title  = {Echo Equation Evidence Bundle v1},
+  year   = {2025},
+  note   = {Catalog/evidence bundle}
+}

@@ -1,0 +1,12 @@
+z,rho_dot_acc_Msun_yr_Mpc3,sigma_rho_dot,method,band,bol_corr_ref,source_id,notes
+0.1,2.505683e-05,,LF_integration,bolometric,,,
+0.3,3.435325e-05,,LF_integration,bolometric,,,
+0.5,3.102487e-05,,LF_integration,bolometric,,,
+0.7,3.435325e-05,,LF_integration,bolometric,,,
+1.0,3.866946e-05,,LF_integration,bolometric,,,
+1.5,3.529492e-05,,LF_integration,bolometric,,,
+2.0,3.672949e-05,,LF_integration,bolometric,,,
+2.5,3.584613e-05,,LF_integration,bolometric,,,
+3.0,2.380531e-05,,LF_integration,bolometric,,,
+4.0,2.187508e-05,,LF_integration,bolometric,,,
+5.0,2.071330e-05,,LF_integration,bolometric,,,

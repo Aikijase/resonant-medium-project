@@ -1,0 +1,68 @@
+{
+  "n": 5,
+  "scale_model": 1.0,
+  "chi2": 0.6205632716049394,
+  "chi2_null": 0.6205632716049394,
+  "AIC": {
+    "value": 3.953896604938272,
+    "null": 3.953896604938272,
+    "delta": 0.0
+  },
+  "BIC": {
+    "value": 2.2300011840390397,
+    "null": 2.2300011840390397,
+    "delta": 0.0
+  },
+  "WWI": 0.0,
+  "A_hat": 0.9934346826982786,
+  "sigma_A_hat": 0.03917234634675719,
+  "chi2_best": 0.5924732373163253,
+  "delta_chi2_pred": 0.028090034288616002,
+  "details": [
+    {
+      "name": "WISE\u00d7Planck-kappa",
+      "z_eff": 0.35,
+      "A_lit": 0.99,
+      "sigma_lit": 0.08,
+      "resid_sigma_model": -0.1250000000000001,
+      "resid_sigma_null": -0.1250000000000001,
+      "notes": "Ferraro+2015"
+    },
+    {
+      "name": "NVSS\u00d7Planck-kappa",
+      "z_eff": 1.0,
+      "A_lit": 1.02,
+      "sigma_lit": 0.09,
+      "resid_sigma_model": 0.22222222222222243,
+      "resid_sigma_null": 0.22222222222222243,
+      "notes": "Bianchini+2016"
+    },
+    {
+      "name": "DES\u00d7Planck-kappa",
+      "z_eff": 0.55,
+      "A_lit": 1.0,
+      "sigma_lit": 0.07,
+      "resid_sigma_model": 0.0,
+      "resid_sigma_null": 0.0,
+      "notes": "Omori+2022"
+    },
+    {
+      "name": "KiDS\u00d7Planck-kappa",
+      "z_eff": 0.65,
+      "A_lit": 0.94,
+      "sigma_lit": 0.09,
+      "resid_sigma_model": -0.6666666666666673,
+      "resid_sigma_null": -0.6666666666666673,
+      "notes": "van Uitert+2017"
+    },
+    {
+      "name": "RACS\u00d7Planck-kappa",
+      "z_eff": 0.8,
+      "A_lit": 1.05,
+      "sigma_lit": 0.15,
+      "resid_sigma_model": 0.33333333333333365,
+      "resid_sigma_null": 0.33333333333333365,
+      "notes": "Tiwari+2023"
+    }
+  ]
+}

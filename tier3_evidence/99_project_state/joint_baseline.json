@@ -1,0 +1,20 @@
+{
+  "bao_csv": "data/desi_dr1_bao/bao_measurements_long_interleaved_sigma.csv",
+  "bao_cov": "data/desi_dr1_bao/bao_covariance_plus_lya.csv",
+  "sn_csv":  "data/pantheon_plus/sn_MATCHED_mu.csv",
+  "sn_cov":  "outputs/Pantheon+SH0ES_STAT+SYS.cal.cov",
+
+  "use_shared_bao_scale": false,
+
+  "priors": {
+    "f":     { "mean": 2.60, "sigma": 0.05 },
+    "gamma": { "mean": 1.74, "sigma": 10.0 }
+  },
+
+  "fit": {
+    "fix_gamma": false
+  },
+
+  "out": "outputs/joint_baseline.json",
+  "out_prefix": "outputs/joint_baseline"
+}

@@ -1,0 +1,11 @@
+name: bh_birthrate_models
+purpose: BH birthrate derived from SFR + IMF + BH formation efficiency
+columns:
+  - z: {type: float}
+  - birthrate_BH_per_Mpc3_yr: {type: float, units: Mpc^-3 yr^-1}
+  - sigma_birthrate: {type: float}
+  - method: {type: str, enum: [SFRxEff, population_synthesis, other]}
+  - IMF_name: {type: str}
+  - BH_mass_cut_Msun: {type: float, desc: Minimum mass counted as BH}
+  - source_id: {type: str}
+  - notes: {type: str, optional: true}

@@ -1,0 +1,5 @@
+timestamp,phase,name,result,artifacts,notes
+2025-10-17 20:43,19,g×κ simulation sweep (boost),PASS,outputs/phase19/gxk_sim_summary.csv; gxk_sim_report.txt; gxk_sim_plot.png,Coherent signal across parameter sweep; supports resonance picture.
+2025-10-17 20:43,20,Predictive benchmarking (boost cohort),PASS,outputs/phase20/bench_summary.csv; bench_report.txt; bench_hist_boost.png; bench_scatter_boost.png,Stable predictive boosts; no pathologies; ready to pivot to Recycling.
+2025-10-17 20:54,22,Recycling – Align w(z) proxy,PASS,outputs/phase22/recycling_fit.json; recycling_fit_report.txt; recycling_fit_plot.png,"Best-fit (k, α, ε) found; w_proxy aligned to target."
+2025-10-17 20:54,23,Recycling – Predictions Sheet,PASS,outputs/phase23/predictions.csv; predictions.txt,"ΔNeff_proxy, A_L_proxy, fs8_proxy(z) emitted."

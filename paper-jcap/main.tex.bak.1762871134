@@ -1,0 +1,59 @@
+\pdfoutput=1
+\documentclass[a4paper,11pt]{article}
+\usepackage{jcappub}              % JCAP style
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{microtype}
+\usepackage{caption}
+
+% Figures: paths and formats
+\graphicspath{{figures/}{./}{outputs/phase20/}{outputs/phase8/}{outputs/predictions/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
+
+% ---- Title & author ----
+\title{A Resonant Medium Framework for Cosmology:\\ Finite-Memory Dynamics and the Echo Equation}
+\author{Jason Watts}
+\affiliation{Independent Researcher}
+\emailAdd{theexperimentalistlab@outlook.com}
+
+% ---- Abstract/keywords in JCAP style (preamble) ----
+\abstract{\input{sections/00_abstract}}
+\keywords{\input{sections/00_keywords.tex}}
+
+% ---- Minimal macros (safe) ----
+\newcommand{\LCDM}{\ensuremath{\Lambda\mathrm{CDM}}}
+\newcommand{\fsig}{\ensuremath{f\sigma_{8}}}
+
+\begin{document}
+\maketitle
+
+%==================== MAIN BODY ====================%
+\section{Introduction}\label{sec:introduction}
+\input{sections/01_introduction}
+
+\section{Datasets and Methods}\label{sec:methods}
+\input{sections/04_methods}
+
+\section{Results}\label{sec:results}
+\input{sections/05_results}
+
+\section{Discussion}\label{sec:discussion}
+\input{sections/06_discussion}
+
+\section*{Data/Software/Code Availability}
+\input{sections/90_data_software}
+
+\section*{AI-use statement}
+\input{sections/91_ai_statement}
+
+%==================== REFERENCES ====================%
+\clearpage
+\nocite{Planck2018,PantheonPlus2022,DESI2024_BAO_DR1,Watts2025_EchoEvidence}
+\bibliographystyle{JHEP}
+\bibliography{echo_eq_refs_v1}
+
+\end{document}

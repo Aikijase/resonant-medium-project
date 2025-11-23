@@ -1,0 +1,43 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{jcappub} % Overleaf has this
+\usepackage{graphicx,amsmath,amssymb,booktabs}
+
+\title{The Echo Equation in Resonant Medium Cosmology:\\
+A Finite-Memory Mechanism for Cosmic Expansion}
+\author[a]{Jason Watts}
+\affiliation[a]{The Experimentalist Lab}
+\emailAdd{theexperimentalistlab@outlook.com}
+\keywords{dark energy theory, large-scale structure, finite-memory dynamics}
+\arxivnumber{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\input{sec_intro}
+\input{sec_theory}
+\input{sec_data}
+\input{sec_results}
+\input{sec_predictions}
+\input{sec_consistency}
+\input{sec_conclusion}
+\appendix
+\input{sec_appendix}
+
+\section*{Data and code availability}
+All data used here are public (BAO/SN/CMB-lensing). Reproducible scripts for Echo Equation forecasts will be released at \url{https://github.com/TheExperimentalistLab/echo-equation} (upon preprint submission).
+
+\section*{Author contributions}
+J.W. conceived the Echo Equation, performed the analysis, wrote the manuscript, and prepared all figures.
+
+\section*{Competing interests}
+The author declares no competing interests.
+
+\section*{Funding}
+No external funding was received for this work.
+
+% Overleaf has JHEP/JCAP styles; this is fine there
+\bibliographystyle{JHEP}
+\bibliography{refs}
+\end{document}

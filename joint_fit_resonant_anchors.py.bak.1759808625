@@ -1,0 +1,390 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Joint SN+BAO fitter with a minimal "anchor" phase tweak:
+    phi_eff(z) = phi + anchor_eps * exp[-(z/anchor_zR)^2]
+
+Supports:
+- SN (Pantheon+) with full SPD as covariance or precision (scaled)
+- BAO "DM_over_rd" (y,sigma) + covariance
+- Fit params: A,f,phi,gamma, Om, rd, anchor_eps   (anchor_zR held fixed)
+- Cholesky-based chi2 for both cov and prec
+
+Outputs JSON with breakdown, bounds hits, and bookkeeping.
+
+Author: drop-in helper for quick testing
+"""
+
+from __future__ import annotations
+import argparse, json, os, sys, math, time
+import numpy as np
+from scipy.integrate import trapezoid, cumulative_trapezoid
+import pandas as pd
+from numpy.linalg import cholesky, solve
+from scipy.optimize import minimize
+
+# ---------------- utilities ----------------
+
+def _progress(msg: str):
+    ts = time.strftime("[%Y-%m-%d %H:%M:%S]")
+    print(f"{ts} {msg}", file=sys.stderr, flush=True)
+
+def load_spd_any(path: str) -> np.ndarray:
+    if path is None: return None
+    if path.endswith(".npy"):
+        return np.load(path)
+    # csv or txt
+    return pd.read_csv(path, header=None).to_numpy(float)
+
+def cholesky_from_cov_or_prec(M: np.ndarray, kind: str, scale: float = 1.0):
+    """Return lower-triangular L and boolean is_prec.
+       If kind=='cov': L s.t. C = L L^T and quad = || solve(L, r) ||^2
+       If kind=='prec': L s.t. P = L^T L and quad = || L r ||^2
+    """
+    if M is None:
+        return None, False
+    M = np.array(M, float)
+    if scale is not None and scale != 1.0:
+        M = float(scale) * M
+    if kind == "cov":
+        L = cholesky(0.5*(M+M.T) + 1e-12*np.eye(M.shape[0]))
+        return L, False
+    elif kind == "prec":
+        # precision SPD: factor P = L^T L (use cholesky on symmetric SPD)
+        L = cholesky(0.5*(M+M.T) + 1e-12*np.eye(M.shape[0])).T
+        return L, True
+    else:
+        raise ValueError("kind must be 'cov' or 'prec'")
+
+# --------------- data loaders ---------------
+
+def load_sn_mu_and_cov(sn_csv: str, sn_cov: str, cov_kind: str = "cov", scale: float = 1.0):
+    df = pd.read_csv(sn_csv)
+    z  = df["z"].to_numpy(float)
+    mu = df["mu"].to_numpy(float)
+    if sn_cov:
+        M = load_spd_any(sn_cov)
+        L, is_prec = cholesky_from_cov_or_prec(M, cov_kind, scale=scale)
+    else:
+        # diagonal from 'sigma' column
+        sig = df["sigma"].to_numpy(float)
+        C = np.diag(sig**2)
+        L, is_prec = cholesky_from_cov_or_prec(C, "cov")
+    return z, mu, L, is_prec
+
+def load_bao_DM_over_rd(bao_csv: str, bao_cov: str | None):
+    if not bao_csv:
+        return None
+    df = pd.read_csv(bao_csv)
+    # expect columns: z, y, sigma (y = DM/rd)
+    z = df["z"].to_numpy(float)
+    y = df["y"].to_numpy(float)
+    sig = df["sigma"].to_numpy(float)
+    Mb = load_spd_any(bao_cov) if bao_cov else None
+    if Mb is None:
+        Cb = np.diag(sig**2)
+        Lb, is_prec = cholesky_from_cov_or_prec(Cb, "cov")
+    else:
+        # BAO usually covariance
+        Lb, is_prec = cholesky_from_cov_or_prec(Mb, "cov")
+    return dict(z=z, y=y, L=Lb, is_prec=is_prec, n=len(z))
+
+# ------------- cosmology + anchors -----------
+
+c_over_H0 = 2997.92458  # Mpc for H0=100
+
+def w_resonant(z, A, f, phi, gamma):
+    z = np.asarray(z, float)
+    return -1.0 + A * np.sin(f * np.log1p(z) + phi) * np.exp(-gamma * z)
+
+def dark_energy_factor(z, Om, A, f, phi, gamma, anchor_eps=0.0, anchor_zR=0.5, nz=400):
+    """X_de(z) = exp[ 3 ∫_0^z (1+w(z'))/(1+z') dz' ] with anchor phase tweak."""
+    z = float(z)
+    if z <= 0.0: return 1.0
+    zz = np.linspace(0.0, z, int(max(8, nz)))
+    phi_eff = phi + anchor_eps * np.exp(-(zz/anchor_zR)**2)
+    w = w_resonant(zz, A, f, phi_eff, gamma)
+    integrand = (1.0 + w) / (1.0 + zz)
+    I = trapezoid(integrand, zz)
+    return float(np.exp(3.0 * I))
+
+def E_of_z_scalar(z, H0, Om, A, f, phi, gamma, anchor_eps=0.0, anchor_zR=0.5, nz_int=400):
+    Xde = dark_energy_factor(z, Om, A, f, phi, gamma, anchor_eps=anchor_eps, anchor_zR=anchor_zR, nz=nz_int)
+    return math.sqrt(Om*(1.0+z)**3 + (1.0-Om)*Xde)
+
+def build_background_grid(zmax, H0, Om, A, f, phi, gamma, anchor_eps=0.0, anchor_zR=0.5, nz=800):
+    z = np.linspace(0.0, float(zmax), int(max(16, nz)))
+    Ez = np.array([E_of_z_scalar(t, H0, Om, A, f, phi, gamma, anchor_eps=anchor_eps, anchor_zR=anchor_zR, nz_int=400)
+                   for t in z], float)
+    invE = 1.0 / np.clip(Ez, 1e-12, None)
+    # cumulative comoving distance grid
+    Dc = (c_over_H0 / (H0/100.0)) * cumulative_trapezoid(invE, z, initial=0.0)
+    Ez_at  = lambda zz: np.interp(np.asarray(zz, float), z, Ez)
+    Dc_at  = lambda zz: np.interp(np.asarray(zz, float), z, Dc)
+    return z, Dc, Dc_at, Ez_at
+
+def mu_theory(z, H0, Om, A, f, phi, gamma, anchor_eps=0.0, anchor_zR=0.5):
+    z = np.asarray(z, float)
+    zmax = float(np.max(z)) + 0.05
+    _, Dc, Dc_at, _ = build_background_grid(zmax, H0, Om, A, f, phi, gamma,
+                                            anchor_eps=anchor_eps, anchor_zR=anchor_zR, nz=800)
+    Dl = (1.0 + z) * Dc_at(z)
+    mu = 5.0*np.log10(np.clip(Dl, 1e-12, None)) + 25.0
+    return mu
+
+def bao_DM_over_rd_theory(z_bao, H0, Om, rd, A, f, phi, gamma, anchor_eps=0.0, anchor_zR=0.5):
+    z_bao = np.asarray(z_bao, float)
+    zmax = float(np.max(z_bao)) + 0.05
+    _, Dc, Dc_at, _ = build_background_grid(zmax, H0, Om, A, f, phi, gamma,
+                                            anchor_eps=anchor_eps, anchor_zR=anchor_zR, nz=800)
+    DM = Dc_at(z_bao)                    # Mpc
+    return DM / rd                       # dimensionless DM/rd
+
+# ---------------- chi2 builders ----------------
+
+def make_sn_chi2(z, mu, L, is_prec, H0, nz_bg, anchor_zR):
+    """Returns chi2(theta) using current theta = [A,f,phi,gamma, Om?, rd? , anchor_eps?]
+       Only (A,f,phi,gamma,Om,anchor_eps) matter for SN.
+    """
+    z = np.asarray(z, float); mu = np.asarray(mu, float)
+
+    def unpack(theta, defaults):
+        A,f,phi,gamma,Om,rd,anchor_eps = defaults
+        i = 0
+        if len(theta) >= 4:
+            A,f,phi,gamma = theta[0:4]; i = 4
+        if len(theta) > i:  Om = theta[i];  i += 1
+        if len(theta) > i:  rd = theta[i];  i += 1  # ignored by SN
+        if len(theta) > i:  anchor_eps = theta[i]
+        return A,f,phi,gamma,Om,rd,anchor_eps
+
+    def quad(res):
+        if is_prec: y = L @ res
+        else:       y = solve(L, res)
+        return float(y @ y)
+
+    def chi2(theta, defaults):
+        A,f,phi,gamma,Om,_,anchor_eps = unpack(theta, defaults)
+        mu_th = mu_theory(z, H0, Om, A, f, phi, gamma, anchor_eps=anchor_eps, anchor_zR=anchor_zR)
+        return quad(mu - mu_th)
+
+    return chi2
+
+def make_bao_chi2(bao_pack, H0, nz_bg, anchor_zR):
+    if bao_pack is None:
+        return lambda theta, defaults: 0.0
+    z = bao_pack["z"]; y = bao_pack["y"]; L = bao_pack["L"]; is_prec = bao_pack["is_prec"]
+
+    def unpack(theta, defaults):
+        A,f,phi,gamma,Om,rd,anchor_eps = defaults
+        i = 0
+        if len(theta) >= 4:
+            A,f,phi,gamma = theta[0:4]; i = 4
+        if len(theta) > i:  Om = theta[i];  i += 1
+        if len(theta) > i:  rd = theta[i];  i += 1
+        if len(theta) > i:  anchor_eps = theta[i]
+        return A,f,phi,gamma,Om,rd,anchor_eps
+
+    def quad(res):
+        if is_prec: yv = L @ res
+        else:       yv = solve(L, res)
+        return float(yv @ yv)
+
+    def chi2(theta, defaults):
+        A,f,phi,gamma,Om,rd,anchor_eps = unpack(theta, defaults)
+        y_th = bao_DM_over_rd_theory(z, H0, Om, rd, A, f, phi, gamma, anchor_eps=anchor_eps, anchor_zR=anchor_zR)
+        return quad(y - y_th)
+
+    return chi2
+
+# ----------------- fit runner ------------------
+
+def parse_bounds(s: str|None, default):
+    if s is None: return default
+    a,b = [float(t) for t in s.split(",")]
+    return (a,b)
+
+def main():
+    ap = argparse.ArgumentParser()
+    # Required inputs
+    ap.add_argument("--sn-csv", required=True)
+    ap.add_argument("--sn-cov", required=True)
+    ap.add_argument("--sn-cov-kind", choices=["cov","prec","auto"], default="cov")
+    ap.add_argument("--sn-scale", type=float, default=1.0)
+    ap.add_argument("--bao-csv", default=None)
+    ap.add_argument("--bao-cov", default=None)
+
+    # Fiducials
+    ap.add_argument("--fid-H0", dest="H0", type=float, default=70.0)
+    ap.add_argument("--fid-Om", dest="Om", type=float, default=0.3)
+    ap.add_argument("--fid-rd", dest="rd", type=float, default=147.1)
+
+    # Resonant params (start values)
+    ap.add_argument("--A", type=float, default=0.0)
+    ap.add_argument("--f", type=float, default=2.0)
+    ap.add_argument("--phi", type=float, default=0.0)
+    ap.add_argument("--gamma", type=float, default=0.2)
+
+    # Anchor tweak
+    ap.add_argument("--anchor-eps", type=float, default=0.0, help="pinning strength ε")
+    ap.add_argument("--anchor-zR",  type=float, default=0.5, help="Gaussian z-scale for pinning")
+
+    # Bounds
+    ap.add_argument("--A-bounds", default="0.0,1.0")
+    ap.add_argument("--f-bounds", default="1.0,5.0")
+    ap.add_argument("--phi-bounds", default="-3.1415926536,3.1415926536")
+    ap.add_argument("--gamma-bounds", default="0.0,0.5")
+    ap.add_argument("--Om-bounds", default="0.05,0.70")
+    ap.add_argument("--rd-bounds", default=None)
+    ap.add_argument("--anchor-eps-bounds", default="-0.6,0.6")
+
+    # Fit controls
+    ap.add_argument("--free-Om", action="store_true")
+    ap.add_argument("--free-rd", action="store_true")
+    ap.add_argument("--free-anchor", action="store_true", help="fit anchor_eps")
+    ap.add_argument("--prior-A-sigma", type=float, default=None)
+    ap.add_argument("--verbose-every", type=int, default=25)
+    ap.add_argument("--maxiter", type=int, default=300)
+    ap.add_argument("--bg-nz", type=int, default=800)
+    ap.add_argument("--out", default="outputs/joint_with_anchor.json")
+
+    args = ap.parse_args()
+
+    cov_kind = args.sn_cov_kind
+    if cov_kind == "auto":
+        cov_kind = "prec" if args.sn_cov.endswith(".spd.npy") else "cov"
+
+    # Load data
+    z_sn, mu_sn, L_sn, sn_is_prec = load_sn_mu_and_cov(args.sn_csv, args.sn_cov, cov_kind=cov_kind, scale=args.sn_scale)
+    bao_pack = load_bao_DM_over_rd(args.bao_csv, args.bao_cov) if args.bao_csv else None
+
+    # Chi2 closures
+    sn_chi2  = make_sn_chi2(z_sn, mu_sn, L_sn, sn_is_prec, args.H0, nz_bg=args.bg_nz, anchor_zR=args.anchor_zR)
+    bao_chi2 = make_bao_chi2(bao_pack, args.H0, nz_bg=args.bg_nz, anchor_zR=args.anchor_zR)
+
+    # Assemble fit vector order: [A,f,phi,gamma, (Om?), (rd?), (anchor_eps?)]
+    x0 = [args.A, args.f, args.phi, args.gamma]
+    bounds = [parse_bounds(args.A_bounds, (0.0, 1.0)),
+              parse_bounds(args.f_bounds, (1.0, 5.0)),
+              parse_bounds(args.phi_bounds, (-math.pi, math.pi)),
+              parse_bounds(args.gamma_bounds, (0.0, 0.5))]
+    names = ["A","f","phi","gamma"]
+
+    if args.free_Om:
+        x0.append(args.Om)
+        bounds.append(parse_bounds(args.Om_bounds, (0.05,0.70)))
+        names.append("Om")
+    else:
+        args.Om = float(args.Om)
+
+    if args.free_rd:
+        if args.rd_bounds is None:
+            raise SystemExit("--free-rd requires --rd-bounds LOW,HIGH")
+        x0.append(args.rd)
+        bounds.append(parse_bounds(args.rd_bounds, (120.0, 170.0)))
+        names.append("rd")
+    else:
+        args.rd = float(args.rd)
+
+    if args.free_anchor:
+        x0.append(args.anchor_eps)
+        bounds.append(parse_bounds(args.anchor_eps_bounds, (-0.6,0.6)))
+        names.append("anchor_eps")
+
+    defaults = (args.A, args.f, args.phi, args.gamma, args.Om, args.rd, args.anchor_eps)
+
+    def total_chi2(theta):
+        c2_sn  = sn_chi2(theta, defaults)
+        c2_bao = bao_chi2(theta, defaults)
+        # optional Gaussian prior on A
+        if args.prior_A_sigma and args.prior_A_sigma > 0:
+            A = theta[0] if len(theta)>=1 else defaults[0]
+            c2_sn += (A / args.prior_A_sigma)**2
+        return c2_sn + c2_bao
+
+    if len(names) == 0:
+        # baseline: no free params (shouldn't happen in practice)
+        c2 = total_chi2([])
+        out = {
+            "best_params": dict(H0=args.H0, Om=args.Om, rd=args.rd, A=args.A, f=args.f, phi=args.phi, gamma=args.gamma,
+                                anchor_eps=args.anchor_eps, anchor_zR=args.anchor_zR),
+            "fit_params": names,
+            "chi2": c2,
+            "ndof": (len(mu_sn) + (bao_pack["n"] if bao_pack else 0)) - len(names),
+            "success": True,
+            "message": "baseline",
+            "restarts": 0,
+            "breakdown": {"chi2_bao": bao_chi2([], defaults), "chi2_sn": sn_chi2([], defaults)},
+            "sn_cov_kind_used": cov_kind, "sn_scale_used": args.sn_scale,
+            "bg_nz": args.bg_nz, "sn_points": len(mu_sn), "bao_points": (bao_pack["n"] if bao_pack else 0),
+            "hit_bounds": {}
+        }
+        print(json.dumps(out, indent=2))
+        if args.out:
+            os.makedirs(os.path.dirname(args.out), exist_ok=True)
+            json.dump(out, open(args.out,"w"), indent=2)
+        return
+
+    # Optimize
+    t0 = time.time()
+    it_counter = {"n":0}
+    def cb(xk):
+        it_counter["n"] += 1
+        n = it_counter["n"]
+        if args.verbose_every and n % args.verbose_every == 0:
+            _progress(f"eval {n}: chi2={total_chi2(xk):.3f}")
+
+    res = minimize(total_chi2, x0, method="L-BFGS-B", bounds=bounds,
+                   options=dict(maxiter=args.maxiter), callback=cb)
+    elapsed = time.time()-t0
+
+    # Unpack best
+    best = list(x0)
+    if res.success: best = list(res.x)
+    # Fill named dictionary
+    params = dict(zip(names, best))
+    # plus fixed ones
+    for k,v in dict(H0=args.H0, Om=args.Om, rd=args.rd, A=args.A, f=args.f, phi=args.phi, gamma=args.gamma,
+                    anchor_eps=args.anchor_eps).items():
+        if k not in params: params[k]=v
+    params["anchor_zR"] = args.anchor_zR
+
+    # Evaluate breakdown at best
+    c2_bao_best = bao_chi2(best, defaults)
+    c2_sn_best  = sn_chi2(best,  defaults)
+    c2_tot      = c2_bao_best + c2_sn_best
+
+    # Bounds hit?
+    hit = {}
+    for nm,(lo,hi) in zip(names, bounds):
+        val = params[nm]
+        hit[nm] = (abs(val-lo) < 1e-9) or (abs(val-hi) < 1e-9)
+
+    ndof = (len(mu_sn) + (bao_pack["n"] if bao_pack else 0)) - len(names)
+
+    out = {
+        "best_params": {k: float(params[k]) for k in ["H0","Om","rd","A","f","phi","gamma","anchor_eps","anchor_zR"] if k in params},
+        "fit_params": names,
+        "chi2": float(c2_tot),
+        "ndof": int(ndof),
+        "success": bool(res.success),
+        "message": res.message if hasattr(res,"message") else "",
+        "restarts": 0,
+        "breakdown": {"chi2_bao": float(c2_bao_best), "chi2_sn": float(c2_sn_best)},
+        "timing_sec": elapsed,
+        "sn_cov_kind_used": cov_kind,
+        "sn_scale_used": args.sn_scale,
+        "bg_nz": args.bg_nz,
+        "sn_points": len(mu_sn),
+        "bao_points": (bao_pack["n"] if bao_pack else 0),
+        "hit_bounds": hit,
+        "evals": it_counter["n"]
+    }
+
+    print(json.dumps(out, indent=2))
+    if args.out:
+        os.makedirs(os.path.dirname(args.out), exist_ok=True)
+        json.dump(out, open(args.out,"w"), indent=2)
+
+if __name__ == "__main__":
+    main()

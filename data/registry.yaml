@@ -1,0 +1,27 @@
+benchmarks:
+  ABH_demo:
+    files:
+      - data/benchmarks/ABH_plate_benchmark.csv
+    fields:
+      mode_index: int
+      f_norm: float
+      E_anchor_ratio: float
+      Q: float
+    normalize:
+      omegahat: "f_norm"
+      eps: "E_anchor_ratio"
+      gamma: "1.0 / Q"
+      scale_omegahat: 1.9686964542531775
+
+  DustyPlasma_demo:
+    files:
+      - data/benchmarks/DustyPlasma_dispersion_benchmark.csv
+    fields:
+      k_a: float
+      omega_L_norm: float
+      omega_T_norm: float
+      lambda_D_a: float
+    normalize:
+      omegahat: "k_a"
+      eps: "normalize(abs(omega_L_norm - omega_T_norm))"
+      scale_omegahat: 0.8893954921334398

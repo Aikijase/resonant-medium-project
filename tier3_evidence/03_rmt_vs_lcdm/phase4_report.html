@@ -1,0 +1,502 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Phase-4 Lensing Report</title>
+<style>
+  body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 24px; color: #111; }
+  h1, h2, h3 { margin: 0.6em 0 0.3em; }
+  .note { color:#333; font-size: 0.95em; }
+  table.nice { border-collapse: collapse; margin: 12px 0; width: 100%; }
+  table.nice th, table.nice td { border: 1px solid #ddd; padding: 6px 8px; }
+  table.nice th { background:#fafafa; text-align:left; }
+  .plots { display:flex; gap:16px; flex-wrap:wrap; }
+  .plots img { max-width: 48%; min-width: 320px; border:1px solid #eee; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  pre { background:#f6f8fa; padding:10px; overflow-x:auto; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; }
+</style>
+</head>
+<body>
+  <h1>Phase-4: CMB (κκ) & Galaxy×κ Lensing</h1>
+  <p class='note'>Generated 2025-10-16 04:02 . This document summarizes single-catalog and multi-bin g×κ fits with growth-driven predictions.</p>
+
+  <div class="plots">
+    <img src='../plots/gk_residuals.png' alt='gk residuals'/>
+    <img src='../plots/gk_multi_residuals.png' alt='gk multi residuals'/>
+  </div>
+
+  
+    <h3>Single-catalog g×κ</h3>
+    <table class='nice'>
+      <thead><tr><th>Catalog</th><th>z_eff</th><th>A_lit ± σ</th><th>Residual (σ)</th></tr></thead>
+      <tbody>
+        <tr><td>WISE×Planck-kappa</td><td style='text-align:right'>0.35</td><td style='text-align:right'>0.990 ± 0.080</td><td style='text-align:right'>-0.13</td></tr>
+<tr><td>NVSS×Planck-kappa</td><td style='text-align:right'>1.00</td><td style='text-align:right'>1.020 ± 0.090</td><td style='text-align:right'>+0.22</td></tr>
+<tr><td>DES×Planck-kappa</td><td style='text-align:right'>0.55</td><td style='text-align:right'>1.000 ± 0.070</td><td style='text-align:right'>+0.00</td></tr>
+<tr><td>KiDS×Planck-kappa</td><td style='text-align:right'>0.65</td><td style='text-align:right'>0.940 ± 0.090</td><td style='text-align:right'>-0.67</td></tr>
+<tr><td>RACS×Planck-kappa</td><td style='text-align:right'>0.80</td><td style='text-align:right'>1.050 ± 0.150</td><td style='text-align:right'>+0.33</td></tr>
+      </tbody>
+    </table>
+    <p class='note'>Â = 0.993 ± 0.039 | A_pred = 1.000 | ⟨|res|⟩ ≈ 0.35σ | ΔAIC = 0.000 | WWI = 0.0</p>
+    
+  
+    <h3>Multi-bin g×κ</h3>
+    <p class='note'>Overall: n=9 | ⟨|res|⟩ ≈ 0.32σ | ΔAIC = 0.000 | WWI = 0.0 | Â = 0.999 ± 0.032 | A_pred = 1.000</p>
+    <h4>Per-survey summary</h4>
+    <table class='nice'>
+      <thead><tr><th>Survey</th><th>n</th><th>Â ± σ</th><th>⟨|res|⟩ (σ)</th><th>ΔAIC</th><th>WWI</th></tr></thead>
+      <tbody>
+        <tr><td>DES</td><td style='text-align:right'>1</td><td style='text-align:right'>1.000 ± 0.070</td><td style='text-align:right'>0.00</td><td style='text-align:right'>0.000</td><td style='text-align:right'>0.0</td></tr>
+<tr><td>KiDS</td><td style='text-align:right'>1</td><td style='text-align:right'>0.940 ± 0.090</td><td style='text-align:right'>0.67</td><td style='text-align:right'>0.000</td><td style='text-align:right'>0.0</td></tr>
+<tr><td>NVSS</td><td style='text-align:right'>1</td><td style='text-align:right'>1.020 ± 0.090</td><td style='text-align:right'>0.22</td><td style='text-align:right'>0.000</td><td style='text-align:right'>0.0</td></tr>
+<tr><td>RACS</td><td style='text-align:right'>3</td><td style='text-align:right'>1.052 ± 0.094</td><td style='text-align:right'>0.33</td><td style='text-align:right'>0.000</td><td style='text-align:right'>0.0</td></tr>
+<tr><td>WISE</td><td style='text-align:right'>3</td><td style='text-align:right'>0.994 ± 0.048</td><td style='text-align:right'>0.16</td><td style='text-align:right'>0.000</td><td style='text-align:right'>0.0</td></tr>
+      </tbody>
+    </table>
+    <h4>Per-bin details</h4>
+    <table class='nice'>
+      <thead><tr><th>Survey</th><th>Bin</th><th>z_eff</th><th>A_lit ± σ</th><th>Residual (σ)</th></tr></thead>
+      <tbody>
+        <tr><td>WISE</td><td style='text-align:right'>1</td><td style='text-align:right'>0.25</td><td style='text-align:right'>0.980 ± 0.090</td><td style='text-align:right'>-0.22</td></tr>
+<tr><td>WISE</td><td style='text-align:right'>2</td><td style='text-align:right'>0.35</td><td style='text-align:right'>0.990 ± 0.080</td><td style='text-align:right'>-0.13</td></tr>
+<tr><td>WISE</td><td style='text-align:right'>3</td><td style='text-align:right'>0.45</td><td style='text-align:right'>1.010 ± 0.080</td><td style='text-align:right'>+0.13</td></tr>
+<tr><td>RACS</td><td style='text-align:right'>1</td><td style='text-align:right'>0.60</td><td style='text-align:right'>1.040 ± 0.160</td><td style='text-align:right'>+0.25</td></tr>
+<tr><td>RACS</td><td style='text-align:right'>2</td><td style='text-align:right'>0.80</td><td style='text-align:right'>1.050 ± 0.150</td><td style='text-align:right'>+0.33</td></tr>
+<tr><td>RACS</td><td style='text-align:right'>3</td><td style='text-align:right'>1.00</td><td style='text-align:right'>1.070 ± 0.180</td><td style='text-align:right'>+0.39</td></tr>
+<tr><td>NVSS</td><td style='text-align:right'>1</td><td style='text-align:right'>1.00</td><td style='text-align:right'>1.020 ± 0.090</td><td style='text-align:right'>+0.22</td></tr>
+<tr><td>DES</td><td style='text-align:right'>1</td><td style='text-align:right'>0.55</td><td style='text-align:right'>1.000 ± 0.070</td><td style='text-align:right'>+0.00</td></tr>
+<tr><td>KiDS</td><td style='text-align:right'>1</td><td style='text-align:right'>0.65</td><td style='text-align:right'>0.940 ± 0.090</td><td style='text-align:right'>-0.67</td></tr>
+      </tbody>
+    </table>
+    
+  <h2>Phase-2 Report (verbatim)</h2>
+<div class='md'><h1>Phase-2 Mini-Report</h1>
+<p></p>
+<p>_Generated: 2025-10-15T18:20:56_</p>
+<p></p>
+<h2>Growth (fσ8)</h2>
+<ul>
+<li>χ²: **340.273**</li>
+<ul>
+<li>AIC: **340.273**</li>
+<ul>
+<li>BIC: **340.273**</li>
+<ul>
+<li>WWI: **0.0**</li>
+<ul>
+<li>Overlay plot: `plots/fs8_overlay.png`</li>
+<ul>
+<li>Residuals plot: `plots/fs8_residuals.png`</li>
+</ul>
+<p></p>
+<h2>ISW (placeholder)</h2>
+<ul>
+<li>Bands: **270 ℓ-points**</li>
+<ul>
+<li>Note: placeholder spectra; scoring disabled.</li>
+</ul>
+<p></p>
+<h2>Joint Summary</h2>
+<ul>
+<li>File: `outputs/phase2/pred_eval.phase2_joint.json`</li>
+<ul>
+<li>phase1_WWI: **None**</li>
+<ul>
+<li>fs8_WWI: **0.0**</li>
+<ul>
+<li>isw_info: ISW placeholder only (no data yet)</li>
+</ul>
+<p></p>
+<h2>Resonant Basins &amp; Stability</h2>
+<ul>
+<li>Heatmap: `plots/stability_heatmap.png`</li>
+<ul>
+<li>Basins (WWI contours + stability hatch): `plots/resonant_basins.png`</li>
+<p>**Reading the figure:** color = WWI (% vs ΛCDM on fσ₈ with 1-param amplitude fit);</p>
+<p>white contours at 50/70/85; hatched regions pass stability (bounded D, low TV_D, low stress).</p>
+<p></p>
+<h2>ISW amplitude (WISE + RACS)</h2>
+<p></p>
+<ul>
+<li>Combined χ²: **1.203** (n=4, k=0)</li>
+<ul>
+<li>AIC: **1.203**, ΔAIC vs LCDM(A=1): **0.645**</li>
+<ul>
+<li>WWI: **0.0**</li>
+</ul>
+<p></p>
+<p>| survey | z_eff | A_model | A_obs ± σ | resid |</p>
+<p>|---|---:|---:|---:|---:|</p>
+<p>| RACS_SKADS | 1.56 | 1.151 | 0.82 ± 0.36 | 0.92 |</p>
+<p>| RACS_BACCUS | 1.56 | 1.151 | 0.94 ± 0.42 | 0.50 |</p>
+<p>| WISE_GAL | 0.25 | 1.197 | 1.24 ± 0.47 | -0.09 |</p>
+<p>| WISE_AGN | 1.10 | 1.106 | 0.88 ± 0.74 | 0.31 |</p>
+<p></p>
+<h2>fσ8 growth (Phase-2)</h2>
+<ul>
+<li>χ²: **3.261** (n=5, k=1)</li>
+<ul>
+<li>AIC/BIC: **5.261 / 4.870**, ΔAIC/ΔBIC: **-19.667 / -20.057**</li>
+<ul>
+<li>WWI: **100.0**</li>
+<ul>
+<li>Amplitude fit α (S8-like): **14.686**</li>
+<ul>
+<li>Plot: `plots/fs8_overlay.png`, residuals: `plots/fs8_residuals.png`</li>
+</ul>
+<p></p>
+<h2>ISW amplitude (WISE + RACS)</h2>
+<ul>
+<li>Combined χ²: **1.203** (n=4, k=0)</li>
+<ul>
+<li>AIC: **1.203**, ΔAIC vs LCDM(A=1): **0.645**</li>
+<ul>
+<li>WWI: **0.0**</li>
+</ul>
+<p></p>
+<p>| survey | z_eff | A_model | A_obs ± σ | resid |</p>
+<p>|---|---:|---:|---:|---:|</p>
+<p>| RACS_SKADS | 1.56 | 1.151 | 0.820 ± 0.360 | 0.921 |</p>
+<p>| RACS_BACCUS | 1.56 | 1.151 | 0.940 ± 0.420 | 0.503 |</p>
+<p>| WISE_GAL | 0.25 | 1.197 | 1.240 ± 0.470 | -0.092 |</p>
+<p>| WISE_AGN | 1.10 | 1.106 | 0.880 ± 0.740 | 0.305 |</p>
+<p></p>
+<ul>
+<li>Figure: `plots/isw_amplitude.png`</li>
+</ul>
+<p></p>
+<h2>Stability &amp; Resonant Basins</h2>
+<ul>
+<li>Stability heatmap: `plots/stability_heatmap.png`</li>
+<ul>
+<li>WWI contours + stability hatch: `plots/resonant_basins.png`</li>
+<p>**Reading:** color = WWI (% vs ΛCDM on fσ8 with 1-param amplitude fit); white contours at 50/70/85; hatched regions pass stability (bounded D, low TV_D, low stress).</p>
+<p></p>
+<p></p>
+<h2>Basins with ISW Compatibility</h2>
+<ul>
+<li>Figure: `plots/resonant_basins_isw.png`</li>
+<p>**Reading:** color = fs8 WWI; white = WWI {50,70,85} contours; hatched = stable; black outline = ISW-OK (χ²/n ≤ 2 using WISE+RACS amplitudes).</p>
+<p></p>
+<h2>fσ8 growth (Phase-2)</h2>
+<ul>
+<li>χ²: **3.261** (n=5, k=1)</li>
+<ul>
+<li>AIC/BIC: **5.261 / 4.870**, ΔAIC/ΔBIC: **-19.667 / -20.057**</li>
+<ul>
+<li>WWI: **100.0**</li>
+<ul>
+<li>Amplitude fit α (S8-like): **14.686**</li>
+<ul>
+<li>Plot: `plots/fs8_overlay.png`, residuals: `plots/fs8_residuals.png`</li>
+</ul>
+<p></p>
+<h2>ISW amplitude (WISE + RACS)</h2>
+<ul>
+<li>Combined χ²: **1.203** (n=4, k=0)</li>
+<ul>
+<li>AIC: **1.203**, ΔAIC vs LCDM(A=1): **0.645**</li>
+<ul>
+<li>WWI: **0.0**</li>
+</ul>
+<p></p>
+<p>| survey | z_eff | A_model | A_obs ± σ | resid |</p>
+<p>|---|---:|---:|---:|---:|</p>
+<p>| RACS_SKADS | 1.56 | 1.151 | 0.820 ± 0.360 | 0.921 |</p>
+<p>| RACS_BACCUS | 1.56 | 1.151 | 0.940 ± 0.420 | 0.503 |</p>
+<p>| WISE_GAL | 0.25 | 1.197 | 1.240 ± 0.470 | -0.092 |</p>
+<p>| WISE_AGN | 1.10 | 1.106 | 0.880 ± 0.740 | 0.305 |</p>
+<p></p>
+<ul>
+<li>Figure: `plots/isw_amplitude.png`</li>
+</ul>
+<p></p>
+<h2>Stability &amp; Resonant Basins</h2>
+<ul>
+<li>Stability heatmap: `plots/stability_heatmap.png`</li>
+<ul>
+<li>WWI contours + stability hatch: `plots/resonant_basins.png`</li>
+<p>**Reading:** color = WWI (% vs ΛCDM on fσ8 with 1-param amplitude fit); white contours at 50/70/85; hatched regions pass stability (bounded D, low TV_D, low stress).</p>
+<p></p>
+<h2>Phase-3: Growth-rate evolution γ(z) = γ₀ + g₁ z/(1+z)</h2>
+<ul>
+<li>Best: γ₀ = **1.400**, g₁ = **0.400**</li>
+<ul>
+<li>α (S8-like) = **1.555**, χ² = **37.916**</li>
+<ul>
+<li>AIC/BIC = **39.916 / 40.219**, WWI = **0.0**</li>
+<ul>
+<li>Heatmap: `plots/phase3_gammaevo_heatmap.png`</li>
+<ul>
+<li>Annotated: `plots/phase3_gammaevo_heatmap_annotated.png`</li>
+</ul>
+<p></p>
+<h2>Phase-4: CMB lensing (κκ) &amp; galaxy–lensing (g×κ)</h2>
+<p></p>
+<h3>κκ (CMB lensing auto)</h3>
+<ul>
+<li>n=1, χ²=0.069, ⟨|res|⟩≈0.26σ</li>
+<ul>
+<li>AIC=0.069, ΔAIC=0.069, WWI=0.0</li>
+</ul>
+<p></p>
+<h3>g×κ (galaxy–lensing, shape-only)</h3>
+<ul>
+<li>n=5, χ²=0.621, ⟨|res|⟩≈0.35σ</li>
+<ul>
+<li>AIC=3.954, ΔAIC=0.000, WWI=0.0</li>
+<ul>
+<li>Â=0.993 ± 0.039 | A_pred=1.000 | pull=+0.17σ (Δχ²_pred=0.028)</li>
+</ul>
+<p></p>
+<p>| Catalog | z_eff | A_lit ± σ | Residual (σ) |</p>
+<p>|---|---:|---:|---:|</p>
+<p>| WISE×Planck-kappa | 0.35 | 0.990 ± 0.080 | -0.13 |</p>
+<p>| NVSS×Planck-kappa | 1.00 | 1.020 ± 0.090 | +0.22 |</p>
+<p>| DES×Planck-kappa | 0.55 | 1.000 ± 0.070 | +0.00 |</p>
+<p>| KiDS×Planck-kappa | 0.65 | 0.940 ± 0.090 | -0.67 |</p>
+<p>| RACS×Planck-kappa | 0.80 | 1.050 ± 0.150 | +0.33 |</p>
+<p></p>
+<h2>Phase-4: CMB lensing (κκ) &amp; galaxy–lensing (g×κ)</h2>
+<p></p>
+<h3>κκ (CMB lensing auto)</h3>
+<ul>
+<li>n=1, χ²=0.069, ⟨|res|⟩≈0.26σ</li>
+<ul>
+<li>AIC=0.069, ΔAIC=0.069, WWI=0.0</li>
+</ul>
+<p></p>
+<h3>g×κ (galaxy–lensing, shape-only)</h3>
+<ul>
+<li>n=5, χ²=0.621, ⟨|res|⟩≈0.35σ</li>
+<ul>
+<li>AIC=3.954, ΔAIC=0.000, WWI=0.0</li>
+<ul>
+<li>Â=0.993 ± 0.039 | A_pred=1.000 | pull=+0.17σ (Δχ²_pred=0.028)</li>
+</ul>
+<p></p>
+<p>| Catalog | z_eff | A_lit ± σ | Residual (σ) |</p>
+<p>|---|---:|---:|---:|</p>
+<p>| WISE×Planck-kappa | 0.35 | 0.990 ± 0.080 | -0.13 |</p>
+<p>| NVSS×Planck-kappa | 1.00 | 1.020 ± 0.090 | +0.22 |</p>
+<p>| DES×Planck-kappa | 0.55 | 1.000 ± 0.070 | +0.00 |</p>
+<p>| KiDS×Planck-kappa | 0.65 | 0.940 ± 0.090 | -0.67 |</p>
+<p>| RACS×Planck-kappa | 0.80 | 1.050 ± 0.150 | +0.33 |</p>
+<p></p>
+<h2>Phase-4: CMB lensing (κκ) &amp; galaxy–lensing (g×κ)</h2>
+<p></p>
+<h3>κκ (CMB lensing auto)</h3>
+<ul>
+<li>n=1, χ²=0.069, ⟨|res|⟩≈0.26σ</li>
+<ul>
+<li>AIC=0.069, ΔAIC=0.069, WWI=0.0</li>
+</ul>
+<p></p>
+<h3>g×κ (galaxy–lensing, shape-only)</h3>
+<ul>
+<li>n=5, χ²=0.621, ⟨|res|⟩≈0.35σ</li>
+<ul>
+<li>AIC=3.954, ΔAIC=0.000, WWI=0.0</li>
+<ul>
+<li>Â=0.993 ± 0.039 | A_pred=1.000 | pull=+0.17σ (Δχ²_pred=0.028)</li>
+</ul>
+<p></p>
+<p>| Catalog | z_eff | A_lit ± σ | Residual (σ) |</p>
+<p>|---|---:|---:|---:|</p>
+<p>| WISE×Planck-kappa | 0.35 | 0.990 ± 0.080 | -0.13 |</p>
+<p>| NVSS×Planck-kappa | 1.00 | 1.020 ± 0.090 | +0.22 |</p>
+<p>| DES×Planck-kappa | 0.55 | 1.000 ± 0.070 | +0.00 |</p>
+<p>| KiDS×Planck-kappa | 0.65 | 0.940 ± 0.090 | -0.67 |</p>
+<p>| RACS×Planck-kappa | 0.80 | 1.050 ± 0.150 | +0.33 |</p>
+<p></p>
+<h2>Phase-4: CMB lensing (κκ) &amp; galaxy–lensing (g×κ)</h2>
+<p></p>
+<h3>κκ (CMB lensing auto)</h3>
+<ul>
+<li>n=1, χ²=0.069, ⟨|res|⟩≈0.26σ</li>
+<ul>
+<li>AIC=0.069, ΔAIC=0.069, WWI=0.0</li>
+</ul>
+<p></p>
+<h3>g×κ (galaxy–lensing, shape-only)</h3>
+<ul>
+<li>n=5, χ²=0.621, ⟨|res|⟩≈0.35σ</li>
+<ul>
+<li>AIC=3.954, ΔAIC=0.000, WWI=0.0</li>
+<ul>
+<li>Â=0.993 ± 0.039 | A_pred=1.000 | pull=+0.17σ (Δχ²_pred=0.028)</li>
+</ul>
+<p></p>
+<p>| Catalog | z_eff | A_lit ± σ | Residual (σ) |</p>
+<p>|---|---:|---:|---:|</p>
+<p>| WISE×Planck-kappa | 0.35 | 0.990 ± 0.080 | -0.13 |</p>
+<p>| NVSS×Planck-kappa | 1.00 | 1.020 ± 0.090 | +0.22 |</p>
+<p>| DES×Planck-kappa | 0.55 | 1.000 ± 0.070 | +0.00 |</p>
+<p>| KiDS×Planck-kappa | 0.65 | 0.940 ± 0.090 | -0.67 |</p>
+<p>| RACS×Planck-kappa | 0.80 | 1.050 ± 0.150 | +0.33 |</p>
+<p></p>
+<h2>Phase-4: CMB lensing (κκ) &amp; galaxy–lensing (g×κ)</h2>
+<p></p>
+<h3>κκ (CMB lensing auto)</h3>
+<ul>
+<li>n=1, χ²=0.069, ⟨|res|⟩≈0.26σ</li>
+<ul>
+<li>AIC=0.069, ΔAIC=0.069, WWI=0.0</li>
+</ul>
+<p></p>
+<h3>g×κ (galaxy–lensing, shape-only)</h3>
+<ul>
+<li>n=5, χ²=0.621, ⟨|res|⟩≈0.35σ</li>
+<ul>
+<li>AIC=3.954, ΔAIC=0.000, WWI=0.0</li>
+<ul>
+<li>Â=0.993 ± 0.039 | A_pred=1.000 | pull=+0.17σ (Δχ²_pred=0.028)</li>
+</ul>
+<p></p>
+<p>| Catalog | z_eff | A_lit ± σ | Residual (σ) |</p>
+<p>|---|---:|---:|---:|</p>
+<p>| WISE×Planck-kappa | 0.35 | 0.990 ± 0.080 | -0.13 |</p>
+<p>| NVSS×Planck-kappa | 1.00 | 1.020 ± 0.090 | +0.22 |</p>
+<p>| DES×Planck-kappa | 0.55 | 1.000 ± 0.070 | +0.00 |</p>
+<p>| KiDS×Planck-kappa | 0.65 | 0.940 ± 0.090 | -0.67 |</p>
+<p>| RACS×Planck-kappa | 0.80 | 1.050 ± 0.150 | +0.33 |</p>
+<p></p>
+<h2>Phase-4: CMB lensing (κκ) &amp; galaxy–lensing (g×κ)</h2>
+<p></p>
+<h3>κκ (CMB lensing auto)</h3>
+<ul>
+<li>n=1, χ²=0.069, ⟨|res|⟩≈0.26σ</li>
+<ul>
+<li>AIC=0.069, ΔAIC=0.069, WWI=0.0</li>
+</ul>
+<p></p>
+<h3>g×κ (galaxy–lensing, shape-only)</h3>
+<ul>
+<li>n=5, χ²=0.621, ⟨|res|⟩≈0.35σ</li>
+<ul>
+<li>AIC=3.954, ΔAIC=0.000, WWI=0.0</li>
+<ul>
+<li>Â=0.993 ± 0.039 | A_pred=1.000 | pull=+0.17σ (Δχ²_pred=0.028)</li>
+</ul>
+<p></p>
+<p>| Catalog | z_eff | A_lit ± σ | Residual (σ) |</p>
+<p>|---|---:|---:|---:|</p>
+<p>| WISE×Planck-kappa | 0.35 | 0.990 ± 0.080 | -0.13 |</p>
+<p>| NVSS×Planck-kappa | 1.00 | 1.020 ± 0.090 | +0.22 |</p>
+<p>| DES×Planck-kappa | 0.55 | 1.000 ± 0.070 | +0.00 |</p>
+<p>| KiDS×Planck-kappa | 0.65 | 0.940 ± 0.090 | -0.67 |</p>
+<p>| RACS×Planck-kappa | 0.80 | 1.050 ± 0.150 | +0.33 |</p>
+<p></p>
+<h2>Phase-4: CMB lensing (κκ) &amp; galaxy–lensing (g×κ)</h2>
+<p></p>
+<h3>κκ (CMB lensing auto)</h3>
+<ul>
+<li>n=1, χ²=0.069, ⟨|res|⟩≈0.26σ</li>
+<ul>
+<li>AIC=0.069, ΔAIC=0.069, WWI=0.0</li>
+</ul>
+<p></p>
+<h3>g×κ (galaxy–lensing, shape-only)</h3>
+<ul>
+<li>n=5, χ²=0.621, ⟨|res|⟩≈0.35σ</li>
+<ul>
+<li>AIC=3.954, ΔAIC=0.000, WWI=0.0</li>
+<ul>
+<li>Â=0.993 ± 0.039 | A_pred=1.000 | pull=+0.17σ (Δχ²_pred=0.028)</li>
+</ul>
+<p></p>
+<p>| Catalog | z_eff | A_lit ± σ | Residual (σ) |</p>
+<p>|---|---:|---:|---:|</p>
+<p>| WISE×Planck-kappa | 0.35 | 0.990 ± 0.080 | -0.13 |</p>
+<p>| NVSS×Planck-kappa | 1.00 | 1.020 ± 0.090 | +0.22 |</p>
+<p>| DES×Planck-kappa | 0.55 | 1.000 ± 0.070 | +0.00 |</p>
+<p>| KiDS×Planck-kappa | 0.65 | 0.940 ± 0.090 | -0.67 |</p>
+<p>| RACS×Planck-kappa | 0.80 | 1.050 ± 0.150 | +0.33 |</p>
+<p></p>
+<h2>Phase-4: CMB lensing (κκ) &amp; galaxy–lensing (g×κ)</h2>
+<p></p>
+<h3>κκ (CMB lensing auto)</h3>
+<ul>
+<li>n=1, χ²=0.069, ⟨|res|⟩≈0.26σ</li>
+<ul>
+<li>AIC=0.069, ΔAIC=0.069, WWI=0.0</li>
+</ul>
+<p></p>
+<h3>g×κ (galaxy–lensing, shape-only)</h3>
+<ul>
+<li>n=5, χ²=0.621, ⟨|res|⟩≈0.35σ</li>
+<ul>
+<li>AIC=3.954, ΔAIC=0.000, WWI=0.0</li>
+<ul>
+<li>Â=0.993 ± 0.039 | A_pred=1.000 | pull=+0.17σ (Δχ²_pred=0.028)</li>
+</ul>
+<p></p>
+<p>| Catalog | z_eff | A_lit ± σ | Residual (σ) |</p>
+<p>|---|---:|---:|---:|</p>
+<p>| WISE×Planck-kappa | 0.35 | 0.990 ± 0.080 | -0.13 |</p>
+<p>| NVSS×Planck-kappa | 1.00 | 1.020 ± 0.090 | +0.22 |</p>
+<p>| DES×Planck-kappa | 0.55 | 1.000 ± 0.070 | +0.00 |</p>
+<p>| KiDS×Planck-kappa | 0.65 | 0.940 ± 0.090 | -0.67 |</p>
+<p>| RACS×Planck-kappa | 0.80 | 1.050 ± 0.150 | +0.33 |</p>
+<p></p>
+<h2>Phase-4: CMB lensing (κκ) &amp; galaxy–lensing (g×κ)</h2>
+<p></p>
+<h3>κκ (CMB lensing auto)</h3>
+<ul>
+<li>n=1, χ²=0.069, ⟨|res|⟩≈0.26σ</li>
+<ul>
+<li>AIC=0.069, ΔAIC=0.069, WWI=0.0</li>
+</ul>
+<p></p>
+<h3>g×κ (galaxy–lensing, shape-only)</h3>
+<ul>
+<li>n=5, χ²=0.621, ⟨|res|⟩≈0.35σ</li>
+<ul>
+<li>AIC=3.954, ΔAIC=0.000, WWI=0.0</li>
+<ul>
+<li>Â=0.993 ± 0.039 | A_pred=1.000 | pull=+0.17σ (Δχ²_pred=0.028)</li>
+</ul>
+<p></p>
+<p>| Catalog | z_eff | A_lit ± σ | Residual (σ) |</p>
+<p>|---|---:|---:|---:|</p>
+<p>| WISE×Planck-kappa | 0.35 | 0.990 ± 0.080 | -0.13 |</p>
+<p>| NVSS×Planck-kappa | 1.00 | 1.020 ± 0.090 | +0.22 |</p>
+<p>| DES×Planck-kappa | 0.55 | 1.000 ± 0.070 | +0.00 |</p>
+<p>| KiDS×Planck-kappa | 0.65 | 0.940 ± 0.090 | -0.67 |</p>
+<p>| RACS×Planck-kappa | 0.80 | 1.050 ± 0.150 | +0.33 |</p>
+<p></p>
+<p></p>
+<h2>Phase-4: g×κ (multi-bin)</h2>
+<p></p>
+<ul>
+<li>Overall: n=9, ⟨|res|⟩≈0.32σ, ΔAIC=0.000, WWI=0.0</li>
+<ul>
+<li>Â=0.999 ± 0.032 | A_pred=1.000 | pull=+0.05σ</li>
+</ul>
+<p></p>
+<h3>Per-survey summary</h3>
+<p></p>
+<p>| Survey | n | Â ± σ | ⟨|res|⟩ (σ) | ΔAIC | WWI |</p>
+<p>|---|---:|---:|---:|---:|---:|</p>
+<p>| DES | 1 | 1.000 ± 0.070 | 0.00 | 0.000 | 0.0 |</p>
+<p>| KiDS | 1 | 0.940 ± 0.090 | 0.67 | 0.000 | 0.0 |</p>
+<p>| NVSS | 1 | 1.020 ± 0.090 | 0.22 | 0.000 | 0.0 |</p>
+<p>| RACS | 3 | 1.052 ± 0.094 | 0.33 | 0.000 | 0.0 |</p>
+<p>| WISE | 3 | 0.994 ± 0.048 | 0.16 | 0.000 | 0.0 |</p>
+<p></p>
+<h3>Per-bin details</h3>
+<p></p>
+<p>| Survey | Bin | z_eff | A_lit ± σ | Resid (σ) |</p>
+<p>|---|---:|---:|---:|---:|</p>
+<p>| WISE | 1 | 0.25 | 0.980 ± 0.090 | -0.22 |</p>
+<p>| WISE | 2 | 0.35 | 0.990 ± 0.080 | -0.13 |</p>
+<p>| WISE | 3 | 0.45 | 1.010 ± 0.080 | +0.13 |</p>
+<p>| RACS | 1 | 0.60 | 1.040 ± 0.160 | +0.25 |</p>
+<p>| RACS | 2 | 0.80 | 1.050 ± 0.150 | +0.33 |</p>
+<p>| RACS | 3 | 1.00 | 1.070 ± 0.180 | +0.39 |</p>
+<p>| NVSS | 1 | 1.00 | 1.020 ± 0.090 | +0.22 |</p>
+<p>| DES | 1 | 0.55 | 1.000 ± 0.070 | +0.00 |</p>
+<p>| KiDS | 1 | 0.65 | 0.940 ± 0.090 | -0.67 |</p>
+<p></p></div>
+</body>
+</html>

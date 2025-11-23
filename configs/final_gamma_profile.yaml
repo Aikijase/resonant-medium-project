@@ -1,0 +1,13 @@
+# Joint BAO+SN gamma-profile (final, reproducible)
+report:
+  gamma_star: 1.740
+  ci68: [1.585, 1.876]
+  ci95: [1.442, 2.063]
+  chi2_min: 891.945
+  comparisons:
+    shared_BAO_scale: {chi2: 908.112, delta: +16.168}
+    tight_scale_sigma_0p02: {chi2: 894.267, delta: +2.323}
+    shared_plus_tight: {chi2: 908.120, delta: +16.175}
+notes: |
+  BAO-only: Δχ² ~ 0 between γ=0 and γ free; SN-only: Δχ² ~ 0.4.
+  Joint signal is driven by coupling (BAO dominates Δχ²; SN contributes).

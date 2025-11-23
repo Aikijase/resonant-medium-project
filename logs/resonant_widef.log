@@ -1,0 +1,69 @@
+/home/thefantasticmissmal/.local/lib/python3.11/site-packages/pandas/core/arrays/masked.py:61: UserWarning: Pandas requires version '1.3.6' or newer of 'bottleneck' (version '1.3.5' currently installed).
+  from pandas.core import (
+[2025-10-10 15:48:52] PROGRESS: loaded BAO cov
+[2025-10-10 15:48:53] PROGRESS: loaded SN cov from data/pantheon_plus/Pantheon+SH0ES_DIAG.spd.csv
+[2025-10-10 15:48:53] PROGRESS: DEBUG BAO median y_data=18.977 → assume_per_rd=True
+[2025-10-10 15:48:53] PROGRESS: DEBUG BAO basis=abs(/rd or Mpc) med(data)=18.977  med(fid_abs)=18.451  sigma_used=cov
+[2025-10-10 15:48:53] PROGRESS: DEBUG BAO cov stats: median(sd)=0.3843 min(sd)=0.17 max(sd)=0.95
+[2025-10-10 15:48:53] PROGRESS: DEBUG fit_params=['A', 'f', 'phi', 'gamma']
+[2025-10-10 15:48:53] PROGRESS: DEBUG Ok_bounds=(0.0, 0.0)
+[2025-10-10 15:48:53] PROGRESS: DEBUG fit_params=['A', 'f', 'phi', 'gamma']
+[2025-10-10 15:48:53] PROGRESS: DEBUG Ok_bounds=(0.0, 0.0)
+[2025-10-10 15:48:53] PROGRESS: DEBUG k_params=4
+[2025-10-10 15:48:59] PROGRESS: DEBUG chi2@init=956.161
+[2025-10-10 15:48:59] PROGRESS: DEBUG k_params=4
+[2025-10-10 15:49:04] PROGRESS: DEBUG chi2@init=956.161
+[2025-10-10 15:49:04] PROGRESS: starting optimizer
+[2025-10-10 15:51:25] PROGRESS: eval 25: chi2=793.871
+[2025-10-10 15:53:49] PROGRESS: eval 50: chi2=790.903
+[2025-10-10 15:56:11] PROGRESS: eval 75: chi2=788.907
+[2025-10-10 15:58:35] PROGRESS: eval 100: chi2=785.972
+[2025-10-10 16:00:59] PROGRESS: eval 125: chi2=785.256
+[2025-10-10 16:03:23] PROGRESS: eval 150: chi2=784.794
+[2025-10-10 16:05:45] PROGRESS: eval 175: chi2=784.663
+[2025-10-10 16:08:09] PROGRESS: eval 200: chi2=784.622
+[2025-10-10 16:10:59] PROGRESS: eval 25: chi2=793.887
+[2025-10-10 16:13:22] PROGRESS: eval 50: chi2=791.207
+[2025-10-10 16:15:46] PROGRESS: eval 75: chi2=804.244
+[2025-10-10 16:18:10] PROGRESS: eval 100: chi2=785.576
+[2025-10-10 16:20:33] PROGRESS: eval 125: chi2=785.052
+[2025-10-10 16:22:59] PROGRESS: eval 150: chi2=784.721
+[2025-10-10 16:25:21] PROGRESS: eval 175: chi2=784.628
+[2025-10-10 16:27:45] PROGRESS: eval 200: chi2=784.622
+{
+  "best_params": {
+    "H0": 70.0,
+    "Om": 0.3,
+    "Or": 0.0,
+    "Ok": 0.0,
+    "rd": 147.1,
+    "A": 0.2301717020398148,
+    "f": 3.261126399244692,
+    "phi": 1.0108784342763062,
+    "gamma": 0.0
+  },
+  "fit_params": [
+    "A",
+    "f",
+    "phi",
+    "gamma"
+  ],
+  "chi2": 784.6223437799891,
+  "ndof": 1709,
+  "success": true,
+  "message": "CONVERGENCE: REL_REDUCTION_OF_F_<=_FACTR*EPSMCH",
+  "restarts": 2,
+  "breakdown": {
+    "chi2_bao": 32.26702193855821,
+    "chi2_sn": 752.0242030138065
+  },
+  "ic": {
+    "k_params": 4,
+    "n_points": 1713,
+    "chi2_data": 784.6223437799891,
+    "AIC_data": 792.6223437799891,
+    "BIC_data": 814.4063497732856,
+    "AICc_data": 792.6457629837362
+  }
+}
+[saved] outputs/joint_RESONANT_rd_widef.json

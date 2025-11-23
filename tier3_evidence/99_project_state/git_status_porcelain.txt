@@ -1,0 +1,135 @@
+M  outputs/phase8/ocean_memory_tau0p30_kap-0p02_hiRes_spectrum.png
+ M outputs/phase8/ocean_memory_tau0p30_kap-0p02_hiRes_spectrum.svg
+ M outputs/phase8/ocean_memory_tau0p30_kap-0p02_hiRes_summary.json
+M  outputs/phase8/sweep_peak_heatmap.png
+M  outputs/phase8/sweep_peak_lines.png
+M  outputs/phase8/sweep_tau0.10_kap+0.00_spectrum.png
+ M outputs/phase8/sweep_tau0.10_kap+0.00_summary.json
+M  outputs/phase8/sweep_tau0.10_kap+0.02_spectrum.png
+ M outputs/phase8/sweep_tau0.10_kap+0.02_summary.json
+M  outputs/phase8/sweep_tau0.10_kap+0.05_spectrum.png
+ M outputs/phase8/sweep_tau0.10_kap+0.05_summary.json
+M  outputs/phase8/sweep_tau0.10_kap-0.02_spectrum.png
+ M outputs/phase8/sweep_tau0.10_kap-0.02_summary.json
+M  outputs/phase8/sweep_tau0.10_kap-0.05_spectrum.png
+ M outputs/phase8/sweep_tau0.10_kap-0.05_summary.json
+M  outputs/phase8/sweep_tau0.20_kap+0.00_spectrum.png
+ M outputs/phase8/sweep_tau0.20_kap+0.00_summary.json
+M  outputs/phase8/sweep_tau0.20_kap+0.02_spectrum.png
+ M outputs/phase8/sweep_tau0.20_kap+0.02_summary.json
+M  outputs/phase8/sweep_tau0.20_kap+0.05_spectrum.png
+ M outputs/phase8/sweep_tau0.20_kap+0.05_summary.json
+M  outputs/phase8/sweep_tau0.20_kap-0.02_spectrum.png
+ M outputs/phase8/sweep_tau0.20_kap-0.02_summary.json
+M  outputs/phase8/sweep_tau0.20_kap-0.05_spectrum.png
+ M outputs/phase8/sweep_tau0.20_kap-0.05_summary.json
+M  outputs/phase8/sweep_tau0.30_kap+0.00_spectrum.png
+ M outputs/phase8/sweep_tau0.30_kap+0.00_summary.json
+M  outputs/phase8/sweep_tau0.30_kap+0.02_spectrum.png
+ M outputs/phase8/sweep_tau0.30_kap+0.02_summary.json
+M  outputs/phase8/sweep_tau0.30_kap+0.05_spectrum.png
+ M outputs/phase8/sweep_tau0.30_kap+0.05_summary.json
+M  outputs/phase8/sweep_tau0.30_kap-0.02_spectrum.png
+ M outputs/phase8/sweep_tau0.30_kap-0.02_summary.json
+M  outputs/phase8/sweep_tau0.30_kap-0.05_spectrum.png
+ M outputs/phase8/sweep_tau0.30_kap-0.05_summary.json
+M  outputs/phase8/sweep_tau0.40_kap+0.00_spectrum.png
+ M outputs/phase8/sweep_tau0.40_kap+0.00_summary.json
+M  outputs/phase8/sweep_tau0.40_kap+0.02_spectrum.png
+ M outputs/phase8/sweep_tau0.40_kap+0.02_summary.json
+M  outputs/phase8/sweep_tau0.40_kap+0.05_spectrum.png
+ M outputs/phase8/sweep_tau0.40_kap+0.05_summary.json
+M  outputs/phase8/sweep_tau0.40_kap-0.02_spectrum.png
+ M outputs/phase8/sweep_tau0.40_kap-0.02_summary.json
+M  outputs/phase8/sweep_tau0.40_kap-0.05_spectrum.png
+ M outputs/phase8/sweep_tau0.40_kap-0.05_summary.json
+M  outputs/phase8/sweep_tau0.60_kap+0.00_spectrum.png
+ M outputs/phase8/sweep_tau0.60_kap+0.00_summary.json
+M  outputs/phase8/sweep_tau0.60_kap+0.02_spectrum.png
+ M outputs/phase8/sweep_tau0.60_kap+0.02_summary.json
+M  outputs/phase8/sweep_tau0.60_kap+0.05_spectrum.png
+ M outputs/phase8/sweep_tau0.60_kap+0.05_summary.json
+M  outputs/phase8/sweep_tau0.60_kap-0.02_spectrum.png
+ M outputs/phase8/sweep_tau0.60_kap-0.02_summary.json
+M  outputs/phase8/sweep_tau0.60_kap-0.05_spectrum.png
+ M outputs/phase8/sweep_tau0.60_kap-0.05_summary.json
+ M outputs/phase8/sweep_tau_kappa.csv
+ M tools/phase2
+M  tools/phase8_spectral/analyze_spectrum.py
+M  tools/phase8_spectral/fs8_provider.py
+A  tools/phase8_spectral/plot_omega_vs_kappa.py
+M  tools/phase8_spectral/plot_peak_heatmap.py
+M  tools/phase8_spectral/plot_peak_lines.py
+A  tools/phase8_spectral/quick_conclusion.py
+A  tools/phase8_spectral/real_quick_check.py
+M  tools/phase8_spectral/sweep_tau_kappa.py
+?? README.md
+?? Resonant-medium-symbols-table.pdf
+?? SITREP_2025-10-18_Recycling_P22-23.md
+?? cosmic_recycling_phase21_23_bundle.zip
+?? cosmic_recycling_phase21_23_bundle/
+?? logs/baseline_run.log
+?? logs/fit_A0_20251018_014427.log
+?? logs/fit_A0_20251018_015603.log
+?? logs/fit_baseline_20251018_014419.log
+?? logs/fit_baseline_20251018_015555.log
+?? logs/fit_kappa0_20251018_014425.log
+?? logs/fit_kappa0_20251018_015601.log
+?? logs/fit_probe.log
+?? logs/fit_tau0_20251018_014422.log
+?? logs/fit_tau0_20251018_015558.log
+?? logs/make_fit_A0_20251018_024544.log
+?? logs/make_fit_baseline_20251018_024536.log
+?? logs/make_fit_kappa0_20251018_024541.log
+?? logs/make_fit_tau0_20251018_024539.log
+?? pyproject.toml
+?? requirements.txt
+?? setup.cfg
+?? tier3_evidence/
+?? tools/_spectral_utils.py
+?? tools/build_tier3_evidence_pack.sh
+?? tools/collect_fit.py
+?? tools/emit_metric_beacon.py
+?? tools/emit_metric_beacon_any.py
+?? tools/emit_metric_beacon_probe.py
+?? tools/emit_metric_beacon_v2.py
+?? tools/emit_metric_from_log.py
+?? tools/eval_mocks.py
+?? tools/harvest_phase8_metrics.py
+?? tools/kfold.py
+?? tools/loo_family.py
+?? tools/make_fit_json.py
+?? tools/phase10_resonant_surface.py
+?? tools/phase11_forecast.py
+?? tools/phase12_dataset_splits.py
+?? tools/phase13_redshift_bins.py
+?? tools/phase14_prior_sensitivity.py
+?? tools/phase15_robustness.py
+?? tools/phase16_cross_metric.py
+?? tools/phase17_sim_recovery.py
+?? tools/phase18_build_spectra.py
+?? tools/phase18_export_fit.py
+?? tools/phase18_lorentzian_fit.py
+?? tools/phase19_gxk.py
+?? tools/phase19_gxk_sim.py
+?? tools/phase20_predict_bench.py
+?? tools/phase21_recycling_ode.py
+?? tools/phase22_recycling_fit.py
+?? tools/phase23_predict_sheet.py
+?? tools/phase24_recycling_wwi.py
+?? tools/phase25_recycling_oneclick.py
+?? tools/phase26_recycling_robustness.py
+?? tools/phase27_recycling_wwi_cfg.py
+?? tools/phase28_recycling_summary.py
+?? tools/phase29_recycling_forecast.py
+?? tools/phase8_spectral/find_and_export_residuals.py
+?? tools/phase8_spectral/iaaft_surrogates.py
+?? tools/phase8_spectral/multitaper_spectrum.py
+?? tools/phase8_spectral/surrogate_shuffle.py
+?? tools/phase8_spectral/zero_pad_fit.py
+?? tools/phase9_regime_trends.py
+?? tools/run_and_capture_fit.py
+?? tools/run_mocks.py
+?? tools/scan_penalty.py
+?? tools/stress_cov.py
+?? tools/write_metric_override.py

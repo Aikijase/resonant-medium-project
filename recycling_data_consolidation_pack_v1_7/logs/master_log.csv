@@ -1,0 +1,9 @@
+# Template generated 2025-10-22T07:20:42 — fill with real data; keep columns & units unchanged.
+"['timestamp_iso', 'checkpoint', 'status', 'detail', 'next_step']"
+2025-10-22T07:30:04,seed:sources+rhoBH_zgrid,ok,"Seeded sources_catalog, rho_bh z-grid, inputs.json",fill values + run validate
+2025-10-22T07:33:16,add:SMF+AGN+BHbirth,ok,Added templates+schemas+ingests,fill → validate → ingest
+2025-10-22T07:36:59,add:DOIs+QC+conversions,ok,Prefilled canonical DOIs; added conversion/QC scripts,fill values → run QC
+2025-10-22T07:43:15,add:collector_guide,ok,Added collector_tasks.csv and DATA_COLLECTION.md,start extraction
+2025-10-22T07:52:09,add:digitization_pipeline,ok,"Added worksheets, guide, merge tool",start fig/table capture
+2025-10-22T08:01:24,add:QLF_LDDE_samplers+grids,ok,"Added samplers, param stubs, and balanced grids",fill params → run samplers
+2025-10-22T08:08:22,extract:Ueda14_Table4+seed:Hopkins06,ok,Raw Table4 captured; LDDE param file built (A pending normalization); Hopkins params seeded,verify & run samplers

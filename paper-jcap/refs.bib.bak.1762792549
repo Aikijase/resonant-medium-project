@@ -1,0 +1,47 @@
+@article{Planck2018,
+  author        = {{Planck Collaboration}},
+  title         = {Planck 2018 results. VIII. Gravitational lensing},
+  journal       = {Astronomy \& Astrophysics},
+  year          = {2020},
+  volume        = {641},
+  pages         = {A8},
+  doi           = {10.1051/0004-6361/201833886},
+  eprint        = {1807.06210},
+  archivePrefix = {arXiv},
+  primaryClass  = {astro-ph.CO}
+}
+
+@article{DESI2024_BAO_DR1,
+  author        = {Adame, A. G. and {DESI Collaboration}},
+  title         = {DESI 2024: Baryon Acoustic Oscillation Measurements from the First Year of DESI Observations},
+  year          = {2024},
+  eprint        = {2404.03002},
+  archivePrefix = {arXiv},
+  primaryClass  = {astro-ph.CO},
+  note          = {DR1 compressed BAO distances used in this analysis}
+}
+
+@article{PantheonPlus2022,
+  author        = {Scolnic, D. and Brout, D. and Carr, A. and others},
+  title         = {The Pantheon+ Analysis: The Full Data Set and Light-curve Release},
+  journal       = {The Astrophysical Journal},
+  year          = {2022},
+  volume        = {938},
+  number        = {2},
+  pages         = {113},
+  doi           = {10.3847/1538-4357/ac8b7a},
+  eprint        = {2112.03863},
+  archivePrefix = {arXiv},
+  primaryClass  = {astro-ph.CO},
+  note          = {Pantheon+ Type Ia Supernova compilation}
+}
+
+@misc{Watts2025_EchoEvidence,
+  author        = {Watts, Jason},
+  title         = {Echo Equation Evidence Bundle v1},
+  year          = {2025},
+  howpublished  = {Zenodo},
+  doi           = {10.5281/zenodo.17570714},
+  url           = {https://doi.org/10.5281/zenodo.17570714},
+  note          = {Figure provenance JSONs, guard metrics, and SHA-256 locks; version 1.0}
+}

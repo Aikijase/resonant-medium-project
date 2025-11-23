@@ -1,0 +1,14 @@
+targets:
+  - name: DESI_BAO_next_release_DM_DH
+    bao_csv_path: "<fill on release>"
+    bao_cov_path: "<fill on release>"
+    schema: "DR1-like; columns [z, y, sigma] or [z, y_data, sigma]; if only sigma present, use diag(sigma^2)"
+    scoring:
+      baseline: "ΛCDM with A=0; same background and dμ as freeze_params.json"
+      metrics:
+        - "ΔAIC < 0 (primary)"
+        - "ΔBIC < 0 (secondary)"
+      thresholds:
+        conservative: 0.0
+        publishable: -10.0
+        bold: -100.0

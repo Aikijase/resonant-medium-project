@@ -1,0 +1,8 @@
+
+# example config you can tweak
+rho_bh_path: data/rho_bh_z.clean.csv
+out_prefix: outputs/thrace/recycling
+alpha: 0.001
+gamma: 0.001
+beta_de: 0.01
+beta_dm: 0.001

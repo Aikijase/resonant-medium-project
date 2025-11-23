@@ -1,0 +1,8 @@
+name: expansion_Hz
+purpose: Anchor H(z) baseline for ODE integration checks
+columns:
+  - z: {type: float}
+  - H_km_s_Mpc: {type: float}
+  - sigma_H: {type: float}
+  - method: {type: str}
+  - source_id: {type: str}

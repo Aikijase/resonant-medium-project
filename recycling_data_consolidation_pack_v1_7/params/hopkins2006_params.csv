@@ -1,0 +1,11 @@
+# Fill these from Hopkins+06; one row per z you want to sample
+z,log10Lstar_erg_s,log10phistar_Mpc3dex,gamma1,gamma2
+0.5,45.8,-5.7,0.6,2.6
+1.0,46.0,-5.9,0.6,2.6
+2.0,46.2,-6.1,0.6,2.6
+3.0,46.3,-6.4,0.6,2.6
+# TO_VERIFY rows below are educated starting points; replace with exact values from Hopkins+06 tables/figures.
+0.5,45.9,-5.8,0.6,2.6
+1.0,46.1,-6.0,0.6,2.6
+2.0,46.3,-6.2,0.6,2.6
+3.0,46.4,-6.5,0.6,2.6

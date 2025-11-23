@@ -1,0 +1,10 @@
+$ env PYTHONPATH=. MPLBACKEND=Agg python3 tools/phase9_unified_operator_sim_noscipy.py --config configs/phase9_physical.yaml --out-prefix outputs/phase9/physical_run
+[phase9-nosci] CSV saved: outputs/phase9/physical_run.csv
+[phase9-nosci] Plot saved: outputs/phase9/physical_run_timeseries.png
+[phase9-nosci] Plot saved: outputs/phase9/physical_run_phase.png
+[phase9-nosci] Metrics (post-mid): peak_to_peak=22.5573  rms_err=7.37255
+$ env PYTHONPATH=. MPLBACKEND=Agg python3 tools/phase9_unified_operator_sim_noscipy.py --config configs/phase9_physical.yaml --out-prefix outputs/phase9/physical_run
+[phase9-nosci] CSV saved: outputs/phase9/physical_run.csv
+[phase9-nosci] Plot saved: outputs/phase9/physical_run_timeseries.png
+[phase9-nosci] Plot saved: outputs/phase9/physical_run_phase.png
+[phase9-nosci] Metrics (post-mid): peak_to_peak=22.5573  rms_err=7.37255
